@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from './LanguageContext';
+import { votingData } from './data/votingData';
 
 export function VotingPage() {
   const [selectedProposal, setSelectedProposal] = useState('');
@@ -27,113 +28,12 @@ export function VotingPage() {
   const [selectedWard, setSelectedWard] = useState('Ward 1');
   const { t } = useLanguage();
 
-  const votingData = {
-    'Ward 1': {
-      totalVoters: 3245,
-      votedCount: 1876,
-      timeRemaining: '3 days 12 hours',
-      proposals: [
-        {
-          id: 'w1-p1',
-          title: 'Smart LED Street Lighting',
-          description: 'Replace old streetlights with energy-efficient LED lights',
-          estimatedCost: 850000,
-          votes: 543,
-          percentage: 29,
-          image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w1-p2',
-          title: 'Community Health Center',
-          description: 'Establish a basic health center with essential medical facilities',
-          estimatedCost: 1200000,
-          votes: 412,
-          percentage: 22,
-          image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w1-p3',
-          title: 'Road Repair and Resurfacing',
-          description: 'Fix potholes and resurface main roads for better connectivity',
-          estimatedCost: 950000,
-          votes: 921,
-          percentage: 49,
-          image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop'
-        }
-      ]
-    },
-    'Ward 2': {
-      totalVoters: 2890,
-      votedCount: 1234,
-      timeRemaining: '3 days 12 hours',
-      proposals: [
-        {
-          id: 'w2-p1',
-          title: 'Children\'s Playground',
-          description: 'Modern playground equipment with safety features for children',
-          estimatedCost: 650000,
-          votes: 398,
-          percentage: 32,
-          image: 'https://images.unsplash.com/photo-1544737151667-6e4b999de2a9?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w2-p2',
-          title: 'Water Supply Improvement',
-          description: 'Upgrade water supply infrastructure for better coverage',
-          estimatedCost: 1100000,
-          votes: 512,
-          percentage: 42,
-          image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w2-p3',
-          title: 'Waste Management System',
-          description: 'Implement door-to-door waste collection and recycling',
-          estimatedCost: 750000,
-          votes: 324,
-          percentage: 26,
-          image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop'
-        }
-      ]
-    },
-    'Ward 3': {
-      totalVoters: 4156,
-      votedCount: 2789,
-      timeRemaining: '3 days 12 hours',
-      proposals: [
-        {
-          id: 'w3-p1',
-          title: 'Drainage System Upgrade',
-          description: 'Prevent waterlogging during monsoon with improved drainage',
-          estimatedCost: 2100000,
-          votes: 1456,
-          percentage: 52,
-          image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w3-p2',
-          title: 'Digital Library Setup',
-          description: 'Modern library with computers and internet access',
-          estimatedCost: 650000,
-          votes: 823,
-          percentage: 30,
-          image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w3-p3',
-          title: 'Solar Street Lighting',
-          description: 'Eco-friendly solar-powered street lights',
-          estimatedCost: 980000,
-          votes: 510,
-          percentage: 18,
-          image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&h=300&fit=crop'
-        }
-      ]
-    }
-  };
+  
 
-  const currentWardData = votingData[selectedWard as keyof typeof votingData];
-  const participationRate = (currentWardData.votedCount / currentWardData.totalVoters) * 100;
+const currentWardData = votingData[selectedWard as keyof typeof votingData];
+const participationRate = currentWardData ? (currentWardData.votedCount / currentWardData.totalVoters) * 100
+  : 0;
+
 
   const handleVote = () => {
     if (selectedProposal) {
@@ -179,6 +79,73 @@ export function VotingPage() {
                   <SelectItem value="Ward 1">Ward 1 - Central Market</SelectItem>
                   <SelectItem value="Ward 2">Ward 2 - Residential</SelectItem>
                   <SelectItem value="Ward 3">Ward 3 - Industrial</SelectItem>
+                  <SelectItem value="Ward 4">Ward 4 - Central Market</SelectItem>
+                  <SelectItem value="Ward 5">Ward 5 - Residential</SelectItem>
+                  <SelectItem value="Ward 6">Ward 6 - Industrial</SelectItem>
+                  <SelectItem value="Ward 7">Ward 7 - Central Market</SelectItem>
+                  <SelectItem value="Ward 8">Ward 8 - Residential</SelectItem>
+                  <SelectItem value="Ward 9">Ward 9 - Industrial</SelectItem>
+                  <SelectItem value="Ward 10">Ward 10 - Industrial</SelectItem>
+                  <SelectItem value="Ward 11">Ward 11 - Central Market</SelectItem>
+                  <SelectItem value="Ward 12">Ward 12 - Residential</SelectItem>
+                  <SelectItem value="Ward 13">Ward 13 - Industrial</SelectItem>
+                  <SelectItem value="Ward 14">Ward 14 - Central Market</SelectItem>
+                  <SelectItem value="Ward 15">Ward 15 - Residential</SelectItem>
+                  <SelectItem value="Ward 16">Ward 16 - Industrial</SelectItem>
+                  <SelectItem value="Ward 17">Ward 17 - Central Market</SelectItem>
+                  <SelectItem value="Ward 18">Ward 18 - Residential</SelectItem>
+                  <SelectItem value="Ward 19">Ward 19 - Industrial</SelectItem>
+                  <SelectItem value="Ward 20">Ward 20 - Industrial</SelectItem>
+                  <SelectItem value="Ward 21">Ward 21 - Central Market</SelectItem>
+                  <SelectItem value="Ward 22">Ward 22 - Residential</SelectItem>
+                  <SelectItem value="Ward 23">Ward 23 - Industrial</SelectItem>
+                  <SelectItem value="Ward 24">Ward 24 - Central Market</SelectItem>
+                  <SelectItem value="Ward 25">Ward 25 - Residential</SelectItem>
+                  <SelectItem value="Ward 26">Ward 26 - Industrial</SelectItem>
+                  <SelectItem value="Ward 27">Ward 27 - Central Market</SelectItem>
+                  <SelectItem value="Ward 28">Ward 28 - Residential</SelectItem>
+                  <SelectItem value="Ward 29">Ward 29 - Industrial</SelectItem>
+                  <SelectItem value="Ward 30">Ward 30 - Industrial</SelectItem>
+                  <SelectItem value="Ward 31">Ward 31 - Central Market</SelectItem>
+                  <SelectItem value="Ward 32">Ward 32 - Residential</SelectItem>
+                  <SelectItem value="Ward 33">Ward 33 - Industrial</SelectItem>
+                  <SelectItem value="Ward 34">Ward 34 - Central Market</SelectItem>
+                  <SelectItem value="Ward 35">Ward 35 - Residential</SelectItem>
+                  <SelectItem value="Ward 36">Ward 36 - Industrial</SelectItem>
+                  <SelectItem value="Ward 37">Ward 37 - Central Market</SelectItem>
+                  <SelectItem value="Ward 38">Ward 38 - Residential</SelectItem>
+                  <SelectItem value="Ward 39">Ward 39 - Industrial</SelectItem>
+                  <SelectItem value="Ward 40">Ward 40 - Industrial</SelectItem>
+                  <SelectItem value="Ward 41">Ward 41 - Central Market</SelectItem>
+                  <SelectItem value="Ward 42">Ward 42 - Residential</SelectItem>
+                  <SelectItem value="Ward 43">Ward 43 - Industrial</SelectItem>
+                  <SelectItem value="Ward 44">Ward 44 - Central Market</SelectItem>
+                  <SelectItem value="Ward 45">Ward 45 - Residential</SelectItem>
+                  <SelectItem value="Ward 46">Ward 46 - Industrial</SelectItem>
+                  <SelectItem value="Ward 47">Ward 47 - Central Market</SelectItem>
+                  <SelectItem value="Ward 48">Ward 48 - Residential</SelectItem>
+                  <SelectItem value="Ward 49">Ward 49 - Industrial</SelectItem>
+                  <SelectItem value="Ward 50">Ward 50 - Industrial</SelectItem>
+                  <SelectItem value="Ward 51">Ward 51 - Central Market</SelectItem>
+                  <SelectItem value="Ward 52">Ward 52 - Residential</SelectItem>
+                  <SelectItem value="Ward 53">Ward 53 - Industrial</SelectItem>
+                  <SelectItem value="Ward 54">Ward 54 - Central Market</SelectItem>
+                  <SelectItem value="Ward 55">Ward 55 - Residential</SelectItem>
+                  <SelectItem value="Ward 56">Ward 56 - Industrial</SelectItem>
+                  <SelectItem value="Ward 57">Ward 57 - Central Market</SelectItem>
+                  <SelectItem value="Ward 58">Ward 58 - Residential</SelectItem>
+                  <SelectItem value="Ward 59">Ward 59 - Industrial</SelectItem>
+                  <SelectItem value="Ward 60">Ward 60 - Industrial</SelectItem>
+                  {/* <SelectItem value="Ward 1">Ward 61 - Central Market</SelectItem>
+                  <SelectItem value="Ward 2">Ward 62 - Residential</SelectItem>
+                  <SelectItem value="Ward 3">Ward 63 - Industrial</SelectItem>
+                  <SelectItem value="Ward 1">Ward 64 - Central Market</SelectItem>
+                  <SelectItem value="Ward 2">Ward 65 - Residential</SelectItem>
+                  <SelectItem value="Ward 3">Ward 66 - Industrial</SelectItem>
+                  <SelectItem value="Ward 1">Ward 67 - Central Market</SelectItem>
+                  <SelectItem value="Ward 2">Ward 68 - Residential</SelectItem>
+                  <SelectItem value="Ward 3">Ward 69 - Industrial</SelectItem>
+                  <SelectItem value="Ward 3">Ward 70 - Industrial</SelectItem> */}
                 </SelectContent>
               </Select>
             </CardContent>
