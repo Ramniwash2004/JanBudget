@@ -2039,4 +2039,344 @@ export const votingData = {
       }
     ]
   },
+  'Ward 61': {
+    totalVoters: 2834,
+    votedCount: 1756,
+    timeRemaining: '2 days 22 hours',
+    proposals: [
+      {
+        id: 'w61-p1',
+        title: 'Waste Management System',
+        description: 'Implement door-to-door waste collection and recycling',
+        estimatedCost: 1150000,
+        votes: 956,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w61-p2',
+        title: 'Trampoline Park',
+        description: 'Indoor jumping facility for all ages',
+        estimatedCost: 1650000,
+        votes: 567,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w61-p3',
+        title: 'Bamboo Grove',
+        description: 'Serene bamboo forest walking path',
+        estimatedCost: 480000,
+        votes: 233,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1541675154750-0444c7d51e8e?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 62': {
+    totalVoters: 3912,
+    votedCount: 2678,
+    timeRemaining: '2 days 22 hours',
+    proposals: [
+      {
+        id: 'w62-p1',
+        title: 'Water Supply Improvement',
+        description: 'Upgrade water supply infrastructure for better coverage',
+        estimatedCost: 1950000,
+        votes: 1456,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w62-p2',
+        title: 'Adventure Obstacle Course',
+        description: 'Outdoor fitness challenge circuit',
+        estimatedCost: 1350000,
+        votes: 867,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1527933053326-89d1746b76b9?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w62-p3',
+        title: 'Moonlight Garden',
+        description: 'Night-blooming flowers with pathway lighting',
+        estimatedCost: 780000,
+        votes: 355,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 63': {
+    totalVoters: 3234,
+    votedCount: 2145,
+    timeRemaining: '2 days 21 hours',
+    proposals: [
+      {
+        id: 'w63-p1',
+        title: 'Smart LED Street Lighting',
+        description: 'Replace old streetlights with energy-efficient LED lights',
+        estimatedCost: 1120000,
+        votes: 1167,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w63-p2',
+        title: 'Mini Golf Course',
+        description: 'Family entertainment mini golf facility',
+        estimatedCost: 850000,
+        votes: 689,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1592919505780-303950717480?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w63-p3',
+        title: 'Herb Garden',
+        description: 'Culinary and medicinal herb cultivation',
+        estimatedCost: 420000,
+        votes: 289,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 64': {
+    totalVoters: 2967,
+    votedCount: 1889,
+    timeRemaining: '2 days 21 hours',
+    proposals: [
+      {
+        id: 'w64-p1',
+        title: 'Drainage System Upgrade',
+        description: 'Prevent waterlogging during monsoon with improved drainage',
+        estimatedCost: 2850000,
+        votes: 1023,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w64-p2',
+        title: 'Laser Tag Arena',
+        description: 'Indoor laser gaming entertainment',
+        estimatedCost: 1450000,
+        votes: 612,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w64-p3',
+        title: 'Aquatic Plant Garden',
+        description: 'Water lilies and pond plants display',
+        estimatedCost: 680000,
+        votes: 254,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 65': {
+    totalVoters: 3678,
+    votedCount: 2456,
+    timeRemaining: '2 days 21 hours',
+    proposals: [
+      {
+        id: 'w65-p1',
+        title: 'Road Repair and Resurfacing',
+        description: 'Fix potholes and resurface main roads for better connectivity',
+        estimatedCost: 1850000,
+        votes: 1334,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w65-p2',
+        title: 'Zip Line Adventure',
+        description: 'Aerial rope course and zip lines',
+        estimatedCost: 1950000,
+        votes: 789,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1527933053326-89d1746b76b9?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w65-p3',
+        title: 'Edible Forest Garden',
+        description: 'Food forest with fruit and nut trees',
+        estimatedCost: 780000,
+        votes: 333,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 66': {
+    totalVoters: 3045,
+    votedCount: 1923,
+    timeRemaining: '2 days 21 hours',
+    proposals: [
+      {
+        id: 'w66-p1',
+        title: 'Children\'s Playground',
+        description: 'Modern playground equipment with safety features for children',
+        estimatedCost: 820000,
+        votes: 1045,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1544737151667-6e4b999de2a9?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w66-p2',
+        title: 'Virtual Reality Gaming Center',
+        description: 'Modern VR entertainment facility',
+        estimatedCost: 1850000,
+        votes: 623,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w66-p3',
+        title: 'Fairy Garden',
+        description: 'Whimsical miniature garden for children',
+        estimatedCost: 480000,
+        votes: 255,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 67': {
+    totalVoters: 3789,
+    votedCount: 2567,
+    timeRemaining: '2 days 20 hours',
+    proposals: [
+      {
+        id: 'w67-p1',
+        title: 'Digital Library Setup',
+        description: 'Modern library with computers and internet access',
+        estimatedCost: 920000,
+        votes: 1389,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w67-p2',
+        title: 'Escape Room Complex',
+        description: 'Interactive puzzle entertainment venue',
+        estimatedCost: 1250000,
+        votes: 823,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w67-p3',
+        title: 'Rain Garden',
+        description: 'Sustainable water management landscape',
+        estimatedCost: 580000,
+        votes: 355,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1563455433861-a0e8ed61d7d1?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 68': {
+    totalVoters: 2856,
+    votedCount: 1756,
+    timeRemaining: '2 days 20 hours',
+    proposals: [
+      {
+        id: 'w68-p1',
+        title: 'Waste Management System',
+        description: 'Implement door-to-door waste collection and recycling',
+        estimatedCost: 1250000,
+        votes: 956,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w68-p2',
+        title: 'Go-Kart Racing Track',
+        description: 'Electric go-kart racing circuit',
+        estimatedCost: 2100000,
+        votes: 567,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w68-p3',
+        title: 'Cottage Garden',
+        description: 'Traditional English-style flower garden',
+        estimatedCost: 620000,
+        votes: 233,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 69': {
+    totalVoters: 3456,
+    votedCount: 2234,
+    timeRemaining: '2 days 20 hours',
+    proposals: [
+      {
+        id: 'w69-p1',
+        title: 'Water Supply Improvement',
+        description: 'Upgrade water supply infrastructure for better coverage',
+        estimatedCost: 2050000,
+        votes: 1212,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w69-p2',
+        title: 'Drone Racing Course',
+        description: 'FPV drone racing facility',
+        estimatedCost: 980000,
+        votes: 712,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w69-p3',
+        title: 'Healing Garden',
+        description: 'Therapeutic garden for stress relief',
+        estimatedCost: 720000,
+        votes: 310,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&h=300&fit=crop'
+      }
+    ]
+  },
+  'Ward 70': {
+    totalVoters: 3123,
+    votedCount: 2089,
+    timeRemaining: '2 days 20 hours',
+    proposals: [
+      {
+        id: 'w70-p1',
+        title: 'Community Health Center',
+        description: 'Establish a basic health center with essential medical facilities',
+        estimatedCost: 1750000,
+        votes: 1134,
+        percentage: 54,
+        image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w70-p2',
+        title: 'Augmented Reality Park',
+        description: 'Interactive AR experiences in outdoor space',
+        estimatedCost: 2200000,
+        votes: 678,
+        percentage: 32,
+        image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=400&h=300&fit=crop'
+      },
+      {
+        id: 'w70-p3',
+        title: 'Pollinator Garden',
+        description: 'Native plants to support bees and butterflies',
+        estimatedCost: 520000,
+        votes: 277,
+        percentage: 14,
+        image: 'https://images.unsplash.com/photo-1532450940097-7cf3f9ce1e94?w=400&h=300&fit=crop'
+      }
+    ]
+  }
   };
