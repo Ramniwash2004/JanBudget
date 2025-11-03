@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useLanguage } from './LanguageContext';
+import { votingData } from './data/votingData.ts';
 
 export function VotingPage() {
   const [selectedProposal, setSelectedProposal] = useState('');
@@ -27,113 +28,12 @@ export function VotingPage() {
   const [selectedWard, setSelectedWard] = useState('Ward 1');
   const { t } = useLanguage();
 
-  const votingData = {
-    'Ward 1': {
-      totalVoters: 3245,
-      votedCount: 1876,
-      timeRemaining: '3 days 12 hours',
-      proposals: [
-        {
-          id: 'w1-p1',
-          title: 'Smart LED Street Lighting',
-          description: 'Replace old streetlights with energy-efficient LED lights',
-          estimatedCost: 850000,
-          votes: 543,
-          percentage: 29,
-          image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w1-p2',
-          title: 'Community Health Center',
-          description: 'Establish a basic health center with essential medical facilities',
-          estimatedCost: 1200000,
-          votes: 412,
-          percentage: 22,
-          image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w1-p3',
-          title: 'Road Repair and Resurfacing',
-          description: 'Fix potholes and resurface main roads for better connectivity',
-          estimatedCost: 950000,
-          votes: 921,
-          percentage: 49,
-          image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop'
-        }
-      ]
-    },
-    'Ward 2': {
-      totalVoters: 2890,
-      votedCount: 1234,
-      timeRemaining: '3 days 12 hours',
-      proposals: [
-        {
-          id: 'w2-p1',
-          title: 'Children\'s Playground',
-          description: 'Modern playground equipment with safety features for children',
-          estimatedCost: 650000,
-          votes: 398,
-          percentage: 32,
-          image: 'https://images.unsplash.com/photo-1544737151667-6e4b999de2a9?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w2-p2',
-          title: 'Water Supply Improvement',
-          description: 'Upgrade water supply infrastructure for better coverage',
-          estimatedCost: 1100000,
-          votes: 512,
-          percentage: 42,
-          image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w2-p3',
-          title: 'Waste Management System',
-          description: 'Implement door-to-door waste collection and recycling',
-          estimatedCost: 750000,
-          votes: 324,
-          percentage: 26,
-          image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop'
-        }
-      ]
-    },
-    'Ward 3': {
-      totalVoters: 4156,
-      votedCount: 2789,
-      timeRemaining: '3 days 12 hours',
-      proposals: [
-        {
-          id: 'w3-p1',
-          title: 'Drainage System Upgrade',
-          description: 'Prevent waterlogging during monsoon with improved drainage',
-          estimatedCost: 2100000,
-          votes: 1456,
-          percentage: 52,
-          image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w3-p2',
-          title: 'Digital Library Setup',
-          description: 'Modern library with computers and internet access',
-          estimatedCost: 650000,
-          votes: 823,
-          percentage: 30,
-          image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop'
-        },
-        {
-          id: 'w3-p3',
-          title: 'Solar Street Lighting',
-          description: 'Eco-friendly solar-powered street lights',
-          estimatedCost: 980000,
-          votes: 510,
-          percentage: 18,
-          image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&h=300&fit=crop'
-        }
-      ]
-    }
-  };
+  
 
-  const currentWardData = votingData[selectedWard as keyof typeof votingData];
-  const participationRate = (currentWardData.votedCount / currentWardData.totalVoters) * 100;
+const currentWardData = votingData[selectedWard as keyof typeof votingData];
+const participationRate = currentWardData ? (currentWardData.votedCount / currentWardData.totalVoters) * 100
+  : 0;
+
 
   const handleVote = () => {
     if (selectedProposal) {
@@ -176,9 +76,76 @@ export function VotingPage() {
                   <SelectValue placeholder={t('voting.selectWard')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Ward 1">Ward 1 - Central Market</SelectItem>
-                  <SelectItem value="Ward 2">Ward 2 - Residential</SelectItem>
-                  <SelectItem value="Ward 3">Ward 3 - Industrial</SelectItem>
+                 <SelectItem value="Ward 1">Ward 1 - Veer Savarkar Nagar Ward</SelectItem>
+                 <SelectItem value="Ward 2">Ward 2 - Pt. Javaharlal Nehru Ward</SelectItem>
+                 <SelectItem value="Ward 3">Ward 3 - Sant Kabir Das Ward</SelectItem>
+                 <SelectItem value="Ward 4">Ward 4 - Yatiyatan Lal Ward</SelectItem>
+                 <SelectItem value="Ward 5">Ward 5 - Banjari Mata Mandir Ward</SelectItem>
+                 <SelectItem value="Ward 6">Ward 6 - Veerangani Avanti Bai Ward</SelectItem>
+                 <SelectItem value="Ward 7">Ward 7 - Kushabhav Thakre</SelectItem>
+                 <SelectItem value="Ward 8">Ward 8 - Pt. Motilal Nehru Ward</SelectItem>
+                 <SelectItem value="Ward 9">Ward 9 - Doc. Bhimrav Ambedkar Ward</SelectItem>
+                 <SelectItem value="Ward 10">Ward 10 - Rani Laxmi Bai Ward</SelectItem>
+                 <SelectItem value="Ward 11">Ward 11 - Kalimata Ward</SelectItem>
+                 <SelectItem value="Ward 12">Ward 12 - Mahatma Gandhi Ward</SelectItem>
+                 <SelectItem value="Ward 13">Ward 13 - Rajiv Gandi Ward</SelectItem>
+                 <SelectItem value="Ward 14">Ward 14 - Raman Mandir Ward</SelectItem>
+                 <SelectItem value="Ward 15">Ward 15 - Kanhiya Lal Banjari Ward</SelectItem>
+                 <SelectItem value="Ward 16">Ward 16 - Veer Shivaji Ward</SelectItem>
+                 <SelectItem value="Ward 17">Ward 17 - Thakkar Bapa Ward</SelectItem>
+                 <SelectItem value="Ward 18">Ward 18 - Bal Gangadhar Tilak Nagar</SelectItem>
+                 <SelectItem value="Ward 19">Ward 19 - DR. A.P.J. ABDUL KALAM WARD</SelectItem>
+                 <SelectItem value="Ward 20">Ward 20 - Ram Krishna Paramhans Ward</SelectItem>
+                 <SelectItem value="Ward 21">Ward 21 - Shaheed Bhagat Singh Ward</SelectItem>
+                 <SelectItem value="Ward 22">Ward 22 - Pandit Ishwaricharan Shukla Ward</SelectItem>
+                 <SelectItem value="Ward 23">Ward 23 - Manmohan Singh Bakshi Ward</SelectItem>
+                 <SelectItem value="Ward 24">Ward 24 - Vallab Bhai Patel Ward</SelectItem>
+                 <SelectItem value="Ward 25">Ward 25 - Sant Ram Das Ward</SelectItem>
+                 <SelectItem value="Ward 26">Ward 26 - Danveer Bhabhasaha Ward</SelectItem>
+                 <SelectItem value="Ward 27">Ward 27 - Indra Gandhi Ward</SelectItem>
+                 <SelectItem value="Ward 28">Ward 28 - Shaheed Hemu Kalyani Ward</SelectItem>
+                 <SelectItem value="Ward 29">Ward 29 - Guru Govind Singh Ward</SelectItem>
+                 <SelectItem value="Ward 30">Ward 30 - Shankar Nagar Ward</SelectItem>
+                 <SelectItem value="Ward 31">Ward 31 - Neta Shubhaschandra Bose Ward</SelectItem>
+                 <SelectItem value="Ward 32">Ward 32 - Maharishi Valmiki Ward</SelectItem>
+                 <SelectItem value="Ward 33">Ward 33 - Veernarayan Singh Ward</SelectItem>
+                 <SelectItem value="Ward 34">Ward 34 - Lal Bhadur Shastri Ward</SelectItem>
+                 <SelectItem value="Ward 35">Ward 35 - Pandit Ravishankar Shukla Ward</SelectItem>
+                 <SelectItem value="Ward 36">Ward 36 - Havaldar Abdul Hamid Ward</SelectItem>
+                 <SelectItem value="Ward 37">Ward 37 - Tatyapara Ward Shaheed</SelectItem>
+                 <SelectItem value="Ward 38">Ward 38 - Chudamani Nayak Ward</SelectItem>
+                 <SelectItem value="Ward 39">Ward 39 - Swami Atmanand Ward</SelectItem>
+                 <SelectItem value="Ward 40">Ward 40 - Thakur Pyare Lal Ward</SelectItem>
+                 <SelectItem value="Ward 41">Ward 41 - Pt. Dindayal Uppadhye Ward</SelectItem>
+                 <SelectItem value="Ward 42">Ward 42 - Pt. Sundar Lal Sharma Ward</SelectItem>
+                 <SelectItem value="Ward 43">Ward 43 - Mahant Laxminarayn Das Ward</SelectItem>
+                 <SelectItem value="Ward 44">Ward 44 - Bhramanpara Ward</SelectItem>
+                 <SelectItem value="Ward 45">Ward 45 - Swami Vivakanand Ward</SelectItem>
+                 <SelectItem value="Ward 46">Ward 46 - Mailana Abdul Rauf Ward</SelectItem>
+                 <SelectItem value="Ward 47">Ward 47 - Civil Lines Ward</SelectItem>
+                 <SelectItem value="Ward 48">Ward 48 - Mother Terisa Ward</SelectItem>
+                 <SelectItem value="Ward 49">Ward 49 - Guru Ghasidas Ward</SelectItem>
+                 <SelectItem value="Ward 50">Ward 50 - Rani Durgavati Ward</SelectItem>
+                 <SelectItem value="Ward 51">Ward 51 - Doc. Rajendra Prasad Ward</SelectItem>
+                 <SelectItem value="Ward 52">Ward 52 - PT. VIDYACHARAN SHUKLA WARD</SelectItem>
+                 <SelectItem value="Ward 53">Ward 53 - Babu Jagjivan Ram Ward</SelectItem>
+                 <SelectItem value="Ward 54">Ward 54 - KAMRED SUDHIR MUKHARJEE WARD</SelectItem>
+                 <SelectItem value="Ward 55">Ward 55 - Ravindra Nath Taigore Ward</SelectItem>
+                 <SelectItem value="Ward 56">Ward 56 - Arvind Dikshit Ward</SelectItem>
+                 <SelectItem value="Ward 57">Ward 57 - Pt. Bhagwati Charan Shukla Ward</SelectItem>
+                 <SelectItem value="Ward 58">Ward 58 - Shaheed Pankaj Vikaram Ward</SelectItem>
+                 <SelectItem value="Ward 59">Ward 59 - Mureshwar Rao Gandre Ward</SelectItem>
+                 <SelectItem value="Ward 60">Ward 60 - Chandrashekhar Aazad Ward</SelectItem>
+                 <SelectItem value="Ward 61">Ward 61 - Doc. Shyam Prasad Mukhrji</SelectItem>
+                 <SelectItem value="Ward 62">Ward 62 - Shaheed Rajiv Pard Ward</SelectItem>
+                 <SelectItem value="Ward 63">Ward 63 - Brigediyar Usman Ward</SelectItem>
+                 <SelectItem value="Ward 64">Ward 64 - Doc. Vipin Bihari Sur Ward</SelectItem>
+                 <SelectItem value="Ward 65">Ward 65 - Mahamaya Mandir Ward</SelectItem>
+                 <SelectItem value="Ward 66">Ward 66 - Vaman Rao Lakhe Ward</SelectItem>
+                 <SelectItem value="Ward 67">Ward 67 - BHAKTMΑΤΑ KARMA WARD</SelectItem>
+                 <SelectItem value="Ward 68">Ward 68 - Doc. Khubchand Baghel Ward</SelectItem>
+                 <SelectItem value="Ward 69">Ward 69 - Madhav Rav Sapre Ward</SelectItem>
+                 <SelectItem value="Ward 70">Ward 70 - Sant Ravidas Ward</SelectItem>
                 </SelectContent>
               </Select>
             </CardContent>

@@ -26,10 +26,10 @@ import {
 export function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    name: 'Rajesh Kumar',
-    email: 'rajesh.kumar@email.com',
-    phone: '+91 98765 43210',
-    ward: 'Ward 1 - Central Market',
+    name: 'Ramniwash Kumawat',
+    email: 'ramniwash@gmail.com',
+    phone: '+91 7877749532',
+    ward: 'Ward 13 - Central Market',
     address: 'House No. 123, Market Road, Central Area',
     aadhaarId: 'XXXX-XXXX-1234',
     voterId: 'ABC1234567'
