@@ -22,9 +22,11 @@ import {
   AlertTriangle,
   CheckCircle,
   Clock,
-  Eye
+  Eye,
+  X
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { CameraCapture } from './ui/CameraCapture';
 
 export function ComplaintsPage() {
   const [sortBy, setSortBy] = useState('recent');
@@ -32,6 +34,19 @@ export function ComplaintsPage() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isNewComplaintOpen, setIsNewComplaintOpen] = useState(false);
+  // For camera capture
+const [showCamera, setShowCamera] = useState(false);
+const [capturedPhoto, setCapturedPhoto] = useState<string | null>(null);
+
+const handlePhotoCapture = (imageData: string) => {
+  setCapturedPhoto(imageData);
+  setShowCamera(false);
+};
+
+const handleRemovePhoto = () => {
+  setCapturedPhoto(null);
+};
+
 
   const complaints = [
     {
@@ -164,7 +179,11 @@ export function ComplaintsPage() {
     });
 
   const handleSubmitComplaint = () => {
-    console.log('New complaint submitted:', newComplaint);
+    const complaintData = {
+    ...newComplaint,
+    photo: capturedPhoto,  //include photo
+    };
+    console.log('New complaint submitted:', complaintData);
     setIsNewComplaintOpen(false);
     setNewComplaint({
       title: '',
@@ -174,6 +193,8 @@ export function ComplaintsPage() {
       location: '',
       priority: ''
     });
+    setCapturedPhoto(null);
+    setShowCamera(false);
   };
 
   const getStatusBadge = (status: string) => {
@@ -266,7 +287,7 @@ export function ComplaintsPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="category">Category</Label>
-                    <Select value={newComplaint.category} onValueChange={(value) => setNewComplaint({...newComplaint, category: value})}>
+                    <Select value={newComplaint.category} onValueChange={(value:string) => setNewComplaint({...newComplaint, category: value})}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select category" />
                       </SelectTrigger>
@@ -281,7 +302,7 @@ export function ComplaintsPage() {
                   </div>
                   <div>
                     <Label htmlFor="priority">Priority</Label>
-                    <Select value={newComplaint.priority} onValueChange={(value) => setNewComplaint({...newComplaint, priority: value})}>
+                    <Select value={newComplaint.priority} onValueChange={(value:string) => setNewComplaint({...newComplaint, priority: value})}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select priority" />
                       </SelectTrigger>
@@ -296,7 +317,7 @@ export function ComplaintsPage() {
                 
                 <div>
                   <Label htmlFor="ward">Ward</Label>
-                  <Select value={newComplaint.ward} onValueChange={(value) => setNewComplaint({...newComplaint, ward: value})}>
+                  <Select value={newComplaint.ward} onValueChange={(value:string) => setNewComplaint({...newComplaint, ward: value})}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select ward" />
                     </SelectTrigger>
@@ -321,15 +342,47 @@ export function ComplaintsPage() {
                 
                 <div>
                   <Label htmlFor="photo">Photo Evidence</Label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                    <Camera className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600">Take a photo or upload image</p>
-                    <p className="text-xs text-gray-500">PNG, JPG up to 10MB</p>
-                  </div>
+                  {showCamera ? (
+                    <CameraCapture
+                      onCapture={handlePhotoCapture}
+                      onCancel={() => setShowCamera(false)}
+                    />
+                  ) : capturedPhoto ? (
+                    <div className="relative">
+                      <img
+                        src={capturedPhoto}
+                        alt="Captured evidence"
+                        className="w-full rounded-lg"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
+                        className="absolute top-2 right-2"
+                        onClick={handleRemovePhoto}
+                      >
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setShowCamera(true)}
+                      className="w-full border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition-colors"
+                    >
+                      <Camera className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+                      <p className="text-sm font-medium text-gray-700">Take Photo from Camera</p>
+                      <p className="text-xs text-gray-500 mt-1">Click to open camera and capture evidence</p>
+                    </button>
+                  )}
                 </div>
                 
                 <div className="flex justify-end space-x-2 pt-4">
-                  <Button variant="outline" onClick={() => setIsNewComplaintOpen(false)}>
+                  <Button variant="outline" onClick={() => {
+                    setIsNewComplaintOpen(false);
+                    setShowCamera(false);
+                    setCapturedPhoto(null);
+                  }}>
                     Cancel
                   </Button>
                   <Button onClick={handleSubmitComplaint}>
