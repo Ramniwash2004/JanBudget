@@ -21,11 +21,12 @@ import {
   Search,
   Filter,
   Eye,
-  Timeline,
+  // Timeline,
   Building,
-  Truck
+  // Truck
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { projects } from './data/projectData.ts';
 
 export function ProjectsPage() {
   const [selectedFilter, setSelectedFilter] = useState('all');
@@ -33,145 +34,6 @@ export function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Smart LED Street Lighting Phase 1",
-      description: "Installation of energy-efficient LED streetlights along Market Road",
-      ward: "Ward 1",
-      location: "Market Road, Central Area",
-      budget: 850000,
-      spent: 612000,
-      progress: 72,
-      status: "Under Construction",
-      startDate: "2024-01-15",
-      expectedCompletion: "2024-03-15",
-      contractor: "Green Energy Solutions",
-      timeline: [
-        { phase: "Tender Process", status: "completed", date: "2024-01-15" },
-        { phase: "Fund Release", status: "completed", date: "2024-01-22" },
-        { phase: "Material Procurement", status: "completed", date: "2024-02-01" },
-        { phase: "Installation", status: "ongoing", date: "2024-02-15" },
-        { phase: "Testing & Handover", status: "pending", date: "2024-03-15" }
-      ],
-      images: [
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop"
-      ],
-      reviews: [
-        {
-          id: 1,
-          citizen: "Rajesh Kumar",
-          rating: 4,
-          comment: "Good progress so far. The lights installed are very bright.",
-          date: "2024-02-20",
-          likes: 12
-        },
-        {
-          id: 2,
-          citizen: "Priya Sharma", 
-          rating: 5,
-          comment: "Excellent work quality. The installation team is very professional.",
-          date: "2024-02-18",
-          likes: 8
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: "Community Park Development",
-      description: "Creating a family-friendly park with playground and walking paths",
-      ward: "Ward 2",
-      location: "Near Government School",
-      budget: 1200000,
-      spent: 1180000,
-      progress: 98,
-      status: "Completed",
-      startDate: "2023-11-01",
-      expectedCompletion: "2024-01-31",
-      contractor: "Urban Landscapes Ltd",
-      timeline: [
-        { phase: "Tender Process", status: "completed", date: "2023-11-01" },
-        { phase: "Fund Release", status: "completed", date: "2023-11-10" },
-        { phase: "Site Preparation", status: "completed", date: "2023-11-20" },
-        { phase: "Construction", status: "completed", date: "2024-01-15" },
-        { phase: "Final Inspection", status: "completed", date: "2024-01-31" }
-      ],
-      images: [
-        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1544737151667-6e4b999de2a9?w=400&h=300&fit=crop"
-      ],
-      reviews: [
-        {
-          id: 1,
-          citizen: "Amit Singh",
-          rating: 5,
-          comment: "Beautiful park! My children love playing here. Thank you for this wonderful addition.",
-          date: "2024-02-05",
-          likes: 25
-        }
-      ]
-    },
-    {
-      id: 3,
-      title: "Drainage System Improvement",
-      description: "Upgrading drainage infrastructure to prevent waterlogging",
-      ward: "Ward 3",
-      location: "Industrial Area Main Road",
-      budget: 2100000,
-      spent: 420000,
-      progress: 20,
-      status: "Tendering",
-      startDate: "2024-03-01",
-      expectedCompletion: "2024-07-31",
-      contractor: "TBD",
-      timeline: [
-        { phase: "Tender Process", status: "ongoing", date: "2024-02-15" },
-        { phase: "Fund Release", status: "pending", date: "2024-03-01" },
-        { phase: "Site Survey", status: "pending", date: "2024-03-15" },
-        { phase: "Construction", status: "pending", date: "2024-04-01" },
-        { phase: "Testing & Handover", status: "pending", date: "2024-07-31" }
-      ],
-      images: [
-        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop"
-      ],
-      reviews: []
-    },
-    {
-      id: 4,
-      title: "Digital Library Setup",
-      description: "Modern library with computers and internet access",
-      ward: "Ward 4",
-      location: "Community Center",
-      budget: 650000,
-      spent: 585000,
-      progress: 90,
-      status: "Under Construction",
-      startDate: "2024-01-10",
-      expectedCompletion: "2024-02-28",
-      contractor: "Tech Solutions Hub",
-      timeline: [
-        { phase: "Tender Process", status: "completed", date: "2024-01-10" },
-        { phase: "Fund Release", status: "completed", date: "2024-01-15" },
-        { phase: "Equipment Procurement", status: "completed", date: "2024-01-25" },
-        { phase: "Installation & Setup", status: "ongoing", date: "2024-02-10" },
-        { phase: "Training & Handover", status: "pending", date: "2024-02-28" }
-      ],
-      images: [
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop"
-      ],
-      reviews: [
-        {
-          id: 1,
-          citizen: "Dr. Meera Patel",
-          rating: 4,
-          comment: "Great initiative! The setup looks modern and will benefit many students.",
-          date: "2024-02-15",
-          likes: 15
-        }
-      ]
-    }
-  ];
 
   const filteredProjects = projects.filter(project => {
     const matchesStatus = selectedFilter === 'all' || 
@@ -244,10 +106,76 @@ export function ProjectsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Wards</SelectItem>
-                  <SelectItem value="Ward 1">Ward 1</SelectItem>
-                  <SelectItem value="Ward 2">Ward 2</SelectItem>
-                  <SelectItem value="Ward 3">Ward 3</SelectItem>
-                  <SelectItem value="Ward 4">Ward 4</SelectItem>
+                  <SelectItem value="Ward 1">Ward 1 - Veer Savarkar Nagar Ward</SelectItem>
+                 <SelectItem value="Ward 2">Ward 2 - Pt. Javaharlal Nehru Ward</SelectItem>
+                 <SelectItem value="Ward 3">Ward 3 - Sant Kabir Das Ward</SelectItem>
+                 <SelectItem value="Ward 4">Ward 4 - Yatiyatan Lal Ward</SelectItem>
+                 <SelectItem value="Ward 5">Ward 5 - Banjari Mata Mandir Ward</SelectItem>
+                 <SelectItem value="Ward 6">Ward 6 - Veerangani Avanti Bai Ward</SelectItem>
+                 <SelectItem value="Ward 7">Ward 7 - Kushabhav Thakre</SelectItem>
+                 <SelectItem value="Ward 8">Ward 8 - Pt. Motilal Nehru Ward</SelectItem>
+                 <SelectItem value="Ward 9">Ward 9 - Doc. Bhimrav Ambedkar Ward</SelectItem>
+                 <SelectItem value="Ward 10">Ward 10 - Rani Laxmi Bai Ward</SelectItem>
+                 <SelectItem value="Ward 11">Ward 11 - Kalimata Ward</SelectItem>
+                 <SelectItem value="Ward 12">Ward 12 - Mahatma Gandhi Ward</SelectItem>
+                 <SelectItem value="Ward 13">Ward 13 - Rajiv Gandi Ward</SelectItem>
+                 <SelectItem value="Ward 14">Ward 14 - Raman Mandir Ward</SelectItem>
+                 <SelectItem value="Ward 15">Ward 15 - Kanhiya Lal Banjari Ward</SelectItem>
+                 <SelectItem value="Ward 16">Ward 16 - Veer Shivaji Ward</SelectItem>
+                 <SelectItem value="Ward 17">Ward 17 - Thakkar Bapa Ward</SelectItem>
+                 <SelectItem value="Ward 18">Ward 18 - Bal Gangadhar Tilak Nagar</SelectItem>
+                 <SelectItem value="Ward 19">Ward 19 - DR. A.P.J. ABDUL KALAM WARD</SelectItem>
+                 <SelectItem value="Ward 20">Ward 20 - Ram Krishna Paramhans Ward</SelectItem>
+                 <SelectItem value="Ward 21">Ward 21 - Shaheed Bhagat Singh Ward</SelectItem>
+                 <SelectItem value="Ward 22">Ward 22 - Pandit Ishwaricharan Shukla Ward</SelectItem>
+                 <SelectItem value="Ward 23">Ward 23 - Manmohan Singh Bakshi Ward</SelectItem>
+                 <SelectItem value="Ward 24">Ward 24 - Vallab Bhai Patel Ward</SelectItem>
+                 <SelectItem value="Ward 25">Ward 25 - Sant Ram Das Ward</SelectItem>
+                 <SelectItem value="Ward 26">Ward 26 - Danveer Bhabhasaha Ward</SelectItem>
+                 <SelectItem value="Ward 27">Ward 27 - Indra Gandhi Ward</SelectItem>
+                 <SelectItem value="Ward 28">Ward 28 - Shaheed Hemu Kalyani Ward</SelectItem>
+                 <SelectItem value="Ward 29">Ward 29 - Guru Govind Singh Ward</SelectItem>
+                 <SelectItem value="Ward 30">Ward 30 - Shankar Nagar Ward</SelectItem>
+                 <SelectItem value="Ward 31">Ward 31 - Neta Shubhaschandra Bose Ward</SelectItem>
+                 <SelectItem value="Ward 32">Ward 32 - Maharishi Valmiki Ward</SelectItem>
+                 <SelectItem value="Ward 33">Ward 33 - Veernarayan Singh Ward</SelectItem>
+                 <SelectItem value="Ward 34">Ward 34 - Lal Bhadur Shastri Ward</SelectItem>
+                 <SelectItem value="Ward 35">Ward 35 - Pandit Ravishankar Shukla Ward</SelectItem>
+                 <SelectItem value="Ward 36">Ward 36 - Havaldar Abdul Hamid Ward</SelectItem>
+                 <SelectItem value="Ward 37">Ward 37 - Tatyapara Ward Shaheed</SelectItem>
+                 <SelectItem value="Ward 38">Ward 38 - Chudamani Nayak Ward</SelectItem>
+                 <SelectItem value="Ward 39">Ward 39 - Swami Atmanand Ward</SelectItem>
+                 <SelectItem value="Ward 40">Ward 40 - Thakur Pyare Lal Ward</SelectItem>
+                 <SelectItem value="Ward 41">Ward 41 - Pt. Dindayal Uppadhye Ward</SelectItem>
+                 <SelectItem value="Ward 42">Ward 42 - Pt. Sundar Lal Sharma Ward</SelectItem>
+                 <SelectItem value="Ward 43">Ward 43 - Mahant Laxminarayn Das Ward</SelectItem>
+                 <SelectItem value="Ward 44">Ward 44 - Bhramanpara Ward</SelectItem>
+                 <SelectItem value="Ward 45">Ward 45 - Swami Vivakanand Ward</SelectItem>
+                 <SelectItem value="Ward 46">Ward 46 - Mailana Abdul Rauf Ward</SelectItem>
+                 <SelectItem value="Ward 47">Ward 47 - Civil Lines Ward</SelectItem>
+                 <SelectItem value="Ward 48">Ward 48 - Mother Terisa Ward</SelectItem>
+                 <SelectItem value="Ward 49">Ward 49 - Guru Ghasidas Ward</SelectItem>
+                 <SelectItem value="Ward 50">Ward 50 - Rani Durgavati Ward</SelectItem>
+                 <SelectItem value="Ward 51">Ward 51 - Doc. Rajendra Prasad Ward</SelectItem>
+                 <SelectItem value="Ward 52">Ward 52 - PT. VIDYACHARAN SHUKLA WARD</SelectItem>
+                 <SelectItem value="Ward 53">Ward 53 - Babu Jagjivan Ram Ward</SelectItem>
+                 <SelectItem value="Ward 54">Ward 54 - KAMRED SUDHIR MUKHARJEE WARD</SelectItem>
+                 <SelectItem value="Ward 55">Ward 55 - Ravindra Nath Taigore Ward</SelectItem>
+                 <SelectItem value="Ward 56">Ward 56 - Arvind Dikshit Ward</SelectItem>
+                 <SelectItem value="Ward 57">Ward 57 - Pt. Bhagwati Charan Shukla Ward</SelectItem>
+                 <SelectItem value="Ward 58">Ward 58 - Shaheed Pankaj Vikaram Ward</SelectItem>
+                 <SelectItem value="Ward 59">Ward 59 - Mureshwar Rao Gandre Ward</SelectItem>
+                 <SelectItem value="Ward 60">Ward 60 - Chandrashekhar Aazad Ward</SelectItem>
+                 <SelectItem value="Ward 61">Ward 61 - Doc. Shyam Prasad Mukhrji</SelectItem>
+                 <SelectItem value="Ward 62">Ward 62 - Shaheed Rajiv Pard Ward</SelectItem>
+                 <SelectItem value="Ward 63">Ward 63 - Brigediyar Usman Ward</SelectItem>
+                 <SelectItem value="Ward 64">Ward 64 - Doc. Vipin Bihari Sur Ward</SelectItem>
+                 <SelectItem value="Ward 65">Ward 65 - Mahamaya Mandir Ward</SelectItem>
+                 <SelectItem value="Ward 66">Ward 66 - Vaman Rao Lakhe Ward</SelectItem>
+                 <SelectItem value="Ward 67">Ward 67 - BHAKTMΑΤΑ KARMA WARD</SelectItem>
+                 <SelectItem value="Ward 68">Ward 68 - Doc. Khubchand Baghel Ward</SelectItem>
+                 <SelectItem value="Ward 69">Ward 69 - Madhav Rav Sapre Ward</SelectItem>
+                 <SelectItem value="Ward 70">Ward 70 - Sant Ravidas Ward</SelectItem>
                 </SelectContent>
               </Select>
               <Select value={selectedFilter} onValueChange={setSelectedFilter}>
