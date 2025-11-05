@@ -1,11 +1,7 @@
-import { any, Response } from "express";
-import Proposal from "../models/proposal.model.ts";
-import { AuthenticatedRequest } from "../middleware/isAuth.ts";
+import Proposal from "../model/proposal.model.ts";
+import { isAuth } from "../controller/isAuthenticated.ts";
 
-/**
- * Add new proposal
- */
-export const addProposal = async (req: AuthenticatedRequest, res: Response) => {
+export const addProposal = async (req: any, res: any) => {
   try {
     const { heading, description, budget, wardNumber, location, imageLink } = req.body;
 
@@ -31,7 +27,7 @@ export const addProposal = async (req: AuthenticatedRequest, res: Response) => {
 /**
  * Get all proposals
  */
-export const getProposals = async (_req: any, res: Response) => {
+export const getProposals = async (_req: any, res: any) => {
   try {
     const proposals = await Proposal.find().sort({ createdAt: -1 });
     res.status(200).json(proposals);
@@ -43,7 +39,7 @@ export const getProposals = async (_req: any, res: Response) => {
 /**
  * Add comment on proposal
  */
-export const addCommentOnProposal = async (req: AuthenticatedRequest, res: Response) => {
+export const addCommentOnProposal = async (req: any, res: any) => {
   try {
     const { proposalId, comment } = req.body;
     if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
@@ -60,10 +56,7 @@ export const addCommentOnProposal = async (req: AuthenticatedRequest, res: Respo
   }
 };
 
-/**
- * Get comments on a proposal
- */
-export const getCommentsOnProposal = async (req: any, res: Response) => {
+export const getCommentsOnProposal = async (req: any, res: any) => {
   try {
     const { proposalId } = req.params;
     const proposal = await Proposal.findById(proposalId);
@@ -75,10 +68,7 @@ export const getCommentsOnProposal = async (req: any, res: Response) => {
   }
 };
 
-/**
- * Get likes count
- */
-export const getLikesOnProposal = async (req: any, res: Response) => {
+export const getLikesOnProposal = async (req: any, res: any) => {
   try {
     const { proposalId } = req.params;
     const proposal = await Proposal.findById(proposalId);
@@ -90,10 +80,7 @@ export const getLikesOnProposal = async (req: any, res: Response) => {
   }
 };
 
-/**
- * Add like
- */
-export const addLikeOnProposal = async (req: any, res: Response) => {
+export const addLikeOnProposal = async (req: any, res: any) => {
   try {
     const { proposalId } = req.body;
     const proposal = await Proposal.findById(proposalId);
