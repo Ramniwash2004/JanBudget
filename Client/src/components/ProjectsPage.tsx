@@ -34,6 +34,21 @@ export function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
+  const [comments, setComments] = useState(80);
+  const [showCommentBox, setShowCommentBox] = useState(false);
+  const [newComment, setNewComment] = useState("");
+
+  const handleCommentClick = () => {
+      setShowCommentBox(!showCommentBox);
+    };
+
+    const handleAddComment = () => {
+      if (newComment.trim() !== "") {
+        setComments(prev => prev + 1);
+        setNewComment("");
+      }
+    };
+
 
   const filteredProjects = projects.filter(project => {
     const matchesStatus = selectedFilter === 'all' || 
@@ -264,10 +279,31 @@ export function ProjectsPage() {
 
                 <div className="flex items-center justify-between pt-4 border-t">
                   <div className="flex items-center space-x-4 text-sm text-gray-600">
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                       <MessageCircle className="w-4 h-4 mr-1" />
                       <span>{project.reviews.length}</span>
-                    </div>
+                    </div> */}
+                    <button
+                      onClick={handleCommentClick}
+                      className="flex items-center hover:text-orange-500 transition-colors cursor-pointer"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-1" />
+                      <span>{comments}</span>
+                    </button>
+                      {showCommentBox && (
+                        <div className="mt-3 flex items-center space-x-2">
+                        <input
+                        type="text"
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        placeholder="Write a comment..."
+                        className="flex-1 border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        />                      
+                        <Button size="sm" onClick={handleAddComment}>
+                          Post                      
+                        </Button>                      
+                         </div>                                          
+                      )}                                           
                     <div className="flex items-center">
                       <Camera className="w-4 h-4 mr-1" />
                       <span>{project.images.length}</span>
