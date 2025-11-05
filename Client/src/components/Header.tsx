@@ -10,6 +10,7 @@ import {
   User, 
   Menu,
   X,
+  Info,
   Globe
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
@@ -31,6 +32,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     { id: 'projects', label: t('header.projects'), icon: FolderOpen },
     { id: 'complaints', label: t('header.complaints'), icon: MessageSquare },
     { id: 'dashboard', label: t('header.dashboard'), icon: BarChart3 },
+    { id: 'info', label: t('header.info'), icon: Info },
     { id: 'profile', label: t('header.profile'), icon: User }
   ];
 

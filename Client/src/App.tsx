@@ -8,6 +8,7 @@ import { ComplaintsPage } from './components/ComplaintsPage';
 import { DashboardPage } from './components/DashboardPage';
 import { ProfilePage } from './components/ProfilePage';
 import { LanguageProvider } from './components/LanguageContext';
+import {InfoPage} from './components/InfoPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -26,6 +27,8 @@ export default function App() {
         return <ComplaintsPage />;
       case 'dashboard':
         return <DashboardPage />;
+      case 'info':
+        return <InfoPage />;
       case 'profile':
         return <ProfilePage />;
       default:
