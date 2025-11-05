@@ -8,7 +8,9 @@ import { ComplaintsPage } from './components/ComplaintsPage';
 import { DashboardPage } from './components/DashboardPage';
 import { ProfilePage } from './components/ProfilePage';
 import { LanguageProvider } from './components/LanguageContext';
-import {InfoPage} from './components/InfoPage';
+import { InfoPage } from './components/InfoPage';
+import Signup from './components/Signup';
+import { Login } from './components/Login';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -31,6 +33,17 @@ export default function App() {
         return <InfoPage />;
       case 'profile':
         return <ProfilePage />;
+
+      case 'signup':
+        return <Signup onNavigate={setCurrentPage} />;
+
+      case "login":
+        return (
+        <Login
+        onLoginSuccess={() => setCurrentPage("home")}
+        onNavigate={setCurrentPage}
+        />
+      );
       default:
         return <Homepage onNavigate={setCurrentPage} />;
     }

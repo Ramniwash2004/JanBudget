@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { 
-  Home, 
-  FileText, 
-  Vote, 
-  FolderOpen, 
-  MessageSquare, 
-  BarChart3, 
-  User, 
+import {
+  Home,
+  FileText,
+  Vote,
+  FolderOpen,
+  MessageSquare,
+  BarChart3,
+  User,
   Menu,
-  X,
   Info,
-  Globe
+  Globe,
+  LogIn,
+  UserPlus,
+  LogOut,
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { useLanguage } from './LanguageContext';
@@ -23,9 +25,37 @@ interface HeaderProps {
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
-  const navigationItems = [
+  // check if token exists in localStorage & update when login/logout happens
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+    };
+
+    checkAuthStatus(); 
+    window.addEventListener('authChange', checkAuthStatus); // listen for changes
+
+    return () => {
+      window.removeEventListener('authChange', checkAuthStatus);
+    };
+  }, []);
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'hi' : 'en');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.dispatchEvent(new Event('authChange')); 
+    setIsLoggedIn(false);
+    onNavigate('home');
+  };
+
+  const baseNavigation = [
     { id: 'home', label: t('header.home'), icon: Home },
     { id: 'proposals', label: t('header.proposals'), icon: FileText },
     { id: 'voting', label: t('header.voting'), icon: Vote },
@@ -33,11 +63,29 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     { id: 'complaints', label: t('header.complaints'), icon: MessageSquare },
     { id: 'dashboard', label: t('header.dashboard'), icon: BarChart3 },
     { id: 'info', label: t('header.info'), icon: Info },
-    { id: 'profile', label: t('header.profile'), icon: User }
   ];
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'hi' : 'en');
+  // Show login/signup or profile/logout
+  const authNavigation = isLoggedIn
+    ? [
+        { id: 'profile', label: t('header.profile'), icon: User },
+        { id: 'logout', label: t('header.logout'), icon: LogOut },
+      ]
+    : [
+        { id: 'login', label: t('header.login'), icon: LogIn },
+        { id: 'signup', label: t('header.signup'), icon: UserPlus },
+      ];
+
+  const navigationItems = [...baseNavigation, ...authNavigation];
+
+  // Handles logout
+  const handleNavigate = (id: string) => {
+    if (id === 'logout') {
+      handleLogout();
+    } else {
+      onNavigate(id);
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -70,7 +118,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               return (
                 <button
                   key={item.id}
-                  onClick={() => onNavigate(item.id)}
+                  onClick={() => handleNavigate(item.id)}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md transition-colors ${
                     currentPage === item.id
                       ? 'bg-primary text-white'
@@ -109,7 +157,9 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                       <div className="w-4 h-4 border border-white rounded-full"></div>
                     </div>
-                    <span className="font-bold text-gray-900">{t('header.janBudget')}</span>
+                    <span className="font-bold text-gray-900">
+                      {t('header.janBudget')}
+                    </span>
                   </div>
                   <Button
                     variant="outline"
@@ -121,17 +171,15 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                     <span>{language === 'en' ? 'हिं' : 'EN'}</span>
                   </Button>
                 </div>
-                
+
+                {/* Mobile Navigation */}
                 <nav className="space-y-2">
                   {navigationItems.map((item) => {
                     const Icon = item.icon;
                     return (
                       <button
                         key={item.id}
-                        onClick={() => {
-                          onNavigate(item.id);
-                          setIsOpen(false);
-                        }}
+                        onClick={() => handleNavigate(item.id)}
                         className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                           currentPage === item.id
                             ? 'bg-primary text-white'

@@ -15,7 +15,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/complaints", complaintRouter);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/janbudg")
+  .connect(process.env.MONGO_URI ||"mongodb://127.0.0.1:27017/janbudg")
   .then(() => console.log("✅ MongoDB connected on localhost"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
