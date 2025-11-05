@@ -19,6 +19,7 @@ const translations = {
     'header.projects': 'Projects',
     'header.complaints': 'Complaints',
     'header.dashboard': 'Dashboard',
+    'header.info': 'Info',
     'header.profile': 'Profile',
     
     // Homepage
@@ -95,6 +96,7 @@ const translations = {
     'header.projects': 'परियोजनाएं',
     'header.complaints': 'शिकायतें',
     'header.dashboard': 'डैशबोर्ड',
+    'header.info': 'जानकारी',
     'header.profile': 'प्रोफ़ाइल',
     
     // Homepage
