@@ -8,6 +8,7 @@ export interface IUser extends Document {
   email: string;
   voterId: string;
   password: string;
+  userType: "citizen" | "admin";
 }
 
 const userSchema = new Schema<IUser>(
