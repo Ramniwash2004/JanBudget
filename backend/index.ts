@@ -2,8 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import userRoutes from "./routes/user.routes";
-import complaintRouter from "./routes/complaint.routes"
+import userRoutes from "./routes/user.routes.ts";
+import complaintRouter from "./routes/complaint.routes.ts"
 
 dotenv.config();
 const app = express();
@@ -19,7 +19,7 @@ mongoose
   .then(() => console.log("✅ MongoDB connected on localhost"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-app.get("/", (_: express.Request, res: express.Response): void => {
+app.get("/", (req: any, res: any): void => {
     res.send("Welcome to JanBudg API 🚀");
 });
 

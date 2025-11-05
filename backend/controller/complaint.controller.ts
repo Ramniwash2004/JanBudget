@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
-import { Complaint } from "../model/complaint.model"
+import { Complaint } from "../model/complaint.model.ts"
 
 // Add new complaint
-export const addComplaint = async (req: Request, res: Response) => {
+export const addComplaint = async (req: any, res: any) => {
   try {
+    console.log("Hitting addComplaint")
     const { heading, title, description, location, wardNumber } = req.body;
+    console.log("Complaint -> ",req.body)
     const complaint = new Complaint({
       heading,
       title,
@@ -21,7 +22,7 @@ export const addComplaint = async (req: Request, res: Response) => {
 };
 
 // Get all complaints
-export const getComplaints = async (_req: Request, res: Response) => {
+export const getComplaints = async (_req: any, res: any) => {
   try {
     const complaints = await Complaint.find().sort({ submittedOn: -1 });
     res.json(complaints);
@@ -31,7 +32,7 @@ export const getComplaints = async (_req: Request, res: Response) => {
 };
 
 // Add comment to a complaint
-export const addCommentToComplaint = async (req: Request, res: Response) => {
+export const addCommentToComplaint = async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const { text, author } = req.body;
@@ -49,7 +50,7 @@ export const addCommentToComplaint = async (req: Request, res: Response) => {
 };
 
 // Get comments of a complaint
-export const getCommentsOfComplaint = async (req: Request, res: Response) => {
+export const getCommentsOfComplaint = async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const complaint = await Complaint.findById(id);
@@ -62,7 +63,7 @@ export const getCommentsOfComplaint = async (req: Request, res: Response) => {
 };
 
 // Add like to a complaint
-export const addLikeToComplaint = async (req: Request, res: Response) => {
+export const addLikeToComplaint = async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const complaint = await Complaint.findById(id);
@@ -78,7 +79,7 @@ export const addLikeToComplaint = async (req: Request, res: Response) => {
 };
 
 // Get like count of a complaint
-export const getLikesOfComplaint = async (req: Request, res: Response) => {
+export const getLikesOfComplaint = async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const complaint = await Complaint.findById(id);

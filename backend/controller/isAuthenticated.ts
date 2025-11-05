@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import type  { JwtPayload } from "jsonwebtoken"
 
 const JWT_SECRET = "janbudg_secret_key"; // ideally from process.env
 
@@ -14,7 +14,7 @@ interface TokenPayload extends JwtPayload {
   name: string;
 }
 
-export const isAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+export const isAuth = (req: any, res: any, next: any) => {
   try {
     const authHeader = req.headers.authorization;
 

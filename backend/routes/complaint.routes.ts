@@ -6,7 +6,7 @@ import {
   getCommentsOfComplaint,
   addLikeToComplaint,
   getLikesOfComplaint,
-} from "../controllers/complaint.controller.js";
+} from "../controller/complaint.controller.ts";
 
 const router = express.Router();
 

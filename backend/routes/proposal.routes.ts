@@ -6,8 +6,8 @@ import {
   getCommentsOnProposal,
   getLikesOnProposal,
   addLikeOnProposal,
-} from "../controller/proposal.controller";
-import { isAuth } from "../controller/isAuthenticated";
+} from "../controller/proposal.controller.ts";
+import { isAuth } from "../controller/isAuthenticated.ts";
 
 const router = express.Router();
 

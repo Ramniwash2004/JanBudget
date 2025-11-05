@@ -1,11 +1,10 @@
-import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../model/user.model";
+import User from "../model/user.model.ts";
 
 const JWT_SECRET = "janbudg_secret_key"; // ideally from process.env
 
-export const signup = async (req: Request, res: Response) => {
+export const signup = async (req: any, res: any) => {
   try {
     const { name, wardNumber, fullAddress, phoneNumber, email, voterId, password } = req.body;
 
@@ -38,7 +37,7 @@ export const signup = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: any, res: any) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -55,7 +54,7 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-export const getUser = async (req: any, res: Response) => {
+export const getUser = async (req: any, res: any) => {
     try {
       if (!req.userId) {
         return res.status(401).json({ message: "Unauthorized" });

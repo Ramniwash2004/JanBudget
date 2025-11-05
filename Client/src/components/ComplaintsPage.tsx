@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { CameraCapture } from './ui/CameraCapture';
+import { addComplaint } from '../api/complaint.api';
 
 export function ComplaintsPage() {
   const [sortBy, setSortBy] = useState('recent');
@@ -34,6 +35,18 @@ export function ComplaintsPage() {
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isNewComplaintOpen, setIsNewComplaintOpen] = useState(false);
+
+  // new 
+  const [heading, setHeading] = useState("");
+  const [title, setTitle] = useState<"waste" | "electricity" | "water" | "other">("waste");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [wardNumber, setWardNumber] = useState<number>(0);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [priority, setPriority] = useState("High Priority")
+
+
   // For camera capture
 const [showCamera, setShowCamera] = useState(false);
 const [capturedPhoto, setCapturedPhoto] = useState<string | null>(null);
@@ -45,6 +58,37 @@ const handlePhotoCapture = (imageData: string) => {
 
 const handleRemovePhoto = () => {
   setCapturedPhoto(null);
+};
+
+// handle complaints
+
+const handleLodgeComplaint = async () => {
+  if (!heading || !description || !location || !wardNumber) {
+    setMessage("Please fill all fields.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const data = { heading, title, description, location, wardNumber };
+    const response = await addComplaint(data);
+    setMessage("Complaint submitted successfully!");
+    console.log("✅ Response:", response);
+
+    // Clear form
+    setHeading("");
+    setDescription("");
+    setLocation("");
+    setWardNumber(0);
+    setTitle("waste");
+  } catch (error) {
+    console.error("❌ Error submitting complaint:", error);
+    setMessage("Failed to submit complaint. Please try again.");
+  } finally {
+    setLoading(false);
+  }
 };
 
 
@@ -385,7 +429,7 @@ const handleRemovePhoto = () => {
                   }}>
                     Cancel
                   </Button>
-                  <Button onClick={handleSubmitComplaint}>
+                  <Button onClick={handleLodgeComplaint}>
                     Submit Complaint
                   </Button>
                 </div>

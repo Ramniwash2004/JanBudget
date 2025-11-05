@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import Proposal from "../models/proposal.model";
-import { AuthenticatedRequest } from "../middleware/isAuth";
+import { any, Response } from "express";
+import Proposal from "../models/proposal.model.ts";
+import { AuthenticatedRequest } from "../middleware/isAuth.ts";
 
 /**
  * Add new proposal
@@ -31,7 +31,7 @@ export const addProposal = async (req: AuthenticatedRequest, res: Response) => {
 /**
  * Get all proposals
  */
-export const getProposals = async (_req: Request, res: Response) => {
+export const getProposals = async (_req: any, res: Response) => {
   try {
     const proposals = await Proposal.find().sort({ createdAt: -1 });
     res.status(200).json(proposals);
@@ -63,7 +63,7 @@ export const addCommentOnProposal = async (req: AuthenticatedRequest, res: Respo
 /**
  * Get comments on a proposal
  */
-export const getCommentsOnProposal = async (req: Request, res: Response) => {
+export const getCommentsOnProposal = async (req: any, res: Response) => {
   try {
     const { proposalId } = req.params;
     const proposal = await Proposal.findById(proposalId);
@@ -78,7 +78,7 @@ export const getCommentsOnProposal = async (req: Request, res: Response) => {
 /**
  * Get likes count
  */
-export const getLikesOnProposal = async (req: Request, res: Response) => {
+export const getLikesOnProposal = async (req: any, res: Response) => {
   try {
     const { proposalId } = req.params;
     const proposal = await Proposal.findById(proposalId);
@@ -93,7 +93,7 @@ export const getLikesOnProposal = async (req: Request, res: Response) => {
 /**
  * Add like
  */
-export const addLikeOnProposal = async (req: Request, res: Response) => {
+export const addLikeOnProposal = async (req: any, res: Response) => {
   try {
     const { proposalId } = req.body;
     const proposal = await Proposal.findById(proposalId);
