@@ -24,9 +24,6 @@ export const addProposal = async (req: any, res: any) => {
   }
 };
 
-/**
- * Get all proposals
- */
 export const getProposals = async (_req: any, res: any) => {
   try {
     const proposals = await Proposal.find().sort({ createdAt: -1 });
