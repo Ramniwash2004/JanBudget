@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { useLanguage } from './LanguageContext';
+import type { Language } from './LanguageContext'
 
 interface HeaderProps {
   currentPage: string;
@@ -47,11 +48,36 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   //   setLanguage(language === 'en' ? 'hi' : 'en');
   // };
 
+  // const toggleLanguage = () => {
+  //   if (language === "en") setLanguage("hi");
+  //   else if (language === "hi") setLanguage("cg");
+  //   else setLanguage("en");
+  // };
+
   const toggleLanguage = () => {
-    if (language === "en") setLanguage("hi");
-    else if (language === "hi") setLanguage("cg");
-    else setLanguage("en");
+    const allLanguages: Language[] = ["en", "hi", "cg", "gon", "hlb", "pa"];
+    const currentIndex = allLanguages.indexOf(language);
+    const nextIndex = (currentIndex + 1) % allLanguages.length;
+    setLanguage(allLanguages[nextIndex]);
   };
+  
+
+  // const newLang = () => {
+  //   switch (language) {
+  //     case "hi":
+  //       setLanguage("en")
+  //       break;
+  //     case "en":
+  //       setLanguage("cg")
+  //       break;
+  //     case "cg":
+  //       setLanguage("hi")
+  //       break;
+  //     default:
+  //       setLanguage("en")
+  //       break;
+  //   }
+  // }
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -94,14 +120,39 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     }
   };
 
+  // const getLabel = () => {
+  //   switch (language) {
+  //     case "en": return "हिं";  // Hindi short label
+  //     case "hi": return "छग";  // Chhattisgarhi short label
+  //     case "cg": return "EN";  // English short label
+  //     default: return "EN";
+  //   }
+  // };
+
+  // const getLabel = () => {
+  //   switch (language) {
+  //     case 'en': return 'हिं';
+  //     case 'hi': return 'छग';
+  //     case 'cg': return 'गों';
+  //     case 'gon': return 'हलबि';
+  //     case 'hlb': return 'ਪੰ';
+  //     case 'pa': return 'EN';
+  //     default: return 'EN';
+  //   }
+  // };
+
   const getLabel = () => {
     switch (language) {
-      case "en": return "हिं";  // Hindi short label
-      case "hi": return "छग";  // Chhattisgarhi short label
-      case "cg": return "EN";  // English short label
-      default: return "EN";
+      case 'en':  return 'EN';        // English
+      case 'hi':  return 'हिं';       // Hindi
+      case 'cg':  return 'छग';        // Chhattisgarhi
+      case 'gon': return 'गों';       // Gondi
+      case 'hlb': return 'हलबि';     // Halbi
+      case 'pa':  return 'ਪੰ';       // Punjabi
+      default:    return 'EN';
     }
   };
+  
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -157,7 +208,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             >
               <Globe className="w-4 h-4" />
               {/* <span>{language === 'en' ? 'हिं' : 'EN'}</span> */}
-              <span>{getLabel()}</ span>
+              {/* <span>{getLabel()}</ span> */}
+              <span>{getLabel()}</span>
             </Button>
 
             {/* Mobile Menu */}
