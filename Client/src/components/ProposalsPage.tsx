@@ -403,7 +403,7 @@ function ProposalCard({ proposal, getStatusBadge }) {
   const [likes, setLikes] = useState(proposal.likes || 0);
   const [comments, setComments] = useState(proposal.comments || 0);
   const [liked, setLiked] = useState(false);
-  const [showCommentBox, setShowCommentBox] = useState(false);
+  const [showCommentBox, setShowCommentBox] = useState(true);
   const [newComment, setNewComment] = useState("");
 
   const handleLike = () => {
@@ -416,7 +416,7 @@ function ProposalCard({ proposal, getStatusBadge }) {
       setComments((prev:any) => prev + 1);
       setNewComment("");
     }
-    setShowCommentBox(false);
+    // setShowCommentBox(false);
   };
 
   return (
@@ -479,8 +479,8 @@ function ProposalCard({ proposal, getStatusBadge }) {
             </button>
 
             <button
-              onClick={() => setShowCommentBox(!showCommentBox)}
-              className="flex items-center hover:text-orange-500 transition-colors cursor-pointer"
+              // onClick={() => setShowCommentBox(!showCommentBox)}
+              className="flex items-center hover:text-orange-500 transition-colors"
             >
               <MessageCircle className="w-4 h-4 mr-1" />
               <span>{comments}</span>
@@ -493,7 +493,7 @@ function ProposalCard({ proposal, getStatusBadge }) {
           </Button>
         </div>
 
-        {/* {showCommentBox && (
+        {showCommentBox && (
           <div className="mt-3 flex items-center space-x-2">
             <input
               type="text"
@@ -502,33 +502,12 @@ function ProposalCard({ proposal, getStatusBadge }) {
               placeholder="Write a comment..."
               className="flex-1 border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
-            <Button size="sm" onClick={handleAddComment}>
+            <Button size="sm" className="cursor-pointer" onClick={handleAddComment}>
               Post
             </Button>
           </div>
-        )} */}
-        {showCommentBox && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-    <div className="bg-white p-4 rounded-lg shadow-lg w-[300px]">
-      <h3 className="text-lg font-semibold mb-2">Write a Comment</h3>
-      <input
-        type="text"
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        placeholder="Write your comment..."
-        className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-      />
-      <div className="mt-3 flex justify-end space-x-2">
-        <Button variant="outline" onClick={() => setShowCommentBox(false)}>
-          Cancel
-        </Button>
-        <Button size="sm" onClick={handleAddComment}>
-          Post
-        </Button>
-      </div>
-    </div>
-  </div>
-)}
+        )}
+        
       </CardContent>
     </Card>
   );
