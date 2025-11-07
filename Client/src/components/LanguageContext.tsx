@@ -21,6 +21,9 @@ const translations = {
     'header.dashboard': 'Dashboard',
     'header.info': 'Info',
     'header.profile': 'Profile',
+    'header.login': 'LogIn',
+    'header.signup': 'SignUp',
+    'header.logout': 'LogOut',
     
     // Homepage
     'homepage.hero.title': 'Empowering Citizens, Building Together',
@@ -98,6 +101,10 @@ const translations = {
     'header.dashboard': 'डैशबोर्ड',
     'header.info': 'जानकारी',
     'header.profile': 'प्रोफ़ाइल',
+    'header.login' : 'लॉग इन',
+    'header.signup' : 'साइन अप',
+    'header.logout' : 'लॉग आउट',
+
     
     // Homepage
     'homepage.hero.title': 'नागरिकों को सशक्त बनाना, मिलकर निर्माण करना',

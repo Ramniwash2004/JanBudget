@@ -142,7 +142,7 @@ export function ProposalsPage() {
                     <Label htmlFor="ward">Ward</Label>
                     <Select
                       value={newProposal.ward}
-                      onValueChange={(value) => setNewProposal({ ...newProposal, ward: value })}
+                      onValueChange={(value:any) => setNewProposal({ ...newProposal, ward: value})}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select ward" />
@@ -237,7 +237,7 @@ export function ProposalsPage() {
                   <Label htmlFor="category">Category</Label>
                   <Select
                     value={newProposal.category}
-                    onValueChange={(value) => setNewProposal({ ...newProposal, category: value })}
+                    onValueChange={(value:any) => setNewProposal({ ...newProposal, category: value })}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
@@ -408,12 +408,12 @@ function ProposalCard({ proposal, getStatusBadge }) {
 
   const handleLike = () => {
     setLiked(!liked);
-    setLikes((prev) => (liked ? prev - 1 : prev + 1));
+    setLikes((prev:any) => (liked ? prev - 1 : prev + 1));
   };
 
   const handleAddComment = () => {
     if (newComment.trim() !== "") {
-      setComments((prev) => prev + 1);
+      setComments((prev:any) => prev + 1);
       setNewComment("");
     }
     setShowCommentBox(false);

@@ -2,11 +2,12 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../model/user.model.ts";
 
-const JWT_SECRET = "janbudg_secret_key"; // ideally from process.env
+const JWT_SECRET = process.env.JWT_SECRET || "janbudg_secret_key"; //process.env
 
 export const signup = async (req: any, res: any) => {
   try {
     const { name, wardNumber, fullAddress, phoneNumber, email, voterId, password } = req.body;
+    console.log("res -> ", res.body)
 
     if (!name || !wardNumber || !fullAddress || !phoneNumber || !email || !voterId || !password) {
       return res.status(400).json({ message: "All fields are required." });
