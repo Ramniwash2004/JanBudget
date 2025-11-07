@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { loginUser } from "../api/user.api";
 import {Button} from './ui/button';
+import { Link } from "lucide-react";
 
 interface LoginProps {
   onLoginSuccess?: () => void;
@@ -73,8 +74,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
         />
 
         <Button
-          type="submit"
-          className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-green-800 transition-all"
+          type="submit" className="w-full cursor-pointer"
         >
           Login
         </Button>
