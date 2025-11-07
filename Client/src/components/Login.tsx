@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { loginUser } from "../api/user.api";
 import { loginAdmin } from "../api/admin.api";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+
 
 interface LoginProps {
   onLoginSuccess?: () => void;
@@ -56,16 +58,16 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col min-h-screen px-6 py-12">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex justify-center items-center flex-col min-h-screen px-6 py-12 ">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
         <h2 className="text-3xl font-extrabold text-center text-orange-600 mb-6">
           Login
         </h2>
 
         {/* Tabs */}
         <div className="flex justify-center gap-4 mb-6">
-          <button
-            className={`px-4 py-2 rounded-lg font-semibold ${
+          <Button
+            className={`px-4 py-2 border rounded-lg font-semibold ${
               activeTab === "citizen"
                 ? "bg-orange-500 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -73,10 +75,10 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
             onClick={() => setActiveTab("citizen")}
           >
             Citizen Login
-          </button>
+          </Button>
 
-          <button
-            className={`px-4 py-2 rounded-lg font-semibold ${
+          <Button
+            className={`px-4 py-2 border rounded-lg font-semibold ${
               activeTab === "admin"
                 ? "bg-orange-500 text-white"
                 : "bg-gray-200 text-gray-700"
@@ -84,16 +86,16 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
             onClick={() => setActiveTab("admin")}
           >
             Admin Login
-          </button>
+          </Button>
         </div>
 
         {/* ---------------------- CITIZEN LOGIN FORM ---------------------- */}
         {activeTab === "citizen" && (
           <form
             onSubmit={handleCitizenLogin}
-            className="bg-orange-100 shadow-md rounded-xl p-8 w-96"
+            className=" shadow-md rounded-xl p-8 w-96"
           >
-            <input
+            <Input
               type="email"
               placeholder="Email"
               className="w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -102,7 +104,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
               required
             />
 
-            <input
+            <Input
               type="password"
               placeholder="Password"
               className="w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -123,7 +125,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
             onSubmit={handleAdminLogin}
             className="bg-orange-100 shadow-md rounded-xl p-8 w-96"
           >
-            <input
+            <Input
               type="text"
               placeholder="Admin Username"
               className="w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -132,7 +134,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
               required
             />
 
-            <input
+            <Input
               type="text"
               placeholder="Admin Key"
               className="w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
@@ -141,7 +143,7 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
               required
             />
 
-            <input
+            <Input
               type="password"
               placeholder="Password"
               className="w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"

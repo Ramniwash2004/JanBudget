@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { User, Phone, Mail, Lock, MapPin, Home, CreditCard, Eye, EyeOff, UserPlus, ArrowRight, Sparkles } from "lucide-react";
 import { signupUser } from "../api/user.api";
+import { Button } from "./ui/button";
+import {Input} from "./ui/input";
+import {Form} from "./ui/form";
+import { Label } from "./ui/label";
+import { Toggle } from "./ui/toggle";
 
 interface SignupProps {
   onNavigate?: (page: string) => void;
@@ -65,22 +70,13 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 p-4 py-12 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-orange-300 to-red-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-gradient-to-br from-red-300 to-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-gradient-to-br from-pink-300 to-orange-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
-
-      <div className="w-full max-w-5xl relative z-10">
+    <div className="flex justify-center items-center flex-col min-h-screen px-6 py-12">
+      
+      <div className="w-full max-w-4xl">
         {/* Header Section */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl mb-6 shadow-2xl transform hover:scale-110 hover:rotate-3 transition-all duration-300">
-            <UserPlus className="w-12 h-12 text-green" />
-          </div>
-          <h1 className="text-6xl font-extrabold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent mb-3 tracking-tight">
-            JanBudg
+          <h1 className="text-6xl font-extrabold mb-3 tracking-tight">
+            JanBudget
           </h1>
           <div className="flex items-center justify-center gap-2 mb-3">
             <Sparkles className="w-5 h-5 text-orange-500" />
@@ -90,9 +86,9 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
           <p className="text-gray-500 text-base max-w-md mx-auto">Join thousands of citizens accessing civic services at your fingertips</p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
-          <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-8 text-white">
-            <h2 className="text-3xl font-bold text-center mb-2">Create Your Account</h2>
+        <div className=" rounded-3xl shadow-2xl  overflow-hidden p-6">
+          <div className="p-8 text-secondary">
+            <h2 className="text-3xl font-bold text-center mb-2 ">Create Your Account</h2>
             <p className="text-center text-orange-50">Fill in your details to get started</p>
           </div>
 
@@ -111,7 +107,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                       <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
-                      <input
+                      <Input
                         name={field.name}
                         type={field.type}
                         placeholder={field.placeholder}
@@ -119,7 +115,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                         onChange={handleChange}
                         onFocus={() => setFocusedField(field.name)}
                         onBlur={() => setFocusedField(null)}
-                        className={`w-full px-4 py-3.5 border-2 rounded-xl transition-all text-gray-700 placeholder-gray-400 bg-gray-50 focus:bg-white focus:outline-none ${
+                        className={`w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400 ${
                           focusedField === field.name
                             ? 'border-orange-500 ring-4 ring-orange-100 shadow-md'
                             : 'border-gray-200 hover:border-gray-300'
@@ -140,7 +136,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <input
+                    <Input
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a strong password"
@@ -148,7 +144,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('password')}
                       onBlur={() => setFocusedField(null)}
-                      className={`w-full px-4 py-3.5 pr-12 border-2 rounded-xl transition-all text-gray-700 bg-gray-50 focus:bg-white focus:outline-none ${
+                      className={`w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400 ${
                         focusedField === 'password'
                           ? 'border-orange-500 ring-4 ring-orange-100 shadow-md'
                           : 'border-gray-200 hover:border-gray-300'
@@ -159,7 +155,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-orange-500 transition-colors p-1"
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400  transition-colors p-1"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -175,7 +171,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <input
+                    <Input
                       name="confirmPassword"
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Re-enter your password"
@@ -203,14 +199,14 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
               </div>
 
               {/* Terms Checkbox */}
-              <div className="flex items-start gap-3 p-5 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl border-2 border-orange-100">
-                <input
+              <div className="flex items-start gap-3 p-6 ">
+                <Input
                   type="checkbox"
                   id="terms"
                   required
                   className="mt-1 w-5 h-5 text-orange-600 border-gray-300 rounded focus:ring-orange-500 focus:ring-2 cursor-pointer flex-shrink-0"
                 />
-                <label htmlFor="terms" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
+                <Label htmlFor="terms" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
                   I agree to the{" "}
                   <a href="/terms" className="text-orange-600 hover:text-orange-700 font-bold underline decoration-2">
                     Terms & Conditions
@@ -219,21 +215,22 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                   <a href="/privacy" className="text-orange-600 hover:text-orange-700 font-bold underline decoration-2">
                     Privacy Policy
                   </a>
-                </label>
+                </Label>
               </div>
 
               {/* Submit Button */}
-              <button
+              <Button
+               variant='default'
                 type="submit"
-                className="w-full py-4 px-8 rounded-2xl text-orange font-bold text-lg shadow-2xl bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600 transition-all transform hover:scale-[1.02] hover:shadow-3xl active:scale-[0.98] flex items-center justify-center gap-3 group"
+                className="w-full py-4 px-8  flex items-center justify-center gap-3 group "
               >
                 <span>Create My Account</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-              </button>
+              </Button>
             </form>
 
             {/* Login Redirect */}
-            <div className="mt-8 text-center">
+            <div className="mt-8 text-center p-6">
               <div className="relative py-4">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t-2 border-gray-200"></div>
@@ -244,14 +241,16 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                   </span>
                 </div>
               </div>
-              <button
+              <Button
+              
+              variant='secondary'
                 type="button"
                 onClick={() => onNavigate?.("login")}
-                className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-bold text-lg transition-all hover:gap-3 group mt-2"
+                className="inline-flex items-center gap-2 text-white group mt-2"
               >
                 <span>Login here</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+                <Toggle className="w-5 h-5" />
+              </Button>
             </div>
           </div>
         </div>
@@ -261,23 +260,6 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
           © 2024 Nagar Nigam Raipur. All rights reserved.
         </p>
       </div>
-
-      <style>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        .animate-blob {
-          animation: blob 8s infinite ease-in-out;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   );
 };
