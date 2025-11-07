@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { User, Phone, Mail, Lock, MapPin, Home, CreditCard, Eye, EyeOff, UserPlus, ArrowRight, Sparkles } from "lucide-react";
 import { signupUser } from "../api/user.api";
 import { Button } from "./ui/button";
+import {Input} from "./ui/input";
+import {Form} from "./ui/form";
+import { Label } from "./ui/label";
+import { Toggle } from "./ui/toggle";
 
 interface SignupProps {
   onNavigate?: (page: string) => void;
@@ -103,7 +107,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                       <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
-                      <input
+                      <Input
                         name={field.name}
                         type={field.type}
                         placeholder={field.placeholder}
@@ -132,7 +136,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <input
+                    <Input
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Create a strong password"
@@ -167,7 +171,7 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <input
+                    <Input
                       name="confirmPassword"
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Re-enter your password"
@@ -195,14 +199,14 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
               </div>
 
               {/* Terms Checkbox */}
-              <div className="flex items-start gap-3 p-5 ">
-                <input
+              <div className="flex items-start gap-3 p-6 ">
+                <Input
                   type="checkbox"
                   id="terms"
                   required
                   className="mt-1 w-5 h-5 text-orange-600 border-gray-300 rounded focus:ring-orange-500 focus:ring-2 cursor-pointer flex-shrink-0"
                 />
-                <label htmlFor="terms" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
+                <Label htmlFor="terms" className="text-sm text-gray-700 cursor-pointer leading-relaxed">
                   I agree to the{" "}
                   <a href="/terms" className="text-orange-600 hover:text-orange-700 font-bold underline decoration-2">
                     Terms & Conditions
@@ -211,14 +215,14 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                   <a href="/privacy" className="text-orange-600 hover:text-orange-700 font-bold underline decoration-2">
                     Privacy Policy
                   </a>
-                </label>
+                </Label>
               </div>
 
               {/* Submit Button */}
               <Button
                variant='default'
                 type="submit"
-                className="w-full py-4 px-8  flex items-center justify-center gap-3 group"
+                className="w-full py-4 px-8  flex items-center justify-center gap-3 group "
               >
                 <span>Create My Account</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
@@ -238,13 +242,14 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <Button
+              
               variant='secondary'
                 type="button"
                 onClick={() => onNavigate?.("login")}
                 className="inline-flex items-center gap-2 text-white group mt-2"
               >
                 <span>Login here</span>
-                <ArrowRight className="w-5 h-5" />
+                <Toggle className="w-5 h-5" />
               </Button>
             </div>
           </div>

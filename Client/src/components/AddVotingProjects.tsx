@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import {Button} from "./ui/button";
+import {Input} from "./ui/input";
+import {Label} from './ui/label';
+import { Textarea } from "./ui/textarea";
+
 import { 
   FileText, 
   MapPin, 
@@ -11,6 +15,7 @@ import {
   AlertCircle,
   Sparkles
 } from "lucide-react";
+import { DropdownMenu } from "./ui/dropdown-menu";
 
 interface Project {
   id: string;
@@ -244,13 +249,13 @@ const AddProjectsForVoting: React.FC = () => {
 
           {/* Project Heading */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
+            <Label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
               <FileText className="w-4 h-4 text-blue-500" />
               Project Heading
               <span className="text-red-500">*</span>
-            </label>
+            </Label>
 
-            <input
+            <Input
               type="text"
               name="heading"
               value={formData.heading}
@@ -279,7 +284,7 @@ const AddProjectsForVoting: React.FC = () => {
               <span className="text-red-500">*</span>
             </label>
 
-            <textarea
+            <Textarea
               name="description"
               rows={5}
               value={formData.description}
@@ -310,7 +315,7 @@ const AddProjectsForVoting: React.FC = () => {
             {/* Ward Selection */}
             <div>
               <label htmlFor="wardNumber" className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
-                <MapPin className="w-4 h-4 text-blue-500" />
+                <DropdownMenu className="text-blue-500" />
                 Ward Number & Name
                 <span className="text-red-500">*</span>
               </label>
@@ -344,18 +349,18 @@ const AddProjectsForVoting: React.FC = () => {
 
             {/* Budget */}
             <div>
-              <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
+              <Label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
                 <DollarSign className="w-4 h-4 text-blue-500" />
                 Approximate Budget (₹)
                 <span className="text-red-500">*</span>
-              </label>
+              </Label>
 
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">
                   ₹
                 </span>
 
-                <input
+                <Input
                   type="text"
                   name="budget"
                   value={formData.budget}
