@@ -1,22 +1,23 @@
 // src/api/userApi.ts
-export interface SignupData {
-    name: string;
-    wardNumber: string;
-    fullAddress: string;
-    phoneNumber: string;
-    email: string;
-    voterId: string;
-    password: string;
-  }
+// export interface SignupData {
+//     name: string;
+//     wardNumber: string;
+//     fullAddress: string;
+//     phoneNumber: string;
+//     email: string;
+//     voterId: string;
+//     password: string;
+//   }
   
   export interface LoginData {
-    email: string;
+    username: string;
     password: string;
+    adminKey: string;
   }
   
   const API_URL = "http://localhost:5050/api/users";
 
-  export const loginUser = async (data: LoginData) => {
+  export const loginAdmin = async (data: LoginData) => {
     try {
       const res = await fetch(`${API_URL}/login`, {
         method: "POST",
