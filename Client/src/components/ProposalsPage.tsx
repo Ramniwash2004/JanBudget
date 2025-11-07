@@ -24,6 +24,7 @@ import { proposals } from "./data/proposalData.ts";
 import { addProposal, getProposals } from "../api/proposal.api.ts";
 
 
+
 interface ProposalData {
   title: string;
   description: string;

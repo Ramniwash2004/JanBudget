@@ -1,6 +1,7 @@
 import express from "express"
-import { addVotingProject, getVotingProjects } from "../controller/votingProjects.controller"
-import { AdminAuth } from "../middlewares/admin.auth"
+
+import { addVotingProject, getVotingProjects } from "../controller/votingProjects.controller.ts"
+import { AdminAuth } from "../middlewares/admin.auth.ts"
 
 const router = express.Router()
 
