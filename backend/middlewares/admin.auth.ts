@@ -14,12 +14,26 @@ interface TokenPayload extends JwtPayload {
   name: string;
 }
 
-const adminUsername = "raipur-nagar-nigam"
-
 export const isAuth = (req: any, res: any, next: any) => {
   try {
-    const { username, password, adminKey } = req.body
+    const authHeader = req.headers.authorization;
 
+    // console.log("Auth header -> ",authHeader)
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    // console.log("token -> ", token)
+    const decoded = jwt.verify(token, JWT_SECRET) as TokenPayload; 
+    // console.log("decode -> ", decoded, " && id -> ", decoded.id)
+
+    if (!decoded.username) {
+      return res.status(401).json({ message: "Invalid token structure" }); 
+    }
+
+    req.username = decoded.username;
 
     next();
   } catch (error) {
