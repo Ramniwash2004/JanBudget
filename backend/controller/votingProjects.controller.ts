@@ -67,4 +67,4 @@ export const getVotingProjects = async (req: any, res: any) => {
   }
 };
 
-const deleteVotingProject
+// const deleteVotingProject

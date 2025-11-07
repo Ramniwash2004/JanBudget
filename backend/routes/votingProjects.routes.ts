@@ -1,5 +1,5 @@
 import express from "express"
-import { addVotingProject, getVotingProjects } from "../controller/votingProjects.controllet"
+import { addVotingProject, getVotingProjects } from "../controller/votingProjects.controller"
 import { AdminAuth } from "../middlewares/admin.auth"
 
 const router = express.Router()
