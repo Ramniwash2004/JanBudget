@@ -28,7 +28,7 @@ const api = axios.create({
   },
 });
 
-// ✅ Signup user
+// Signup user
 export const signupUser = async (data: SignupData) => {
   try {
     const res = await api.post("/signup", data);
@@ -45,7 +45,7 @@ export const signupUser = async (data: SignupData) => {
   }
 };
 
-// ✅ Login user
+// Login user
 export const loginUser = async (data: LoginData) => {
   try {
     const res = await api.post("/login", data);
@@ -62,7 +62,7 @@ export const loginUser = async (data: LoginData) => {
   }
 };
 
-// ✅ Get user details
+// Get user details
 export const getUser = async () => {
   try {
     const token = localStorage.getItem("token");

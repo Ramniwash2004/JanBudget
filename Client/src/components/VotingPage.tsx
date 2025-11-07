@@ -21,6 +21,7 @@ import {
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import {  useLanguage } from './LanguageContext.tsx';
 import { votingData } from './data/votingData.ts';
+import { useLanguage } from './LanguageContext.tsx';
 
 export function VotingPage() {
   const [selectedProposal, setSelectedProposal] = useState('');

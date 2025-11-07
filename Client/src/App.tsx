@@ -11,7 +11,7 @@ import { LanguageProvider } from './components/LanguageContext';
 import { InfoPage } from './components/InfoPage';
 import Signup from './components/Signup';
 import { Login } from './components/Login';
-import  AdminLogin  from './components/AdminLogin';
+import AddProjectsForVoting from './components/AddVotingProjects';
 
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
       case 'profile':
         return <ProfilePage />;
       case 'admin':
-        return <AdminLogin/>;
+        return <AddProjectsForVoting />;;
 
       case 'signup':
         return <Signup onNavigate={setCurrentPage} />;
