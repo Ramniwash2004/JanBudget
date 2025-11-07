@@ -630,7 +630,7 @@ export function InfoPage() {
                     <div className="flex items-start gap-4">
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-                          <span className="text-white font-bold text-lg">{councillor.wardNo}</span>
+                          <span className="text-primary font-bold text-lg">{councillor.wardNo}</span>
                         </div>
                         <Badge className="text-xs" variant="outline">Zone {councillor.zone}</Badge>
                       </div>

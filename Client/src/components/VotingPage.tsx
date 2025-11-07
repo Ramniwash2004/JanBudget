@@ -28,6 +28,8 @@ export function VotingPage() {
   const [selectedWard, setSelectedWard] = useState('Ward 1');
   const { language, setLanguage, t } = useLanguage();
 
+  
+
 const currentWardData = votingData[selectedWard as keyof typeof votingData];
 const participationRate = currentWardData ? (currentWardData.votedCount / currentWardData.totalVoters) * 100
   : 0;
