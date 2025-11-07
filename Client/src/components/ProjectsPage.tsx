@@ -533,6 +533,7 @@ export function ProjectsPage() {
       ...prev,
       [projectId]: !prev[projectId],
     }));
+    
   };
 
   // 💬 Add comment for a specific project
@@ -793,10 +794,10 @@ export function ProjectsPage() {
                       </div>
                     )}
 
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                       <Camera className="w-4 h-4 mr-1" />
                       <span>{project.images.length}</span>
-                    </div>
+                    </div> */}
                   </div>
 
                   <Dialog>

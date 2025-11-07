@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/user.routes.ts";
 import complaintRouter from "./routes/complaint.routes.ts";
 import proposalRouter from "./routes/proposal.routes.ts"
+import adminRouter from "./routes/admin.routes.ts"
+import votingRouter from "./routes/votingProjects.routes.ts"
 
 dotenv.config();
 const app = express();
@@ -35,10 +37,12 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/complaints", complaintRouter);
 app.use("/api/proposals", proposalRouter)
+app.use("/api/admin", adminRouter)
+app.use("/api/admin", votingRouter)
 
 mongoose
   .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/janbudgt")
-  .then(() => console.log(" MongoDB connected on localhost"))
+  .then(() => console.log("MongoDB connected on localhost"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 app.get("/", (req, res) => {
@@ -46,4 +50,4 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5050;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

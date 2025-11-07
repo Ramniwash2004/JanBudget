@@ -15,7 +15,7 @@
     adminKey: string;
   }
   
-  const API_URL = "http://localhost:5050/api/users";
+  const API_URL = "http://localhost:5050/api/admin";
 
   export const loginAdmin = async (data: LoginData) => {
     try {
@@ -28,7 +28,7 @@
       const result = await res.json();
       if (!res.ok) throw new Error(result.message || "Login failed");
   
-      localStorage.setItem("token", result.token);
+      localStorage.setItem("admin-token", result.token);
       return result;
     } catch (error: any) {
       throw new Error(error.message);

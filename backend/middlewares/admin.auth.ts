@@ -14,7 +14,7 @@ interface TokenPayload extends JwtPayload {
   name: string;
 }
 
-export const isAuth = (req: any, res: any, next: any) => {
+export const AdminAuth = (req: any, res: any, next: any) => {
   try {
     const authHeader = req.headers.authorization;
 

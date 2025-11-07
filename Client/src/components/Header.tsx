@@ -55,7 +55,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   // };
 
   const toggleLanguage = () => {
-    const allLanguages: Language[] = ["en", "hi", "cg", "gon", "hlb", "pa"];
+    const allLanguages: Language[] = ["en", "hi", "cg"];
     const currentIndex = allLanguages.indexOf(language);
     const nextIndex = (currentIndex + 1) % allLanguages.length;
     setLanguage(allLanguages[nextIndex]);
@@ -146,9 +146,9 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       case 'en':  return 'EN';        // English
       case 'hi':  return 'हिं';       // Hindi
       case 'cg':  return 'छग';        // Chhattisgarhi
-      case 'gon': return 'गों';       // Gondi
-      case 'hlb': return 'हलबि';     // Halbi
-      case 'pa':  return 'ਪੰ';       // Punjabi
+      // case 'gon': return 'गों';       // Gondi
+      // case 'hlb': return 'हलबि';     // Halbi
+      // case 'pa':  return 'ਪੰ';       // Punjabi
       default:    return 'EN';
     }
   };

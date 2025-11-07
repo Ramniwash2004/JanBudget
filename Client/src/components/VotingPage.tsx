@@ -19,14 +19,14 @@ import {
   Info
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { useLanguage } from './LanguageContext';
+import { useLanguage2, Language } from './Languages/VotingLanguageContext.tsx';
 import { votingData } from './data/votingData.ts';
 
 export function VotingPage() {
   const [selectedProposal, setSelectedProposal] = useState('');
   const [hasVoted, setHasVoted] = useState(false);
   const [selectedWard, setSelectedWard] = useState('Ward 1');
-  const { t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage2();
 
   
 
