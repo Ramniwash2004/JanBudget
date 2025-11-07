@@ -31,7 +31,7 @@ export const signup = async (req: any, res: any) => {
     });
 
     await newUser.save();
-    return res.status(201).json({ message: "Signup successful" });
+    return res.status(201).json({ message: "Signup successful", success: true });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
@@ -49,9 +49,9 @@ export const login = async (req: any, res: any) => {
     if (!isPasswordValid) return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1d" });
-    res.status(200).json({ message: "Login successful", token, user });
+    res.status(200).json({ message: "Login successful", token, user, success: true });
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error", success: false });
   }
 };
 
@@ -65,10 +65,11 @@ export const getUser = async (req: any, res: any) => {
       if (!user) return res.status(404).json({ message: "User not found" });
   
       res.status(200).json({
-        username: req.username, // ✅ username from token
-        user,
+        username: req.username,
+        user: user,
+        success: false,
       });
     } catch (error) {
-      res.status(500).json({ message: "Server error" });
+      res.status(500).json({ message: "Server error", success: false });
     }
   };

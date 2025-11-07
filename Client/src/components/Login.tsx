@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { loginUser } from "../api/user.api";
 
 interface LoginProps {
   onLoginSuccess?: () => void;
@@ -14,16 +15,20 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      // const res = await fetch("http://localhost:5000/api/users/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ email, password }),
+      // });
 
-      const data = await res.json();
+      const s = { email, password }
+      const res = await loginUser(s)
+
+      // const data = await res.json();
+      const data = res
       console.log("Login response:", data);
 
-      alert(data.message || "Login attempt finished.");
+      // alert(data.message || "Login attempt finished.");
 
       if (data.success) {
         localStorage.setItem("token", data.token);

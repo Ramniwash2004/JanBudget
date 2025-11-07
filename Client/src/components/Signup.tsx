@@ -34,25 +34,25 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
       return;
     }
 
-    try {
       // const res = await fetch("http://localhost:5000/api/users/signup", {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(formData),
       // });
-      console.log("Hitting singup -> ", formData)
+      console.log("ok singup -> ", formData)
 
       const res = await signupUser(formData)
 
-      const data = await res.json();
-      alert(data.message);
+      // const data = await res.json();
+
+      console.log("data -> ", res)
+      const data = res
+      console.log("data" , data)
+      // alert(data.message);
 
       if (data.success) {
         onNavigate?.("login");
       }
-    } catch (err) {
-      alert("Something went wrong. Please try again later.");
-    }
   };
 
   const inputFields = [

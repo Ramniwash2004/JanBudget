@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/proposals";
+const API_URL = "http://localhost:5050/api/proposals";
 
 const getToken = () => localStorage.getItem("janbudg_token");
 

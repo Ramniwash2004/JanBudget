@@ -14,7 +14,7 @@ export interface SignupData {
     password: string;
   }
   
-  const API_URL = "http://localhost:5000/api/users";
+  const API_URL = "http://localhost:5050/api/users";
 
   export const loginUser = async (data: LoginData) => {
     try {

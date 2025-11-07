@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = "http://localhost:5050/api/complaints";
 
 export interface ComplaintData {
   heading: string;
