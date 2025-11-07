@@ -44,15 +44,15 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
-      <form
-        onSubmit={handleLogin}
-        className="bg-orange-100 shadow-md rounded-xl p-8 w-96"
-      >
-        <h2 className="text-2xl font-bold text-center text-orange-600 mb-6">
-          JanBudg Login
+    <div className="flex justify-center items-center flex-col min-h-screen px-6 py-12 lg:px-8">
+      <div className=" sm:mx-auto sm:w-full sm:max-w-sm ">
+        <h2 className="mt-10 text-3xl font-extrabold text-center tracking-tight text-orange-600 mb-8">
+          Login
         </h2>
-
+      
+       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form onSubmit={handleLogin} className="bg-orange-100 shadow-md rounded-xl p-8 w-96">
+       
         <input
           type="email"
           placeholder="Email"
@@ -73,10 +73,13 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
 
         <button
           type="submit"
-          className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition-all"
+          className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-green-800 transition-all"
         >
           Login
         </button>
+        </form>
+        </div>
+
 
         {/* Signup link */}
         <div className="text-center mt-4">
@@ -91,7 +94,20 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess, onNavigate }) => {
             </button>
           </p>
         </div>
-      </form>
+        <div className="text-center mt-4">
+          <p className="text-gray-700 text-sm">
+            Are you an admin?{" "}
+            <button
+              type="button"
+              onClick={() => onNavigate?.("admin")}
+              className="text-orange-600 font-semibold hover:underline "
+            >
+              Login here
+            </button>
+          </p>
+        </div>
+        </div>
     </div>
   );
-};
+
+}
