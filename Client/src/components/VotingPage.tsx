@@ -19,7 +19,6 @@ import {
   Info
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import {  useLanguage } from './LanguageContext.tsx';
 import { votingData } from './data/votingData.ts';
 import { useLanguage } from './LanguageContext.tsx';
 
