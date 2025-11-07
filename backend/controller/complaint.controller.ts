@@ -1,6 +1,7 @@
 import { Complaint } from "../model/complaint.model.ts"
 
 // Add new complaint
+
 export const addComplaint = async (req: any, res: any) => {
   try {
     console.log("Hitting addComplaint")
@@ -25,7 +26,8 @@ export const addComplaint = async (req: any, res: any) => {
 export const getComplaints = async (_req: any, res: any) => {
   try {
     const complaints = await Complaint.find().sort({ submittedOn: -1 });
-    res.json(complaints);
+    console.log("Complaoints -> ", complaints)
+    res.json({complaints, success: true});
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch complaints" });
   }
