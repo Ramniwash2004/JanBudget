@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:5050/api/proposals";
 
-const getToken = () => localStorage.getItem("janbudg_token");
+const getToken = () => localStorage.getItem("token");
 
 export const addProposal = async (data: any) => {
   const token = getToken();

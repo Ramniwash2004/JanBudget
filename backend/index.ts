@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.routes.ts";
 import complaintRouter from "./routes/complaint.routes.ts";
+import proposalRouter from "./routes/proposal.routes.ts"
 
 dotenv.config();
 const app = express();
@@ -33,6 +34,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/complaints", complaintRouter);
+app.use("/api/proposals", proposalRouter)
 
 mongoose
   .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/janbudg")
