@@ -317,7 +317,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
                 <p className="text-gray-600 mb-4">
                   Share your ideas for community development
                 </p>
-                <Button className="w-full">Get Started</Button>
+                <Button className="w-full cursor-pointer">Get Started</Button>
               </CardContent>
             </Card>
 
@@ -331,7 +331,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
                 <p className="text-gray-600 mb-4">
                   Help decide which projects get funded
                 </p>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full cursor-pointer">
                   Start Voting
                 </Button>
               </CardContent>
@@ -347,7 +347,7 @@ export function Homepage({ onNavigate }: HomepageProps) {
                 <p className="text-gray-600 mb-4">
                   Monitor the progress of approved projects
                 </p>
-                <Button variant="outline" className="w-full">
+                <Button variant="secondary" className="w-full cursor-pointer">
                   View Projects
                 </Button>
               </CardContent>
