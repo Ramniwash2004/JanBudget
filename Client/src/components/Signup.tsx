@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { User, Phone, Mail, Lock, MapPin, Home, CreditCard, Eye, EyeOff, UserPlus, ArrowRight, Sparkles } from "lucide-react";
+import { signupUser } from "../api/user.api";
 
 interface SignupProps {
   onNavigate?: (page: string) => void;
@@ -34,11 +35,14 @@ const Signup: React.FC<SignupProps> = ({ onNavigate }) => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/users/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      // const res = await fetch("http://localhost:5000/api/users/signup", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(formData),
+      // });
+      console.log("Hitting singup -> ", formData)
+
+      const res = await signupUser(formData)
 
       const data = await res.json();
       alert(data.message);
