@@ -360,11 +360,6 @@ export function ProposalsPage() {
                  <SelectItem value="Ward 68">Ward 68 - Doc. Khubchand Baghel Ward</SelectItem>
                  <SelectItem value="Ward 69">Ward 69 - Madhav Rav Sapre Ward</SelectItem>
                  <SelectItem value="Ward 70">Ward 70 - Sant Ravidas Ward</SelectItem>
-                {/* <SelectItem value="all">All Wards</SelectItem>
-                <SelectItem value="Ward 1">Ward 1</SelectItem>
-                <SelectItem value="Ward 2">Ward 2</SelectItem>
-                <SelectItem value="Ward 3">Ward 3</SelectItem>
-                <SelectItem value="Ward 4">Ward 4</SelectItem> */}
               </SelectContent>
             </Select>
 
@@ -421,6 +416,7 @@ function ProposalCard({ proposal, getStatusBadge }) {
       setComments((prev:any) => prev + 1);
       setNewComment("");
     }
+    setShowCommentBox(false);
   };
 
   return (
@@ -497,7 +493,7 @@ function ProposalCard({ proposal, getStatusBadge }) {
           </Button>
         </div>
 
-        {showCommentBox && (
+        {/* {showCommentBox && (
           <div className="mt-3 flex items-center space-x-2">
             <input
               type="text"
@@ -510,7 +506,29 @@ function ProposalCard({ proposal, getStatusBadge }) {
               Post
             </Button>
           </div>
-        )}
+        )} */}
+        {showCommentBox && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+    <div className="bg-white p-4 rounded-lg shadow-lg w-[300px]">
+      <h3 className="text-lg font-semibold mb-2">Write a Comment</h3>
+      <input
+        type="text"
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
+        placeholder="Write your comment..."
+        className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+      />
+      <div className="mt-3 flex justify-end space-x-2">
+        <Button variant="outline" onClick={() => setShowCommentBox(false)}>
+          Cancel
+        </Button>
+        <Button size="sm" onClick={handleAddComment}>
+          Post
+        </Button>
+      </div>
+    </div>
+  </div>
+)}
       </CardContent>
     </Card>
   );

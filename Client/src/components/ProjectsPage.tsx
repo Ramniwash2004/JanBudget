@@ -47,6 +47,7 @@ export function ProjectsPage() {
         setComments(prev => prev + 1);
         setNewComment("");
       }
+      setShowCommentBox(false);
     };
 
 
