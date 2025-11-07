@@ -1,23 +1,8 @@
-// import React from 'react'
-// import {VotingLanguageContext} from "./Languages/HomeLanguage";
-
-// export const LanguageContext = () => {
-//   return (
-//     <div>
-//       <'{VotingLanguageContext}'/>
-//     </div>
-//   )
-// }
-
-
-
-
-
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 // type Language = 'en' | 'hi';
 // type Language = 'en' | 'hi' | 'cg';
-export type Language = 'en' | 'hi' | 'cg';
+export type Language = 'en' | 'hi' | 'cg' | 'gon' | 'hlb' | 'pa';
 
 
 interface LanguageContextType {
@@ -395,39 +380,39 @@ const translations = {
     'homepage.quickActions.trackDesc': 'मंजूर काम ल देखव',
     'homepage.quickActions.viewProjects': 'काम देखव',
   
-    // Voting Page
-    'voting.title': 'भोटिंग चालू हावे',
-    'voting.subtitle': 'अपन पसंद के काम बर भोट देवव',
-    'voting.alert': 'Q2 बजट भोटिंग चालू हावे, जल्दी भोट देवव!',
-    'voting.selectWard': 'वार्ड चुनव',
-    'voting.totalVoters': 'कुल मतदाता',
-    'voting.votesCast': 'डाले गे भोट',
-    'voting.participation': 'भागीदारी',
-    'voting.timeLeft': 'बाकी समय',
-    'voting.votingProgress': 'भोटिंग प्रगति',
-    'voting.castYourVote': 'भोट देवव',
-    'voting.selectOne': 'एक सुझाव चुनव जऊन ला फंड करना चाहथव',
-    'voting.submitVote': 'भोट भेजव',
-    'voting.thankYou': 'भोट करे बर धन्यवाद!',
-    'voting.voteAgain': 'फेर भोट देवव (डेमो)',
-    'voting.currentResults': 'अभी के नतीजा',
-    'voting.liveResults': 'लाइव नतीजा (गुमनाम)',
-    'voting.votingInfo': 'भोटिंग जानकारी',
-    'voting.anonymous': '• सब भोट गुमनाम हावे',
-    'voting.realTime': '• नतीजा रियल टाइम म अपडेट होथे',
-    'voting.mostVotes': '• जियादा भोट वाला काम फंड होही',
-    'voting.closesIn': '• भोटिंग बंद होथे',
+    // // Voting Page
+    // 'voting.title': 'भोटिंग चालू हावे',
+    // 'voting.subtitle': 'अपन पसंद के काम बर भोट देवव',
+    // 'voting.alert': 'Q2 बजट भोटिंग चालू हावे, जल्दी भोट देवव!',
+    // 'voting.selectWard': 'वार्ड चुनव',
+    // 'voting.totalVoters': 'कुल मतदाता',
+    // 'voting.votesCast': 'डाले गे भोट',
+    // 'voting.participation': 'भागीदारी',
+    // 'voting.timeLeft': 'बाकी समय',
+    // 'voting.votingProgress': 'भोटिंग प्रगति',
+    // 'voting.castYourVote': 'भोट देवव',
+    // 'voting.selectOne': 'एक सुझाव चुनव जऊन ला फंड करना चाहथव',
+    // 'voting.submitVote': 'भोट भेजव',
+    // 'voting.thankYou': 'भोट करे बर धन्यवाद!',
+    // 'voting.voteAgain': 'फेर भोट देवव (डेमो)',
+    // 'voting.currentResults': 'अभी के नतीजा',
+    // 'voting.liveResults': 'लाइव नतीजा (गुमनाम)',
+    // 'voting.votingInfo': 'भोटिंग जानकारी',
+    // 'voting.anonymous': '• सब भोट गुमनाम हावे',
+    // 'voting.realTime': '• नतीजा रियल टाइम म अपडेट होथे',
+    // 'voting.mostVotes': '• जियादा भोट वाला काम फंड होही',
+    // 'voting.closesIn': '• भोटिंग बंद होथे',
   
-    // Common
-    'common.votes': 'भोट',
-    'common.loading': 'लोड होत हावे...',
-    'common.save': 'सेव करव',
-    'common.cancel': 'रद्द करव',
-    'common.submit': 'भेजव',
-    'common.edit': 'बदलव',
-    'common.delete': 'हटावव',
-    'common.view': 'देखव',
-    'common.close': 'बंद करव'
+    // // Common
+    // 'common.votes': 'भोट',
+    // 'common.loading': 'लोड होत हावे...',
+    // 'common.save': 'सेव करव',
+    // 'common.cancel': 'रद्द करव',
+    // 'common.submit': 'भेजव',
+    // 'common.edit': 'बदलव',
+    // 'common.delete': 'हटावव',
+    // 'common.view': 'देखव',
+    // 'common.close': 'बंद करव'
   },
   pa: {
     // Header
@@ -475,39 +460,39 @@ const translations = {
     'homepage.quickActions.trackDesc': 'ਮੰਜ਼ੂਰ ਪਰੋਜੈਕਟਾਂ ਦੀ ਤਰੱਕੀ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ',
     'homepage.quickActions.viewProjects': 'ਪਰੋਜੈਕਟ ਵੇਖੋ',
   
-    // Voting Page
-    'voting.title': 'ਸਕ੍ਰਿਆ ਵੋਟਿੰਗ ਚਰਣ',
-    'voting.subtitle': 'ਹਰ ਵਾਰਡ ਵਿੱਚ ਆਪਣੇ ਮਨਪਸੰਦ ਪਰੋਜੈਕਟਾਂ ਲਈ ਵੋਟ ਕਰੋ',
-    'voting.alert': 'Q2 ਬਜਟ ਲਈ ਵੋਟਿੰਗ ਖੁੱਲੀ ਹੈ। ਸਮਾਂ ਖ਼ਤਮ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਵੋਟ ਜ਼ਰੂਰ ਪਾਓ!',
-    'voting.selectWard': 'ਵਾਰਡ ਚੁਣੋ',
-    'voting.totalVoters': 'ਕੁੱਲ ਵੋਟਰ',
-    'voting.votesCast': 'ਡਾਲੀਆਂ ਗਈਆਂ ਵੋਟਾਂ',
-    'voting.participation': 'ਭਾਗੀਦਾਰੀ',
-    'voting.timeLeft': 'ਬਚਿਆ ਸਮਾਂ',
-    'voting.votingProgress': 'ਵੋਟਿੰਗ ਤਰੱਕੀ',
-    'voting.castYourVote': 'ਆਪਣੀ ਵੋਟ ਪਾਓ',
-    'voting.selectOne': 'ਇੱਕ ਪ੍ਰਸਤਾਵ ਚੁਣੋ ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਫੰਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ',
-    'voting.submitVote': 'ਵੋਟ ਭੇਜੋ',
-    'voting.thankYou': 'ਵੋਟ ਕਰਨ ਲਈ ਧੰਨਵਾਦ! ਤੁਹਾਡੀ ਵੋਟ ਸਫਲਤਾਪੂਰਵਕ ਦਰਜ ਹੋ ਗਈ ਹੈ।',
-    'voting.voteAgain': 'ਦੁਬਾਰਾ ਵੋਟ ਕਰੋ (ਡੈਮੋ)',
-    'voting.currentResults': 'ਮੌਜੂਦਾ ਨਤੀਜੇ',
-    'voting.liveResults': 'ਲਾਈਵ ਵੋਟਿੰਗ ਨਤੀਜੇ (ਵੋਟ ਗੁਮਨਾਮ ਹਨ)',
-    'voting.votingInfo': 'ਵੋਟਿੰਗ ਜਾਣਕਾਰੀ',
-    'voting.anonymous': '• ਸਾਰੀਆਂ ਵੋਟਾਂ ਗੁਮਨਾਮ ਅਤੇ ਸੁਰੱਖਿਅਤ ਹਨ',
-    'voting.realTime': '• ਨਤੀਜੇ ਰੀਅਲ-ਟਾਈਮ ਵਿੱਚ ਅੱਪਡੇਟ ਹੁੰਦੇ ਹਨ',
-    'voting.mostVotes': '• ਸਭ ਤੋਂ ਵੱਧ ਵੋਟਾਂ ਵਾਲਾ ਪ੍ਰਸਤਾਵ ਫੰਡ ਕੀਤਾ ਜਾਵੇਗਾ',
-    'voting.closesIn': '• ਵੋਟਿੰਗ ਖ਼ਤਮ ਹੁੰਦੀ ਹੈ',
+    // // Voting Page
+    // 'voting.title': 'ਸਕ੍ਰਿਆ ਵੋਟਿੰਗ ਚਰਣ',
+    // 'voting.subtitle': 'ਹਰ ਵਾਰਡ ਵਿੱਚ ਆਪਣੇ ਮਨਪਸੰਦ ਪਰੋਜੈਕਟਾਂ ਲਈ ਵੋਟ ਕਰੋ',
+    // 'voting.alert': 'Q2 ਬਜਟ ਲਈ ਵੋਟਿੰਗ ਖੁੱਲੀ ਹੈ। ਸਮਾਂ ਖ਼ਤਮ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਵੋਟ ਜ਼ਰੂਰ ਪਾਓ!',
+    // 'voting.selectWard': 'ਵਾਰਡ ਚੁਣੋ',
+    // 'voting.totalVoters': 'ਕੁੱਲ ਵੋਟਰ',
+    // 'voting.votesCast': 'ਡਾਲੀਆਂ ਗਈਆਂ ਵੋਟਾਂ',
+    // 'voting.participation': 'ਭਾਗੀਦਾਰੀ',
+    // 'voting.timeLeft': 'ਬਚਿਆ ਸਮਾਂ',
+    // 'voting.votingProgress': 'ਵੋਟਿੰਗ ਤਰੱਕੀ',
+    // 'voting.castYourVote': 'ਆਪਣੀ ਵੋਟ ਪਾਓ',
+    // 'voting.selectOne': 'ਇੱਕ ਪ੍ਰਸਤਾਵ ਚੁਣੋ ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਫੰਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ',
+    // 'voting.submitVote': 'ਵੋਟ ਭੇਜੋ',
+    // 'voting.thankYou': 'ਵੋਟ ਕਰਨ ਲਈ ਧੰਨਵਾਦ! ਤੁਹਾਡੀ ਵੋਟ ਸਫਲਤਾਪੂਰਵਕ ਦਰਜ ਹੋ ਗਈ ਹੈ।',
+    // 'voting.voteAgain': 'ਦੁਬਾਰਾ ਵੋਟ ਕਰੋ (ਡੈਮੋ)',
+    // 'voting.currentResults': 'ਮੌਜੂਦਾ ਨਤੀਜੇ',
+    // 'voting.liveResults': 'ਲਾਈਵ ਵੋਟਿੰਗ ਨਤੀਜੇ (ਵੋਟ ਗੁਮਨਾਮ ਹਨ)',
+    // 'voting.votingInfo': 'ਵੋਟਿੰਗ ਜਾਣਕਾਰੀ',
+    // 'voting.anonymous': '• ਸਾਰੀਆਂ ਵੋਟਾਂ ਗੁਮਨਾਮ ਅਤੇ ਸੁਰੱਖਿਅਤ ਹਨ',
+    // 'voting.realTime': '• ਨਤੀਜੇ ਰੀਅਲ-ਟਾਈਮ ਵਿੱਚ ਅੱਪਡੇਟ ਹੁੰਦੇ ਹਨ',
+    // 'voting.mostVotes': '• ਸਭ ਤੋਂ ਵੱਧ ਵੋਟਾਂ ਵਾਲਾ ਪ੍ਰਸਤਾਵ ਫੰਡ ਕੀਤਾ ਜਾਵੇਗਾ',
+    // 'voting.closesIn': '• ਵੋਟਿੰਗ ਖ਼ਤਮ ਹੁੰਦੀ ਹੈ',
   
-    // Common
-    'common.votes': 'ਵੋਟਾਂ',
-    'common.loading': 'ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...',
-    'common.save': 'ਸੇਵ ਕਰੋ',
-    'common.cancel': 'ਰੱਦ ਕਰੋ',
-    'common.submit': 'ਜਮ੍ਹਾਂ ਕਰੋ',
-    'common.edit': 'ਸੋਧੋ',
-    'common.delete': 'ਹਟਾਓ',
-    'common.view': 'ਵੇਖੋ',
-    'common.close': 'ਬੰਦ ਕਰੋ'
+    // // Common
+    // 'common.votes': 'ਵੋਟਾਂ',
+    // 'common.loading': 'ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...',
+    // 'common.save': 'ਸੇਵ ਕਰੋ',
+    // 'common.cancel': 'ਰੱਦ ਕਰੋ',
+    // 'common.submit': 'ਜਮ੍ਹਾਂ ਕਰੋ',
+    // 'common.edit': 'ਸੋਧੋ',
+    // 'common.delete': 'ਹਟਾਓ',
+    // 'common.view': 'ਵੇਖੋ',
+    // 'common.close': 'ਬੰਦ ਕਰੋ'
   }
   
 };
