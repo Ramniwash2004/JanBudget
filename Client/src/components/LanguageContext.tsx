@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'hi';
+// type Language = 'en' | 'hi';
+type Language = 'en' | 'hi' | 'cg';
+
 
 interface LanguageContextType {
   language: Language;
@@ -169,7 +171,88 @@ const translations = {
     'common.delete': 'हटाएं',
     'common.view': 'देखें',
     'common.close': 'बंद करें'
+  },
+  cg: {
+    // Header
+    'header.janBudget': 'जनबजट',
+    'header.subtitle': 'जनबजट - जनता के बजट',
+    'header.home': 'घर',
+    'header.proposals': 'सुझाव',
+    'header.voting': 'भोटिंग',
+    'header.projects': 'परियोजना',
+    'header.complaints': 'शिकायत',
+    'header.dashboard': 'डैशबोर्ड',
+    'header.info': 'जानकारी',
+    'header.profile': 'प्रोफाइल',
+    'header.login': 'लॉग इन',
+    'header.signup': 'साइन अप',
+    'header.logout': 'लॉग आउट',
+  
+    // Homepage
+    'homepage.hero.title': 'नागरिक मन ल सशक्त बनावत, संग संग बनावत',
+    'homepage.hero.subtitle': 'अपने सहर के बजट म भाग लेवव अउ मिलके बने बढ़िया समाज',
+    'homepage.hero.submitProposal': 'सुझाव भेजव',
+    'homepage.hero.voteNow': 'अबे भोट देवव',
+    'homepage.hero.trackProjects': 'परियोजना ल देखव',
+    'homepage.stats.activeCitizens': 'सक्रिय नागरिक',
+    'homepage.stats.totalBudget': 'कुल बजट',
+    'homepage.stats.completedProjects': 'पूरा परियोजना',
+    'homepage.stats.proposalsSubmitted': 'जमा करे सुझाव',
+    'homepage.wardBudget.title': 'वार्ड बजट ओवरव्यू',
+    'homepage.wardBudget.subtitle': 'हर वार्ड म बजट अउ परियोजना के स्थिति देखव',
+    'homepage.wardBudget.budgetAllocated': 'बंटा बजट',
+    'homepage.wardBudget.ongoing': 'चालत हावे',
+    'homepage.wardBudget.completed': 'पूरा होगे',
+    'homepage.wardBudget.viewDetails': 'विवरन देखव',
+    'homepage.news.title': 'समाचार अउ अपडेट',
+    'homepage.news.subtitle': 'नवा जानकारी ल देखव',
+    'homepage.quickActions.title': 'जल्दी काम',
+    'homepage.quickActions.subtitle': 'इन काम म अपन सुरुआत करव',
+    'homepage.quickActions.submitNew': 'नवा सुझाव भेजव',
+    'homepage.quickActions.submitDesc': 'समाज के विकास बर अपन विचार बतावव',
+    'homepage.quickActions.getStarted': 'सुरू करव',
+    'homepage.quickActions.vote': 'सुझाव म भोट देवव',
+    'homepage.quickActions.voteDesc': 'कऊन परियोजना ल फंड मिलही, तय करव',
+    'homepage.quickActions.startVoting': 'भोटिंग सुरू करव',
+    'homepage.quickActions.track': 'परियोजना ल देखव',
+    'homepage.quickActions.trackDesc': 'मंजूर परियोजना के काम ल देखव',
+    'homepage.quickActions.viewProjects': 'परियोजना देखव',
+  
+    // Voting Page
+    'voting.title': 'भोटिंग चरण',
+    'voting.subtitle': 'हर वार्ड म अपन पसंद के परियोजना बर भोट देवव',
+    'voting.alert': 'Q2 बजट बंटवारा बर भोटिंग खुले हावे। समय खतम होए के पहिली अपन भोट जरूर देवव!',
+    'voting.selectWard': 'वार्ड चुनव',
+    'voting.totalVoters': 'कुल मतदाता',
+    'voting.votesCast': 'डाले गे भोट',
+    'voting.participation': 'भागीदारी',
+    'voting.timeLeft': 'बाकी समय',
+    'voting.votingProgress': 'भोटिंग प्रगति',
+    'voting.castYourVote': 'अपन भोट देवव',
+    'voting.selectOne': 'एक सुझाव चुनव जऊन ल आप फंड करना चाहथव',
+    'voting.submitVote': 'भोट भेजव',
+    'voting.thankYou': 'भोट करे बर धन्यवाद! अपन भोट सफलतापूर्वक दर्ज होगे हावे।',
+    'voting.voteAgain': 'फेर भोट देवव (डेमो)',
+    'voting.currentResults': 'अभी के नतीजा',
+    'voting.liveResults': 'लाइव भोटिंग नतीजा (भोट गुमनाम हावे)',
+    'voting.votingInfo': 'भोटिंग जानकारी',
+    'voting.anonymous': '• सबो भोट गुमनाम अउ सुरक्षित हावे',
+    'voting.realTime': '• नतीजा रियल टाइम म अपडेट होथे',
+    'voting.mostVotes': '• जऊन सुझाव म जियादा भोट होही, उही फंड होही',
+    'voting.closesIn': '• भोटिंग खतम होथे',
+  
+    // Common
+    'common.votes': 'भोट',
+    'common.loading': 'लोड होत हावे...',
+    'common.save': 'सेव करव',
+    'common.cancel': 'रद्द करव',
+    'common.submit': 'भेजव',
+    'common.edit': 'संपादन करव',
+    'common.delete': 'हटावव',
+    'common.view': 'देखव',
+    'common.close': 'बंद करव'
   }
+  
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

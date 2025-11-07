@@ -43,8 +43,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     };
   }, []);
 
+  // const toggleLanguage = () => {
+  //   setLanguage(language === 'en' ? 'hi' : 'en');
+  // };
+
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'hi' : 'en');
+    if (language === "en") setLanguage("hi");
+    else if (language === "hi") setLanguage("cg");
+    else setLanguage("en");
   };
 
   const handleLogout = () => {
@@ -85,6 +91,15 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     } else {
       onNavigate(id);
       setIsOpen(false);
+    }
+  };
+
+  const getLabel = () => {
+    switch (language) {
+      case "en": return "हिं";  // Hindi short label
+      case "hi": return "छग";  // Chhattisgarhi short label
+      case "cg": return "EN";  // English short label
+      default: return "EN";
     }
   };
 
@@ -141,7 +156,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               className="hidden sm:flex items-center space-x-2"
             >
               <Globe className="w-4 h-4" />
-              <span>{language === 'en' ? 'हिं' : 'EN'}</span>
+              {/* <span>{language === 'en' ? 'हिं' : 'EN'}</span> */}
+              <span>{getLabel()}</ span>
             </Button>
 
             {/* Mobile Menu */}
