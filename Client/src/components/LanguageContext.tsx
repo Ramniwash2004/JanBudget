@@ -91,6 +91,7 @@ const translations = {
     'common.delete': 'Delete',
     'common.view': 'View',
     'common.close': 'Close'
+
   },
   hi: {
     // Header
