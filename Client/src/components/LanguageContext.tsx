@@ -1,17 +1,3 @@
-// import React from 'react'
-// import {VotingLanguageContext} from "./Languages/HomeLanguage";
-
-// export const LanguageContext = () => {
-//   return (
-//     <div>
-//       <'{VotingLanguageContext}'/>
-//     </div>
-//   )
-// }
-
-
-
-
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -73,39 +59,98 @@ const translations = {
     'homepage.quickActions.trackDesc': 'Monitor the progress of approved projects',
     'homepage.quickActions.viewProjects': 'View Projects',
     
-    // // Voting Page
-    // 'voting.title': 'Active Voting Phase',
-    // 'voting.subtitle': 'Vote for your preferred projects in each ward',
-    // 'voting.alert': 'Voting is currently open for Q2 budget allocation. Make sure to cast your vote before the deadline!',
-    // 'voting.selectWard': 'Select Ward',
-    // 'voting.totalVoters': 'Total Voters',
-    // 'voting.votesCast': 'Votes Cast',
-    // 'voting.participation': 'Participation',
-    // 'voting.timeLeft': 'Time Left',
-    // 'voting.votingProgress': 'Voting Progress',
-    // 'voting.castYourVote': 'Cast Your Vote',
-    // 'voting.selectOne': 'Select one proposal you would like to see funded in',
-    // 'voting.submitVote': 'Submit Vote',
-    // 'voting.thankYou': 'Thank you for voting! Your vote has been recorded successfully.',
-    // 'voting.voteAgain': 'Vote again (Demo)',
-    // 'voting.currentResults': 'Current Results',
-    // 'voting.liveResults': 'Live voting results (votes are anonymous)',
-    // 'voting.votingInfo': 'Voting Information',
-    // 'voting.anonymous': '• All votes are anonymous and secure',
-    // 'voting.realTime': '• Results are updated in real-time',
-    // 'voting.mostVotes': '• The proposal with the most votes will be funded',
-    // 'voting.closesIn': '• Voting closes in',
+    // Voting Page
+    'voting.title': 'Active Voting Phase',
+    'voting.subtitle': 'Vote for your preferred projects in each ward',
+    'voting.alert': 'Voting is currently open for Q2 budget allocation. Make sure to cast your vote before the deadline!',
+    'voting.selectWard': 'Select Ward',
+    'voting.totalVoters': 'Total Voters',
+    'voting.votesCast': 'Votes Cast',
+    'voting.participation': 'Participation',
+    'voting.timeLeft': 'Time Left',
+    'voting.votingProgress': 'Voting Progress',
+    'voting.castYourVote': 'Cast Your Vote',
+    'voting.selectOne': 'Select one proposal you would like to see funded in',
+    'voting.submitVote': 'Submit Vote',
+    'voting.thankYou': 'Thank you for voting! Your vote has been recorded successfully.',
+    'voting.voteAgain': 'Vote again (Demo)',
+    'voting.currentResults': 'Current Results',
+    'voting.liveResults': 'Live voting results (votes are anonymous)',
+    'voting.votingInfo': 'Voting Information',
+    'voting.anonymous': '• All votes are anonymous and secure',
+    'voting.realTime': '• Results are updated in real-time',
+    'voting.mostVotes': '• The proposal with the most votes will be funded',
+    'voting.closesIn': '• Voting closes in',
     
-    // // Common
-    // 'common.votes': 'votes',
-    // 'common.loading': 'Loading...',
-    // 'common.save': 'Save',
-    // 'common.cancel': 'Cancel',
-    // 'common.submit': 'Submit',
-    // 'common.edit': 'Edit',
-    // 'common.delete': 'Delete',
-    // 'common.view': 'View',
-    // 'common.close': 'Close'
+    // Common
+    'common.votes': 'votes',
+    'common.loading': 'Loading...',
+    'common.save': 'Save',
+    'common.cancel': 'Cancel',
+    'common.submit': 'Submit',
+    'common.edit': 'Edit',
+    'common.delete': 'Delete',
+    'common.view': 'View',
+    'common.close': 'Close',
+
+    // Dashboard Page
+    'dashboard.title': 'Transparency Dashboard',
+    'dashboard.subtitle': 'Real-time insights into budget allocation and civic engagement',
+    'dashboard.exportData': 'Export Data',
+    'dashboard.liveView': 'Live View',
+
+    // KPI Cards
+    'dashboard.kpi.totalBudget': 'Total Budget',
+    'dashboard.kpi.activeCitizens': 'Active Citizens',
+    'dashboard.kpi.proposalsThisMonth': 'Proposals This Month',
+    'dashboard.kpi.votingParticipation': 'Voting Participation',
+
+    // Tabs
+    'dashboard.tabs.budget': 'Budget Analysis',
+    'dashboard.tabs.participation': 'Citizen Participation',
+    'dashboard.tabs.projects': 'Project Status',
+    'dashboard.tabs.transparency': 'Financial Transparency',
+
+    // Budget Tab
+    'dashboard.budget.wardWiseTitle': 'Ward-wise Budget Allocation',
+    'dashboard.budget.wardWiseDesc': 'Budget allocated vs spent across wards (in Lakhs)',
+    'dashboard.budget.categoryTitle': 'Spending by Category',
+    'dashboard.budget.categoryDesc': 'Budget distribution across different sectors',
+    'dashboard.budget.monthlyTrendsTitle': 'Monthly Civic Activity Trends',
+    'dashboard.budget.monthlyTrendsDesc': 'Track proposals, votes, and project approvals over time',
+
+    // Participation Tab
+    'dashboard.participation.votingTitle': 'Voting Participation by Ward',
+    'dashboard.participation.votingDesc': 'Percentage of registered citizens who voted',
+    'dashboard.participation.detailsTitle': 'Detailed Participation Stats',
+    'dashboard.participation.engagementTitle': 'Citizen Engagement Over Time',
+    'dashboard.participation.engagementDesc': 'Number of active participants each month',
+
+    // Projects Tab
+    'dashboard.projects.statusTitle': 'Project Status Overview',
+    'dashboard.projects.statusDesc': 'Current status of all projects',
+    'dashboard.projects.metricsTitle': 'Project Performance Metrics',
+    'dashboard.projects.totalProjects': 'Total Projects',
+    'dashboard.projects.onTime': 'On Time',
+    'dashboard.projects.underBudget': 'Under Budget',
+
+    // Transparency Tab
+    'dashboard.transparency.transactionsTitle': 'Recent Financial Transactions',
+    'dashboard.transparency.transactionsDesc': 'Transparent view of all budget releases and payments',
+    'dashboard.transparency.project': 'Project',
+    'dashboard.transparency.amount': 'Amount',
+    'dashboard.transparency.vendor': 'Vendor',
+    'dashboard.transparency.date': 'Date',
+    'dashboard.transparency.status': 'Status',
+
+    // Budget Utilization Cards
+    'dashboard.transparency.utilizedTitle': 'Budget Utilized',
+    'dashboard.transparency.utilizedDesc': '64% of total budget',
+    'dashboard.transparency.pendingTitle': 'Pending Releases',
+    'dashboard.transparency.pendingDesc': '16% of total budget',
+    'dashboard.transparency.balanceTitle': 'Available Balance',
+    'dashboard.transparency.balanceDesc': '20% of total budget',
+
   },
   hi: {
     // Header
@@ -154,39 +199,98 @@ const translations = {
     'homepage.quickActions.trackDesc': 'अनुमोदित परियोजनाओं की प्रगति की निगरानी करें',
     'homepage.quickActions.viewProjects': 'परियोजनाएं देखें',
     
-    // // Voting Page
-    // 'voting.title': 'सक्रिय मतदान चरण',
-    // 'voting.subtitle': 'प्रत्येक वार्ड में अपनी पसंदीदा परियोजनाओं के लिए वोट करें',
-    // 'voting.alert': 'वर्तमान में Q2 बजट आवंटन के लिए मतदान खुला है। समय सीमा से पहले अपना वोट डालना सुनिश्चित करें!',
-    // 'voting.selectWard': 'वार्ड चुनें',
-    // 'voting.totalVoters': 'कुल मतदाता',
-    // 'voting.votesCast': 'डाले गए वोट',
-    // 'voting.participation': 'भागीदारी',
-    // 'voting.timeLeft': 'बचा समय',
-    // 'voting.votingProgress': 'मतदान प्रगति',
-    // 'voting.castYourVote': 'अपना वोट डालें',
-    // 'voting.selectOne': 'एक प्रस्ताव चुनें जिसे आप फंड करना चाहते हैं',
-    // 'voting.submitVote': 'वोट जमा करें',
-    // 'voting.thankYou': 'वोट करने के लिए धन्यवाद! आपका वोट सफलतापूर्वक रिकॉर्ड हो गया है।',
-    // 'voting.voteAgain': 'फिर से वोट करें (डेमो)',
-    // 'voting.currentResults': 'वर्तमान परिणाम',
-    // 'voting.liveResults': 'लाइव मतदान परिणाम (वोट गुमनाम हैं)',
-    // 'voting.votingInfo': 'मतदान जानकारी',
-    // 'voting.anonymous': '• सभी वोट गुमनाम और सुरक्षित हैं',
-    // 'voting.realTime': '• परिणाम रियल-टाइम में अपडेट होते हैं',
-    // 'voting.mostVotes': '• सबसे अधिक वोट वाले प्रस्ताव को फंड मिलेगा',
-    // 'voting.closesIn': '• मतदान समाप्त होता है',
+    // Voting Page
+    'voting.title': 'सक्रिय मतदान चरण',
+    'voting.subtitle': 'प्रत्येक वार्ड में अपनी पसंदीदा परियोजनाओं के लिए वोट करें',
+    'voting.alert': 'वर्तमान में Q2 बजट आवंटन के लिए मतदान खुला है। समय सीमा से पहले अपना वोट डालना सुनिश्चित करें!',
+    'voting.selectWard': 'वार्ड चुनें',
+    'voting.totalVoters': 'कुल मतदाता',
+    'voting.votesCast': 'डाले गए वोट',
+    'voting.participation': 'भागीदारी',
+    'voting.timeLeft': 'बचा समय',
+    'voting.votingProgress': 'मतदान प्रगति',
+    'voting.castYourVote': 'अपना वोट डालें',
+    'voting.selectOne': 'एक प्रस्ताव चुनें जिसे आप फंड करना चाहते हैं',
+    'voting.submitVote': 'वोट जमा करें',
+    'voting.thankYou': 'वोट करने के लिए धन्यवाद! आपका वोट सफलतापूर्वक रिकॉर्ड हो गया है।',
+    'voting.voteAgain': 'फिर से वोट करें (डेमो)',
+    'voting.currentResults': 'वर्तमान परिणाम',
+    'voting.liveResults': 'लाइव मतदान परिणाम (वोट गुमनाम हैं)',
+    'voting.votingInfo': 'मतदान जानकारी',
+    'voting.anonymous': '• सभी वोट गुमनाम और सुरक्षित हैं',
+    'voting.realTime': '• परिणाम रियल-टाइम में अपडेट होते हैं',
+    'voting.mostVotes': '• सबसे अधिक वोट वाले प्रस्ताव को फंड मिलेगा',
+    'voting.closesIn': '• मतदान समाप्त होता है',
     
-    // // Common
-    // 'common.votes': 'वोट',
-    // 'common.loading': 'लोड हो रहा है...',
-    // 'common.save': 'सहेजें',
-    // 'common.cancel': 'रद्द करें',
-    // 'common.submit': 'जमा करें',
-    // 'common.edit': 'संपादित करें',
-    // 'common.delete': 'हटाएं',
-    // 'common.view': 'देखें',
-    // 'common.close': 'बंद करें'
+    // Common
+    'common.votes': 'वोट',
+    'common.loading': 'लोड हो रहा है...',
+    'common.save': 'सहेजें',
+    'common.cancel': 'रद्द करें',
+    'common.submit': 'जमा करें',
+    'common.edit': 'संपादित करें',
+    'common.delete': 'हटाएं',
+    'common.view': 'देखें',
+    'common.close': 'बंद करें',
+
+        // डैशबोर्ड पेज
+    'dashboard.title': 'पारदर्शिता डैशबोर्ड',
+    'dashboard.subtitle': 'बजट आवंटन और नागरिक सहभागिता पर रीयल-टाइम जानकारी',
+    'dashboard.exportData': 'डेटा निर्यात करें',
+    'dashboard.liveView': 'लाइव दृश्य',
+
+    // KPI कार्ड
+    'dashboard.kpi.totalBudget': 'कुल बजट',
+    'dashboard.kpi.activeCitizens': 'सक्रिय नागरिक',
+    'dashboard.kpi.proposalsThisMonth': 'इस महीने के प्रस्ताव',
+    'dashboard.kpi.votingParticipation': 'मतदान भागीदारी',
+
+    // टैब्स
+    'dashboard.tabs.budget': 'बजट विश्लेषण',
+    'dashboard.tabs.participation': 'नागरिक सहभागिता',
+    'dashboard.tabs.projects': 'परियोजना स्थिति',
+    'dashboard.tabs.transparency': 'वित्तीय पारदर्शिता',
+
+    // बजट टैब
+    'dashboard.budget.wardWiseTitle': 'वार्ड-वार बजट आवंटन',
+    'dashboard.budget.wardWiseDesc': 'प्रत्येक वार्ड में आवंटित और खर्च किए गए बजट (लाखों में)',
+    'dashboard.budget.categoryTitle': 'श्रेणी अनुसार खर्च',
+    'dashboard.budget.categoryDesc': 'विभिन्न क्षेत्रों में बजट वितरण',
+    'dashboard.budget.monthlyTrendsTitle': 'मासिक नागरिक गतिविधि प्रवृत्तियाँ',
+    'dashboard.budget.monthlyTrendsDesc': 'समय के साथ प्रस्ताव, वोट और परियोजना अनुमोदन को ट्रैक करें',
+
+    // सहभागिता टैब
+    'dashboard.participation.votingTitle': 'वार्ड अनुसार मतदान भागीदारी',
+    'dashboard.participation.votingDesc': 'पंजीकृत नागरिकों में से जिन्होंने मतदान किया उनका प्रतिशत',
+    'dashboard.participation.detailsTitle': 'विस्तृत भागीदारी आँकड़े',
+    'dashboard.participation.engagementTitle': 'समय के साथ नागरिक सहभागिता',
+    'dashboard.participation.engagementDesc': 'प्रत्येक महीने सक्रिय प्रतिभागियों की संख्या',
+
+    // परियोजना टैब
+    'dashboard.projects.statusTitle': 'परियोजना स्थिति अवलोकन',
+    'dashboard.projects.statusDesc': 'सभी परियोजनाओं की वर्तमान स्थिति',
+    'dashboard.projects.metricsTitle': 'परियोजना प्रदर्शन मीट्रिक्स',
+    'dashboard.projects.totalProjects': 'कुल परियोजनाएँ',
+    'dashboard.projects.onTime': 'समय पर पूर्ण',
+    'dashboard.projects.underBudget': 'बजट के भीतर',
+
+    // पारदर्शिता टैब
+    'dashboard.transparency.transactionsTitle': 'हाल के वित्तीय लेनदेन',
+    'dashboard.transparency.transactionsDesc': 'सभी बजट जारीियों और भुगतानों का पारदर्शी दृश्य',
+    'dashboard.transparency.project': 'परियोजना',
+    'dashboard.transparency.amount': 'राशि',
+    'dashboard.transparency.vendor': 'विक्रेता',
+    'dashboard.transparency.date': 'तारीख',
+    'dashboard.transparency.status': 'स्थिति',
+
+    // बजट उपयोग कार्ड
+    'dashboard.transparency.utilizedTitle': 'उपयोग किया गया बजट',
+    'dashboard.transparency.utilizedDesc': 'कुल बजट का 64%',
+    'dashboard.transparency.pendingTitle': 'लंबित रिलीज़',
+    'dashboard.transparency.pendingDesc': 'कुल बजट का 16%',
+    'dashboard.transparency.balanceTitle': 'उपलब्ध शेष राशि',
+    'dashboard.transparency.balanceDesc': 'कुल बजट का 20%',
+
   },
   cg: {
     // Header
@@ -234,189 +338,28 @@ const translations = {
     'homepage.quickActions.trackDesc': 'मंजूर परियोजना के काम ल देखव',
     'homepage.quickActions.viewProjects': 'परियोजना देखव',
   
-    // // Voting Page
-    // 'voting.title': 'भोटिंग चरण',
-    // 'voting.subtitle': 'हर वार्ड म अपन पसंद के परियोजना बर भोट देवव',
-    // 'voting.alert': 'Q2 बजट बंटवारा बर भोटिंग खुले हावे। समय खतम होए के पहिली अपन भोट जरूर देवव!',
-    // 'voting.selectWard': 'वार्ड चुनव',
-    // 'voting.totalVoters': 'कुल मतदाता',
-    // 'voting.votesCast': 'डाले गे भोट',
-    // 'voting.participation': 'भागीदारी',
-    // 'voting.timeLeft': 'बाकी समय',
-    // 'voting.votingProgress': 'भोटिंग प्रगति',
-    // 'voting.castYourVote': 'अपन भोट देवव',
-    // 'voting.selectOne': 'एक सुझाव चुनव जऊन ल आप फंड करना चाहथव',
-    // 'voting.submitVote': 'भोट भेजव',
-    // 'voting.thankYou': 'भोट करे बर धन्यवाद! अपन भोट सफलतापूर्वक दर्ज होगे हावे।',
-    // 'voting.voteAgain': 'फेर भोट देवव (डेमो)',
-    // 'voting.currentResults': 'अभी के नतीजा',
-    // 'voting.liveResults': 'लाइव भोटिंग नतीजा (भोट गुमनाम हावे)',
-    // 'voting.votingInfo': 'भोटिंग जानकारी',
-    // 'voting.anonymous': '• सबो भोट गुमनाम अउ सुरक्षित हावे',
-    // 'voting.realTime': '• नतीजा रियल टाइम म अपडेट होथे',
-    // 'voting.mostVotes': '• जऊन सुझाव म जियादा भोट होही, उही फंड होही',
-    // 'voting.closesIn': '• भोटिंग खतम होथे',
-  
-    // // Common
-    // 'common.votes': 'भोट',
-    // 'common.loading': 'लोड होत हावे...',
-    // 'common.save': 'सेव करव',
-    // 'common.cancel': 'रद्द करव',
-    // 'common.submit': 'भेजव',
-    // 'common.edit': 'संपादन करव',
-    // 'common.delete': 'हटावव',
-    // 'common.view': 'देखव',
-    // 'common.close': 'बंद करव'
-  },
-  gon: {
-    // Header
-    'header.janBudget': 'जनबजट',
-    'header.subtitle': 'जनबजट - लोकन बजट',
-    'header.home': 'घर',
-    'header.proposals': 'सुझाव',
-    'header.voting': 'भोट',
-    'header.projects': 'काम',
-    'header.complaints': 'सिकायत',
-    'header.dashboard': 'डैशबोर्ड',
-    'header.info': 'जानकारी',
-    'header.profile': 'परिचय',
-    'header.login': 'लॉग इन',
-    'header.signup': 'साइन अप',
-    'header.logout': 'लॉग आउट',
-  
-    // Homepage
-    'homepage.hero.title': 'लोकन संग काम करव, संग बनावव',
-    'homepage.hero.subtitle': 'गांव अउ सहर के बजट म भाग लेव, अपन काम बनावव',
-    'homepage.hero.submitProposal': 'सुझाव भेजव',
-    'homepage.hero.voteNow': 'अबे भोट देव',
-    'homepage.hero.trackProjects': 'काम ल देखव',
-    'homepage.stats.activeCitizens': 'सक्रिय लोकन',
-    'homepage.stats.totalBudget': 'कुल बजट',
-    'homepage.stats.completedProjects': 'पूरा काम',
-    'homepage.stats.proposalsSubmitted': 'भेजे गे सुझाव',
-    'homepage.wardBudget.title': 'वार्ड बजट देखव',
-    'homepage.wardBudget.subtitle': 'हर वार्ड के बजट अउ काम देखव',
-    'homepage.wardBudget.budgetAllocated': 'बंटा बजट',
-    'homepage.wardBudget.ongoing': 'चालत हावे',
-    'homepage.wardBudget.completed': 'पूरा होगे',
-    'homepage.wardBudget.viewDetails': 'विवरन देखव',
-    'homepage.news.title': 'समाचार',
-    'homepage.news.subtitle': 'नवा जानकारी',
-    'homepage.quickActions.title': 'जलदी काम',
-    'homepage.quickActions.subtitle': 'जलदी काम सुरू करव',
-    'homepage.quickActions.submitNew': 'नवा सुझाव भेजव',
-    'homepage.quickActions.submitDesc': 'गांव के भला बर अपन विचार बतावव',
-    'homepage.quickActions.getStarted': 'सुरू करव',
-    'homepage.quickActions.vote': 'सुझाव म भोट देव',
-    'homepage.quickActions.voteDesc': 'कऊन काम म फंड मिलही, तय करव',
-    'homepage.quickActions.startVoting': 'भोटिंग सुरू करव',
-    'homepage.quickActions.track': 'काम देखव',
-    'homepage.quickActions.trackDesc': 'मंजूर काम के हाल देखव',
-    'homepage.quickActions.viewProjects': 'काम देखव',
-  
-    // // Voting Page
-    // 'voting.title': 'भोटिंग चालू हावे',
-    // 'voting.subtitle': 'अपन वार्ड म अपन पसंद के काम बर भोट देव',
-    // 'voting.alert': 'Q2 बजट बर भोटिंग खुल गे हावे। समय खतम होए के पहिली भोट देव!',
-    // 'voting.selectWard': 'वार्ड चुनव',
-    // 'voting.totalVoters': 'कुल मतदाता',
-    // 'voting.votesCast': 'डाले गे भोट',
-    // 'voting.participation': 'भागीदारी',
-    // 'voting.timeLeft': 'बाकी समय',
-    // 'voting.votingProgress': 'भोटिंग प्रगति',
-    // 'voting.castYourVote': 'भोट देव',
-    // 'voting.selectOne': 'एक सुझाव चुनव जऊन ल फंड करना चाहथव',
-    // 'voting.submitVote': 'भोट भेजव',
-    // 'voting.thankYou': 'भोट करे बर धन्यवाद!',
-    // 'voting.voteAgain': 'फेर भोट देव (डेमो)',
-    // 'voting.currentResults': 'अभी के नतीजा',
-    // 'voting.liveResults': 'लाइव नतीजा (गुमनाम)',
-    // 'voting.votingInfo': 'भोटिंग जानकारी',
-    // 'voting.anonymous': '• सब भोट गुमनाम हावे',
-    // 'voting.realTime': '• नतीजा रियल टाइम म अपडेट होथे',
-    // 'voting.mostVotes': '• जियादा भोट वाला काम फंड होही',
-    // 'voting.closesIn': '• भोटिंग बंद होथे',
-  
-    // // Common
-    // 'common.votes': 'भोट',
-    // 'common.loading': 'लोड होत हावे...',
-    // 'common.save': 'सेव करव',
-    // 'common.cancel': 'रद्द करव',
-    // 'common.submit': 'भेजव',
-    // 'common.edit': 'बदलव',
-    // 'common.delete': 'हटावव',
-    // 'common.view': 'देखव',
-    // 'common.close': 'बंद करव'
-  },
-
-  hlb: {
-    // Header
-    'header.janBudget': 'जनबजट',
-    'header.subtitle': 'जनबजट - जनता के बजट',
-    'header.home': 'घर',
-    'header.proposals': 'सुझाव',
-    'header.voting': 'भोटिंग',
-    'header.projects': 'काम',
-    'header.complaints': 'सिकायत',
-    'header.dashboard': 'डैशबोर्ड',
-    'header.info': 'माहीती',
-    'header.profile': 'प्रोफाइल',
-    'header.login': 'लॉग इन',
-    'header.signup': 'साइन अप',
-    'header.logout': 'लॉग आउट',
-  
-    // Homepage
-    'homepage.hero.title': 'लोक मन ल जोड़के, संग काम करव',
-    'homepage.hero.subtitle': 'आपन सहर के बजट म भाग लेवव, समाज ला आगू बढ़ावव',
-    'homepage.hero.submitProposal': 'सुझाव भेजव',
-    'homepage.hero.voteNow': 'अबे भोट देवव',
-    'homepage.hero.trackProjects': 'काम ल देखव',
-    'homepage.stats.activeCitizens': 'सक्रिय नागरिक',
-    'homepage.stats.totalBudget': 'कुल बजट',
-    'homepage.stats.completedProjects': 'पूरा काम',
-    'homepage.stats.proposalsSubmitted': 'जमा करे सुझाव',
-    'homepage.wardBudget.title': 'वार्ड बजट ओवरव्यू',
-    'homepage.wardBudget.subtitle': 'वार्ड के बजट अउ काम ल देखव',
-    'homepage.wardBudget.budgetAllocated': 'बंटा बजट',
-    'homepage.wardBudget.ongoing': 'चालत हावे',
-    'homepage.wardBudget.completed': 'पूरा होगे',
-    'homepage.wardBudget.viewDetails': 'विवरन देखव',
-    'homepage.news.title': 'समाचार',
-    'homepage.news.subtitle': 'नवा माहीती',
-    'homepage.quickActions.title': 'जलदी काम',
-    'homepage.quickActions.subtitle': 'जलदी सुरू करव',
-    'homepage.quickActions.submitNew': 'नवा सुझाव भेजव',
-    'homepage.quickActions.submitDesc': 'समाज के विकास बर अपन विचार बतावव',
-    'homepage.quickActions.getStarted': 'सुरू करव',
-    'homepage.quickActions.vote': 'सुझाव म भोट देवव',
-    'homepage.quickActions.voteDesc': 'कऊन काम ला फंड मिलही, तय करव',
-    'homepage.quickActions.startVoting': 'भोटिंग सुरू करव',
-    'homepage.quickActions.track': 'काम देखव',
-    'homepage.quickActions.trackDesc': 'मंजूर काम ल देखव',
-    'homepage.quickActions.viewProjects': 'काम देखव',
-  
     // Voting Page
-    'voting.title': 'भोटिंग चालू हावे',
-    'voting.subtitle': 'अपन पसंद के काम बर भोट देवव',
-    'voting.alert': 'Q2 बजट भोटिंग चालू हावे, जल्दी भोट देवव!',
+    'voting.title': 'भोटिंग चरण',
+    'voting.subtitle': 'हर वार्ड म अपन पसंद के परियोजना बर भोट देवव',
+    'voting.alert': 'Q2 बजट बंटवारा बर भोटिंग खुले हावे। समय खतम होए के पहिली अपन भोट जरूर देवव!',
     'voting.selectWard': 'वार्ड चुनव',
     'voting.totalVoters': 'कुल मतदाता',
     'voting.votesCast': 'डाले गे भोट',
     'voting.participation': 'भागीदारी',
     'voting.timeLeft': 'बाकी समय',
     'voting.votingProgress': 'भोटिंग प्रगति',
-    'voting.castYourVote': 'भोट देवव',
-    'voting.selectOne': 'एक सुझाव चुनव जऊन ला फंड करना चाहथव',
+    'voting.castYourVote': 'अपन भोट देवव',
+    'voting.selectOne': 'एक सुझाव चुनव जऊन ल आप फंड करना चाहथव',
     'voting.submitVote': 'भोट भेजव',
-    'voting.thankYou': 'भोट करे बर धन्यवाद!',
+    'voting.thankYou': 'भोट करे बर धन्यवाद! अपन भोट सफलतापूर्वक दर्ज होगे हावे।',
     'voting.voteAgain': 'फेर भोट देवव (डेमो)',
     'voting.currentResults': 'अभी के नतीजा',
-    'voting.liveResults': 'लाइव नतीजा (गुमनाम)',
+    'voting.liveResults': 'लाइव भोटिंग नतीजा (भोट गुमनाम हावे)',
     'voting.votingInfo': 'भोटिंग जानकारी',
-    'voting.anonymous': '• सब भोट गुमनाम हावे',
+    'voting.anonymous': '• सबो भोट गुमनाम अउ सुरक्षित हावे',
     'voting.realTime': '• नतीजा रियल टाइम म अपडेट होथे',
-    'voting.mostVotes': '• जियादा भोट वाला काम फंड होही',
-    'voting.closesIn': '• भोटिंग बंद होथे',
+    'voting.mostVotes': '• जऊन सुझाव म जियादा भोट होही, उही फंड होही',
+    'voting.closesIn': '• भोटिंग खतम होथे',
   
     // Common
     'common.votes': 'भोट',
@@ -424,91 +367,70 @@ const translations = {
     'common.save': 'सेव करव',
     'common.cancel': 'रद्द करव',
     'common.submit': 'भेजव',
-    'common.edit': 'बदलव',
+    'common.edit': 'संपादन करव',
     'common.delete': 'हटावव',
     'common.view': 'देखव',
-    'common.close': 'बंद करव'
+    'common.close': 'बंद करव',
+
+        // डैशबोर्ड पेज
+    'dashboard.title': 'पारदर्शिता डैशबोर्ड',
+    'dashboard.subtitle': 'बजट बाँटई अऊ नागरिक के भागेदारी के जिंदा जानकारी',
+    'dashboard.exportData': 'डेटा निकारव',
+    'dashboard.liveView': 'लाइव देखव',
+
+    // KPI कार्ड
+    'dashboard.kpi.totalBudget': 'कुल बजट',
+    'dashboard.kpi.activeCitizens': 'सक्रिय नागरिक मन',
+    'dashboard.kpi.proposalsThisMonth': 'ए महीना के प्रस्ताव',
+    'dashboard.kpi.votingParticipation': 'मतदान भागेदारी',
+
+    // टैब्स
+    'dashboard.tabs.budget': 'बजट के जाँच',
+    'dashboard.tabs.participation': 'नागरिक भागेदारी',
+    'dashboard.tabs.projects': 'परियोजना के स्थिति',
+    'dashboard.tabs.transparency': 'वित्तीय पारदर्शिता',
+
+    // बजट टैब
+    'dashboard.budget.wardWiseTitle': 'वार्ड अनुसार बजट बाँटई',
+    'dashboard.budget.wardWiseDesc': 'हर वार्ड मं कइसे बजट बाँट गीस अऊ खर्च होइस (लाख मं)',
+    'dashboard.budget.categoryTitle': 'श्रेणी के हिसाब ले खर्च',
+    'dashboard.budget.categoryDesc': 'अलग-अलग क्षेत्र मं बजट के बाँटई',
+    'dashboard.budget.monthlyTrendsTitle': 'महिना अनुसार नागरिक काम-काज के रुख',
+    'dashboard.budget.monthlyTrendsDesc': 'प्रस्ताव, वोट अऊ परियोजना के मंजूरी के समय-संग देखव',
+
+    // भागेदारी टैब
+    'dashboard.participation.votingTitle': 'वार्ड अनुसार मतदान भागेदारी',
+    'dashboard.participation.votingDesc': 'कितना पंजीकृत नागरिक मन वोट डारे',
+    'dashboard.participation.detailsTitle': 'विस्तार मं भागेदारी के आँकड़ा',
+    'dashboard.participation.engagementTitle': 'समय के संग नागरिक भागेदारी',
+    'dashboard.participation.engagementDesc': 'हर महिना सक्रिय भागीदार मन के गिनती',
+
+    // परियोजना टैब
+    'dashboard.projects.statusTitle': 'परियोजना के स्थिति के झलक',
+    'dashboard.projects.statusDesc': 'सब्बो परियोजना के हाल के स्थिति',
+    'dashboard.projects.metricsTitle': 'परियोजना के कामगिरी के आँकड़ा',
+    'dashboard.projects.totalProjects': 'कुल परियोजना',
+    'dashboard.projects.onTime': 'समय मं पूरा होइस',
+    'dashboard.projects.underBudget': 'बजट के भीतर',
+
+    // पारदर्शिता टैब
+    'dashboard.transparency.transactionsTitle': 'नवां वित्तीय लेन-देन',
+    'dashboard.transparency.transactionsDesc': 'सभी बजट जारी अऊ भुगतान के खुला जानकारी',
+    'dashboard.transparency.project': 'परियोजना',
+    'dashboard.transparency.amount': 'राशि',
+    'dashboard.transparency.vendor': 'सप्लायर / ठेकेदार',
+    'dashboard.transparency.date': 'तारीख',
+    'dashboard.transparency.status': 'स्थिति',
+
+    // बजट उपयोग कार्ड
+    'dashboard.transparency.utilizedTitle': 'खर्च होइस बजट',
+    'dashboard.transparency.utilizedDesc': 'कुल बजट के 64%',
+    'dashboard.transparency.pendingTitle': 'बाकी रिलीज़',
+    'dashboard.transparency.pendingDesc': 'कुल बजट के 16%',
+    'dashboard.transparency.balanceTitle': 'बचे रहिस रकम',
+    'dashboard.transparency.balanceDesc': 'कुल बजट के 20%',
+
   },
-  pa: {
-    // Header
-    'header.janBudget': 'ਜਨਬਜਟ',
-    'header.subtitle': 'ਜਨਬਜਟ - ਲੋਕਾਂ ਦਾ ਬਜਟ',
-    'header.home': 'ਘਰ',
-    'header.proposals': 'ਪ੍ਰਸਤਾਵ',
-    'header.voting': 'ਵੋਟਿੰਗ',
-    'header.projects': 'ਪਰੋਜੈਕਟ',
-    'header.complaints': 'ਸ਼ਿਕਾਇਤਾਂ',
-    'header.dashboard': 'ਡੈਸ਼ਬੋਰਡ',
-    'header.info': 'ਜਾਣਕਾਰੀ',
-    'header.profile': 'ਪ੍ਰੋਫ਼ਾਈਲ',
-    'header.login': 'ਲਾਗਇਨ',
-    'header.signup': 'ਸਾਈਨ ਅਪ',
-    'header.logout': 'ਲਾਗਆਉਟ',
-  
-    // Homepage
-    'homepage.hero.title': 'ਨਾਗਰਿਕਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਉਣਾ, ਇਕੱਠੇ ਤਿਆਰ ਕਰਨਾ',
-    'homepage.hero.subtitle': 'ਆਪਣੇ ਸ਼ਹਿਰ ਦੇ ਬਜਟ ਵਿੱਚ ਹਿੱਸਾ ਲਵੋ ਅਤੇ ਬਿਹਤਰ ਸਮਾਜ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ',
-    'homepage.hero.submitProposal': 'ਪ੍ਰਸਤਾਵ ਭੇਜੋ',
-    'homepage.hero.voteNow': 'ਹੁਣੇ ਵੋਟ ਕਰੋ',
-    'homepage.hero.trackProjects': 'ਪਰੋਜੈਕਟ ਵੇਖੋ',
-    'homepage.stats.activeCitizens': 'ਸਕ੍ਰਿਆ ਨਾਗਰਿਕ',
-    'homepage.stats.totalBudget': 'ਕੁੱਲ ਬਜਟ',
-    'homepage.stats.completedProjects': 'ਪੂਰੇ ਹੋਏ ਪਰੋਜੈਕਟ',
-    'homepage.stats.proposalsSubmitted': 'ਜਮ੍ਹਾਂ ਪ੍ਰਸਤਾਵ',
-    'homepage.wardBudget.title': 'ਵਾਰਡ ਬਜਟ ਝਲਕ',
-    'homepage.wardBudget.subtitle': 'ਹਰ ਵਾਰਡ ਵਿੱਚ ਬਜਟ ਅਤੇ ਪਰੋਜੈਕਟ ਦੀ ਤਰੱਕੀ ਵੇਖੋ',
-    'homepage.wardBudget.budgetAllocated': 'ਵੰਡਿਆ ਬਜਟ',
-    'homepage.wardBudget.ongoing': 'ਜਾਰੀ',
-    'homepage.wardBudget.completed': 'ਪੂਰਾ',
-    'homepage.wardBudget.viewDetails': 'ਵੇਰਵਾ ਵੇਖੋ',
-    'homepage.news.title': 'ਖ਼ਬਰਾਂ ਅਤੇ ਅਪਡੇਟ',
-    'homepage.news.subtitle': 'ਤਾਜ਼ਾ ਵਿਕਾਸ ਬਾਰੇ ਜਾਣੂ ਰਹੋ',
-    'homepage.quickActions.title': 'ਤੁਰੰਤ ਕਾਰਵਾਈਆਂ',
-    'homepage.quickActions.subtitle': 'ਇਨ੍ਹਾਂ ਆਮ ਕੰਮਾਂ ਨਾਲ ਸ਼ੁਰੂ ਕਰੋ',
-    'homepage.quickActions.submitNew': 'ਨਵਾਂ ਪ੍ਰਸਤਾਵ ਭੇਜੋ',
-    'homepage.quickActions.submitDesc': 'ਸਮਾਜਿਕ ਵਿਕਾਸ ਲਈ ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ',
-    'homepage.quickActions.getStarted': 'ਸ਼ੁਰੂ ਕਰੋ',
-    'homepage.quickActions.vote': 'ਪ੍ਰਸਤਾਵਾਂ ਤੇ ਵੋਟ ਕਰੋ',
-    'homepage.quickActions.voteDesc': 'ਫ਼ੈਸਲਾ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰੋ ਕਿ ਕਿਹੜੇ ਪਰੋਜੈਕਟ ਨੂੰ ਫੰਡ ਮਿਲੇਗਾ',
-    'homepage.quickActions.startVoting': 'ਵੋਟਿੰਗ ਸ਼ੁਰੂ ਕਰੋ',
-    'homepage.quickActions.track': 'ਪਰੋਜੈਕਟ ਵੇਖੋ',
-    'homepage.quickActions.trackDesc': 'ਮੰਜ਼ੂਰ ਪਰੋਜੈਕਟਾਂ ਦੀ ਤਰੱਕੀ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ',
-    'homepage.quickActions.viewProjects': 'ਪਰੋਜੈਕਟ ਵੇਖੋ',
-  
-    // Voting Page
-    'voting.title': 'ਸਕ੍ਰਿਆ ਵੋਟਿੰਗ ਚਰਣ',
-    'voting.subtitle': 'ਹਰ ਵਾਰਡ ਵਿੱਚ ਆਪਣੇ ਮਨਪਸੰਦ ਪਰੋਜੈਕਟਾਂ ਲਈ ਵੋਟ ਕਰੋ',
-    'voting.alert': 'Q2 ਬਜਟ ਲਈ ਵੋਟਿੰਗ ਖੁੱਲੀ ਹੈ। ਸਮਾਂ ਖ਼ਤਮ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਵੋਟ ਜ਼ਰੂਰ ਪਾਓ!',
-    'voting.selectWard': 'ਵਾਰਡ ਚੁਣੋ',
-    'voting.totalVoters': 'ਕੁੱਲ ਵੋਟਰ',
-    'voting.votesCast': 'ਡਾਲੀਆਂ ਗਈਆਂ ਵੋਟਾਂ',
-    'voting.participation': 'ਭਾਗੀਦਾਰੀ',
-    'voting.timeLeft': 'ਬਚਿਆ ਸਮਾਂ',
-    'voting.votingProgress': 'ਵੋਟਿੰਗ ਤਰੱਕੀ',
-    'voting.castYourVote': 'ਆਪਣੀ ਵੋਟ ਪਾਓ',
-    'voting.selectOne': 'ਇੱਕ ਪ੍ਰਸਤਾਵ ਚੁਣੋ ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਫੰਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ',
-    'voting.submitVote': 'ਵੋਟ ਭੇਜੋ',
-    'voting.thankYou': 'ਵੋਟ ਕਰਨ ਲਈ ਧੰਨਵਾਦ! ਤੁਹਾਡੀ ਵੋਟ ਸਫਲਤਾਪੂਰਵਕ ਦਰਜ ਹੋ ਗਈ ਹੈ।',
-    'voting.voteAgain': 'ਦੁਬਾਰਾ ਵੋਟ ਕਰੋ (ਡੈਮੋ)',
-    'voting.currentResults': 'ਮੌਜੂਦਾ ਨਤੀਜੇ',
-    'voting.liveResults': 'ਲਾਈਵ ਵੋਟਿੰਗ ਨਤੀਜੇ (ਵੋਟ ਗੁਮਨਾਮ ਹਨ)',
-    'voting.votingInfo': 'ਵੋਟਿੰਗ ਜਾਣਕਾਰੀ',
-    'voting.anonymous': '• ਸਾਰੀਆਂ ਵੋਟਾਂ ਗੁਮਨਾਮ ਅਤੇ ਸੁਰੱਖਿਅਤ ਹਨ',
-    'voting.realTime': '• ਨਤੀਜੇ ਰੀਅਲ-ਟਾਈਮ ਵਿੱਚ ਅੱਪਡੇਟ ਹੁੰਦੇ ਹਨ',
-    'voting.mostVotes': '• ਸਭ ਤੋਂ ਵੱਧ ਵੋਟਾਂ ਵਾਲਾ ਪ੍ਰਸਤਾਵ ਫੰਡ ਕੀਤਾ ਜਾਵੇਗਾ',
-    'voting.closesIn': '• ਵੋਟਿੰਗ ਖ਼ਤਮ ਹੁੰਦੀ ਹੈ',
-  
-    // Common
-    'common.votes': 'ਵੋਟਾਂ',
-    'common.loading': 'ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...',
-    'common.save': 'ਸੇਵ ਕਰੋ',
-    'common.cancel': 'ਰੱਦ ਕਰੋ',
-    'common.submit': 'ਜਮ੍ਹਾਂ ਕਰੋ',
-    'common.edit': 'ਸੋਧੋ',
-    'common.delete': 'ਹਟਾਓ',
-    'common.view': 'ਵੇਖੋ',
-    'common.close': 'ਬੰਦ ਕਰੋ'
-  }
   
 };
 
