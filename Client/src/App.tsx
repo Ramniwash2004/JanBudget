@@ -11,6 +11,8 @@ import { LanguageProvider } from './components/LanguageContext';
 import { InfoPage } from './components/InfoPage';
 import Signup from './components/Signup';
 import { Login } from './components/Login';
+import  AdminLogin  from './components/AdminLogin';
+
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -33,6 +35,8 @@ export default function App() {
         return <InfoPage />;
       case 'profile':
         return <ProfilePage />;
+      case 'admin':
+        return <AdminLogin/>;
 
       case 'signup':
         return <Signup onNavigate={setCurrentPage} />;
