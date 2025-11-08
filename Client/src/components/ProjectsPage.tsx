@@ -1,4 +1,383 @@
 // import { useState } from 'react';
+// import { useTranslation } from 'react-i18next';
+// import { Button } from './ui/button';
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+// import { Badge } from './ui/badge';
+// import { Progress } from './ui/progress';
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+// import { Input } from './ui/input';
+// import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
+// import { 
+//   FolderOpen, 
+//   MapPin, 
+//   Clock,
+//   CheckCircle,
+//   AlertCircle,
+//   MessageCircle,
+//   Search,
+//   Filter,
+//   Eye,
+//   Building,
+//   ThumbsUp
+// } from 'lucide-react';
+// import { ImageWithFallback } from './figma/ImageWithFallback';
+// import { projects } from './data/projectData.ts';
+
+// export function ProjectsPage() {
+//   const { t } = useTranslation();
+//   const [selectedFilter, setSelectedFilter] = useState('all');
+//   const [selectedWard, setSelectedWard] = useState('all');
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [selectedProject, setSelectedProject] = useState<any>(null);
+
+//   const [comments, setComments] = useState(() =>
+//     projects.reduce((acc, p) => {
+//       const randomCount = Math.floor(Math.random() * 151) + 50;
+//       acc[p.id] = randomCount;
+//       return acc;
+//     }, {})
+//   );
+
+//   const [showCommentBox, setShowCommentBox] = useState({});
+//   const [newComment, setNewComment] = useState({});
+
+//   const handleCommentClick = (projectId) => {
+//     setShowCommentBox((prev) => ({ ...prev, [projectId]: !prev[projectId] }));
+//   };
+
+//   const handleAddComment = (projectId) => {
+//     if ((newComment[projectId] || '').trim() !== '') {
+//       setComments((prev) => ({ ...prev, [projectId]: (prev[projectId] || 0) + 1 }));
+//       setNewComment((prev) => ({ ...prev, [projectId]: '' }));
+//       setShowCommentBox((prev) => ({ ...prev, [projectId]: false }));
+//     }
+//   };
+
+//   const filteredProjects = projects.filter(project => {
+//     const matchesStatus = selectedFilter === 'all' ||
+//       (selectedFilter === 'ongoing' && ['Under Construction', 'Tendering'].includes(project.status)) ||
+//       (selectedFilter === 'completed' && project.status === 'Completed');
+//     const matchesWard = selectedWard === 'all' || project.ward === selectedWard;
+//     const matchesSearch = searchQuery === '' ||
+//       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+//       project.description.toLowerCase().includes(searchQuery.toLowerCase());
+//     return matchesStatus && matchesWard && matchesSearch;
+//   });
+
+//   const getStatusBadge = (status: string) => {
+//     switch (status) {
+//       case 'Completed':
+//         return <Badge className="bg-accent text-white">{t('projects.status.completed')}</Badge>;
+//       case 'Under Construction':
+//         return <Badge className="bg-primary text-white">{t('projects.status.underConstruction')}</Badge>;
+//       case 'Tendering':
+//         return <Badge variant="outline">{t('projects.status.tendering')}</Badge>;
+//       case 'Fund Released':
+//         return <Badge className="bg-secondary text-white">{t('projects.status.fundReleased')}</Badge>;
+//       default:
+//         return <Badge variant="secondary">{status}</Badge>;
+//     }
+//   };
+
+//   const getTimelineIcon = (status: string) => {
+//     switch (status) {
+//       case 'completed':
+//         return <CheckCircle className="w-4 h-4 text-accent" />;
+//       case 'ongoing':
+//         return <Clock className="w-4 h-4 text-primary" />;
+//       default:
+//         return <AlertCircle className="w-4 h-4 text-gray-400" />;
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 py-8">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         {/* Header */}
+//         <div className="text-center mb-8">
+//           <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('projects.title')}</h1>
+//           <p className="text-lg text-gray-600">{t('projects.subtitle')}</p>
+//         </div>
+
+//         {/* Filters */}
+//         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+//           <div className="flex flex-col sm:flex-row gap-4">
+//             <div className="flex-1 relative">
+//               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+//               <Input
+//                 placeholder={t('projects.searchPlaceholder')}
+//                 className="pl-10"
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//               />
+//             </div>
+//             <div className="flex gap-4">
+//               <Select value={selectedWard} onValueChange={setSelectedWard}>
+//                 <SelectTrigger className="w-48">
+//                   <Filter className="w-4 h-4 mr-2" />
+//                   <SelectValue placeholder={t('projects.filterWard')} />
+//                 </SelectTrigger>
+//                 <SelectContent>
+//                   <SelectItem value="all">{t('projects.allWards')}</SelectItem>
+//                   {/* Ward list kept static */}
+//                   {[...Array(70)].map((_, i) => (
+//                     <SelectItem key={i} value={`Ward ${i + 1}`}>{`Ward ${i + 1}`}</SelectItem>
+//                   ))}
+//                 </SelectContent>
+//               </Select>
+
+//               <Select value={selectedFilter} onValueChange={setSelectedFilter}>
+//                 <SelectTrigger className="w-48">
+//                   <SelectValue placeholder={t('projects.filterStatus')} />
+//                 </SelectTrigger>
+//                 <SelectContent>
+//                   <SelectItem value="all">{t('projects.allProjects')}</SelectItem>
+//                   <SelectItem value="ongoing">{t('projects.ongoing')}</SelectItem>
+//                   <SelectItem value="completed">{t('projects.completed')}</SelectItem>
+//                 </SelectContent>
+//               </Select>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Projects Grid */}
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+//           {filteredProjects.map((project) => (
+//             <Card key={project.id} className="hover:shadow-lg transition-shadow">
+//               <div className="relative">
+//                 <ImageWithFallback
+//                   src={project.images[0]}
+//                   alt={project.title}
+//                   className="w-full h-48 object-cover rounded-t-lg"
+//                 />
+//                 <div className="absolute top-4 left-4">
+//                   {getStatusBadge(project.status)}
+//                 </div>
+//                 <div className="absolute top-4 right-4">
+//                   <Badge variant="outline" className="bg-white">{project.ward}</Badge>
+//                 </div>
+//               </div>
+
+//               <CardHeader>
+//                 <CardTitle className="text-lg leading-tight">{project.title}</CardTitle>
+//                 <CardDescription className="text-sm">{project.description}</CardDescription>
+//               </CardHeader>
+
+//               <CardContent className="space-y-4">
+//                 <div className="grid grid-cols-2 gap-4 text-sm">
+//                   <div>
+//                     <div className="flex items-center text-gray-600 mb-1">
+//                       <MapPin className="w-3 h-3 mr-1" />
+//                       <span>{t('projects.location')}</span>
+//                     </div>
+//                     <p className="font-medium">{project.location}</p>
+//                   </div>
+//                   <div>
+//                     <div className="flex items-center text-gray-600 mb-1">
+//                       <Building className="w-3 h-3 mr-1" />
+//                       <span>{t('projects.contractor')}</span>
+//                     </div>
+//                     <p className="font-medium">{project.contractor}</p>
+//                   </div>
+//                 </div>
+
+//                 <div>
+//                   <div className="flex justify-between items-center mb-2">
+//                     <span className="text-sm text-gray-600">{t('projects.progress')}</span>
+//                     <span className="text-sm font-medium">{project.progress}%</span>
+//                   </div>
+//                   <Progress value={project.progress} className="h-2" />
+//                 </div>
+
+//                 {/* Comment Section */}
+//                 <div className="flex items-center justify-between pt-4 border-t">
+//                   <div className="flex items-center space-x-4 text-sm text-gray-600">
+//                     <button
+//                       onClick={() => handleCommentClick(project.id)}
+//                       className="flex items-center hover:text-orange-500 transition-colors cursor-pointer"
+//                     >
+//                       <MessageCircle className="w-4 h-4 mr-1" />
+//                       <span>{comments[project.id] || 0}</span>
+//                     </button>
+
+//                     {showCommentBox[project.id] && (
+//                       <div className="mt-3 flex items-center space-x-2">
+//                         <input
+//                           type="text"
+//                           value={newComment[project.id] || ""}
+//                           onChange={(e) =>
+//                             setNewComment((prev) => ({ ...prev, [project.id]: e.target.value }))
+//                           }
+//                           placeholder={t('projects.commentPlaceholder')}
+//                           className="flex-1 border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+//                         />
+//                         <Button size="sm" onClick={() => handleAddComment(project.id)}>
+//                           {t('projects.postComment')}
+//                         </Button>
+//                       </div>
+//                     )}
+//                   </div>
+
+//                   <Dialog>
+//                     <DialogTrigger asChild>
+//                       <Button size="sm" onClick={() => setSelectedProject(project)}>
+//                         <Eye className="w-4 h-4 mr-1" />
+//                         {t('projects.viewDetails')}
+//                       </Button>
+//                     </DialogTrigger>
+//                     <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+//                       {selectedProject && (
+//                         <>
+//                           <DialogHeader>
+//                             <DialogTitle>{selectedProject.title}</DialogTitle>
+//                           </DialogHeader>
+
+//                           <Tabs defaultValue="overview" className="w-full">
+//                             <TabsList className="grid w-full grid-cols-4">
+//                               <TabsTrigger value="overview">{t('projects.tab.overview')}</TabsTrigger>
+//                               <TabsTrigger value="timeline">{t('projects.tab.timeline')}</TabsTrigger>
+//                               <TabsTrigger value="gallery">{t('projects.tab.gallery')}</TabsTrigger>
+//                               <TabsTrigger value="reviews">{t('projects.tab.reviews')}</TabsTrigger>
+//                             </TabsList>
+
+//                             <TabsContent value="overview" className="space-y-4">
+//                               <div className="grid grid-cols-2 gap-4">
+//                                 <div>
+//                                   <h4 className="font-semibold mb-2">{t('projects.details.title')}</h4>
+//                                   <div className="space-y-2 text-sm">
+//                                     <div className="flex justify-between">
+//                                       <span className="text-gray-600">{t('projects.details.ward')}:</span>
+//                                       <span>{selectedProject.ward}</span>
+//                                     </div>
+//                                     <div className="flex justify-between">
+//                                       <span className="text-gray-600">{t('projects.details.status')}:</span>
+//                                       {getStatusBadge(selectedProject.status)}
+//                                     </div>
+//                                     <div className="flex justify-between">
+//                                       <span className="text-gray-600">{t('projects.details.budget')}:</span>
+//                                       <span>₹{(selectedProject.budget / 100000).toFixed(1)}L</span>
+//                                     </div>
+//                                     <div className="flex justify-between">
+//                                       <span className="text-gray-600">{t('projects.details.spent')}:</span>
+//                                       <span>₹{(selectedProject.spent / 100000).toFixed(1)}L</span>
+//                                     </div>
+//                                     <div className="flex justify-between">
+//                                       <span className="text-gray-600">{t('projects.details.contractor')}:</span>
+//                                       <span>{selectedProject.contractor}</span>
+//                                     </div>
+//                                   </div>
+//                                 </div>
+//                                 <div>
+//                                   <h4 className="font-semibold mb-2">{t('projects.details.progress')}</h4>
+//                                   <div className="space-y-2">
+//                                     <Progress value={selectedProject.progress} className="h-3" />
+//                                     <p className="text-sm text-gray-600">
+//                                       {selectedProject.progress}% {t('projects.progressCompleted')}
+//                                     </p>
+//                                   </div>
+//                                 </div>
+//                               </div>
+//                               <div>
+//                                 <h4 className="font-semibold mb-2">{t('projects.details.description')}</h4>
+//                                 <p className="text-gray-600">{selectedProject.description}</p>
+//                               </div>
+//                             </TabsContent>
+
+//                             <TabsContent value="timeline">
+//                               <div className="space-y-4">
+//                                 <h4 className="font-semibold">{t('projects.timeline.title')}</h4>
+//                                 <div className="space-y-4">
+//                                   {selectedProject.timeline.map((phase, index) => (
+//                                     <div key={index} className="flex items-center space-x-4">
+//                                       {getTimelineIcon(phase.status)}
+//                                       <div className="flex-1 flex justify-between items-center">
+//                                         <span>{phase.phase}</span>
+//                                         <span className="text-sm text-gray-500">
+//                                           {new Date(phase.date).toLocaleDateString()}
+//                                         </span>
+//                                       </div>
+//                                     </div>
+//                                   ))}
+//                                 </div>
+//                               </div>
+//                             </TabsContent>
+
+//                             <TabsContent value="gallery">
+//                               <h4 className="font-semibold mb-4">{t('projects.gallery.title')}</h4>
+//                               <div className="grid grid-cols-2 gap-4">
+//                                 {selectedProject.images.map((image, index) => (
+//                                   <ImageWithFallback
+//                                     key={index}
+//                                     src={image}
+//                                     alt={`${selectedProject.title} - Image ${index + 1}`}
+//                                     className="w-full h-48 object-cover rounded-lg"
+//                                   />
+//                                 ))}
+//                               </div>
+//                             </TabsContent>
+
+//                             <TabsContent value="reviews">
+//                               <h4 className="font-semibold mb-4">{t('projects.reviews.title')}</h4>
+//                               {selectedProject.reviews.length > 0 ? (
+//                                 selectedProject.reviews.map((review) => (
+//                                   <Card key={review.id}>
+//                                     <CardContent className="pt-4">
+//                                       <div className="flex justify-between items-start mb-2">
+//                                         <div>
+//                                           <span className="font-medium">{review.citizen}</span>
+//                                           <div className="flex items-center mt-1">
+//                                             {[...Array(5)].map((_, i) => (
+//                                               <span
+//                                                 key={i}
+//                                                 className={`text-sm ${i < review.rating ? 'text-yellow-500' : 'text-gray-300'}`}
+//                                               >
+//                                                 ★
+//                                               </span>
+//                                             ))}
+//                                           </div>
+//                                         </div>
+//                                         <span className="text-sm text-gray-500">
+//                                           {new Date(review.date).toLocaleDateString()}
+//                                         </span>
+//                                       </div>
+//                                       <p className="text-gray-600 mb-2">{review.comment}</p>
+//                                       <div className="flex items-center">
+//                                         <ThumbsUp className="w-4 h-4 mr-1 text-gray-400" />
+//                                         <span className="text-sm text-gray-500">{review.likes} {t('projects.reviews.likes')}</span>
+//                                       </div>
+//                                     </CardContent>
+//                                   </Card>
+//                                 ))
+//                               ) : (
+//                                 <p className="text-gray-500 text-center py-8">{t('projects.reviews.noReviews')}</p>
+//                               )}
+//                             </TabsContent>
+//                           </Tabs>
+//                         </>
+//                       )}
+//                     </DialogContent>
+//                   </Dialog>
+//                 </div>
+//               </CardContent>
+//             </Card>
+//           ))}
+//         </div>
+
+//         {filteredProjects.length === 0 && (
+//           <div className="text-center py-12">
+//             <FolderOpen className="w-12 h-12 mx-auto text-gray-400 mb-4" />
+//             <h3 className="text-lg font-medium text-gray-900 mb-2">{t('projects.noProjectsTitle')}</h3>
+//             <p className="text-gray-600">{t('projects.noProjectsSubtitle')}</p>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// import { useState } from 'react';
 // import { Button } from './ui/button';
 // import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 // import { Badge } from './ui/badge';
@@ -507,8 +886,10 @@ import {
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { projects } from './data/projectData.ts';
+import { useLanguage } from './LanguageContext.tsx';
 
 export function ProjectsPage() {
+  const { language, setLanguage, t } = useLanguage();
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [selectedWard, setSelectedWard] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -602,8 +983,8 @@ export function ProjectsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Project Tracking</h1>
-          <p className="text-lg text-gray-600">Monitor the progress of approved community projects</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t('projects.title')}</h1>
+          <p className="text-lg text-gray-600">{t('projects.subtitle')}</p>
         </div>
 
         {/* Filters */}
@@ -613,7 +994,7 @@ export function ProjectsPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="Search projects..."
+                  placeholder={t('projects.searchPlaceholder')}
                   className="pl-10"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -624,10 +1005,10 @@ export function ProjectsPage() {
               <Select value={selectedWard} onValueChange={setSelectedWard}>
                 <SelectTrigger className="w-48">
                   <Filter className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder="Filter by ward" />
+                  <SelectValue placeholder={t('projects.filterWard')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Wards</SelectItem>
+                  <SelectItem value="all">{t('projects.allWards')}</SelectItem>
                    <SelectItem value="Ward 1">Ward 1 - Veer Savarkar Nagar Ward</SelectItem>
                   <SelectItem value="Ward 2">Ward 2 - Pt. Javaharlal Nehru Ward</SelectItem>
                   <SelectItem value="Ward 3">Ward 3 - Sant Kabir Das Ward</SelectItem>
@@ -705,9 +1086,9 @@ export function ProjectsPage() {
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Projects</SelectItem>
-                  <SelectItem value="ongoing">Ongoing</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="all">{t('projects.allProjects')}</SelectItem>
+                  <SelectItem value="ongoing">{t('projects.ongoing')}</SelectItem>
+                  <SelectItem value="completed">{t('projects.completed')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -749,7 +1130,7 @@ export function ProjectsPage() {
                   <div>
                     <div className="flex items-center text-gray-600 mb-1">
                       <Building className="w-3 h-3 mr-1" />
-                      <span>Contractor</span>
+                      <span>{t('projects.contractor')}</span>
                     </div>
                     <p className="font-medium">{project.contractor}</p>
                   </div>
@@ -757,7 +1138,7 @@ export function ProjectsPage() {
 
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-600">Progress</span>
+                    <span className="text-sm text-gray-600">{t('projects.progress')}</span>
                     <span className="text-sm font-medium">{project.progress}%</span>
                   </div>
                   <Progress value={project.progress} className="h-2" />
@@ -785,11 +1166,11 @@ export function ProjectsPage() {
                               [project.id]: e.target.value,
                             }))
                           }
-                          placeholder="Write a comment..."
+                          placeholder={t('projects.commentPlaceholder')}
                           className="flex-1 border rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                         <Button size="sm" className="cursor-pointer" onClick={() => handleAddComment(project.id)}>
-                          Post
+                          {t('projects.postComment')}
                         </Button>
                       </div>
                     )}
@@ -804,7 +1185,7 @@ export function ProjectsPage() {
                      <DialogTrigger asChild>
                        <Button size="sm" className="cursor-pointer" onClick={() => setSelectedProject(project)}>
                          <Eye className="w-4 h-4 mr-1" />
-                         View Details
+                         {t('projects.viewDetails')}
                        </Button>
                      </DialogTrigger>
                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
@@ -816,58 +1197,58 @@ export function ProjectsPage() {
                           
                           <Tabs defaultValue="overview" className="w-full">
                             <TabsList className="grid w-full grid-cols-4">
-                              <TabsTrigger value="overview">Overview</TabsTrigger>
-                              <TabsTrigger value="timeline">Timeline</TabsTrigger>
-                              <TabsTrigger value="gallery">Gallery</TabsTrigger>
-                              <TabsTrigger value="reviews">Reviews</TabsTrigger>
+                              <TabsTrigger value="overview">{t('projects.tab.overview')}</TabsTrigger>
+                              <TabsTrigger value="timeline">{t('projects.tab.timeline')}</TabsTrigger>
+                              <TabsTrigger value="gallery">{t('projects.tab.gallery')}</TabsTrigger>
+                              <TabsTrigger value="reviews">{t('projects.tab.reviews')}</TabsTrigger>
                             </TabsList>
                             
                             <TabsContent value="overview" className="space-y-4">
                               <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                  <h4 className="font-semibold mb-2">Project Details</h4>
+                                  <h4 className="font-semibold mb-2">{t('projects.details.title')}</h4>
                                   <div className="space-y-2 text-sm">
                                     <div className="flex justify-between">
-                                      <span className="text-gray-600">Ward:</span>
+                                      <span className="text-gray-600">{t('projects.details.ward')}:</span>
                                       <span>{selectedProject.ward}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-600">Status:</span>
+                                      <span className="text-gray-600">{t('projects.details.status')}:</span>
                                       {getStatusBadge(selectedProject.status)}
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-600">Budget:</span>
+                                      <span className="text-gray-600">{t('projects.details.budget')}:</span>
                                       <span>₹{(selectedProject.budget / 100000).toFixed(1)}L</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-600">Spent:</span>
+                                      <span className="text-gray-600">{t('projects.details.spent')}:</span>
                                       <span>₹{(selectedProject.spent / 100000).toFixed(1)}L</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-gray-600">Contractor:</span>
+                                      <span className="text-gray-600">{t('projects.details.contractor')}:</span>
                                       <span>{selectedProject.contractor}</span>
                                     </div>
                                   </div>
                                 </div>
                                 <div>
-                                  <h4 className="font-semibold mb-2">Progress</h4>
+                                  <h4 className="font-semibold mb-2">{t('projects.details.progress')}</h4>
                                   <div className="space-y-2">
                                     <Progress value={selectedProject.progress} className="h-3" />
                                     <p className="text-sm text-gray-600">
-                                      {selectedProject.progress}% completed
+                                      {selectedProject.progress}% {t('projects.progressCompleted')}
                                     </p>
                                   </div>
                                 </div>
                               </div>
                               <div>
-                                <h4 className="font-semibold mb-2">Description</h4>
+                                <h4 className="font-semibold mb-2">{t('projects.details.description')}</h4>
                                 <p className="text-gray-600">{selectedProject.description}</p>
                               </div>
                             </TabsContent>
                             
                             <TabsContent value="timeline">
                               <div className="space-y-4">
-                                <h4 className="font-semibold">Project Timeline</h4>
+                                <h4 className="font-semibold">{t('projects.timeline.title')}</h4>
                                 <div className="space-y-4">
                                   {selectedProject.timeline.map((phase, index) => (
                                     <div key={index} className="flex items-center space-x-4">
@@ -958,8 +1339,8 @@ export function ProjectsPage() {
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
             <FolderOpen className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No projects found</h3>
-            <p className="text-gray-600">Try adjusting your search or filters</p>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">{t('projects.noProjectsTitle')}</h3>
+            <p className="text-gray-600">{t('projects.noProjectsSubtitle')}</p>
           </div>
         )}
       </div>
