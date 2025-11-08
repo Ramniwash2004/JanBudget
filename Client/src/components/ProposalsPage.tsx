@@ -22,6 +22,7 @@ import {
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { proposals } from "./data/proposalData.ts";
 import { addProposal, getProposals } from "../api/proposal.api.ts";
+import { useLanguage } from './LanguageContext.tsx';
 
 
 
@@ -36,6 +37,8 @@ interface ProposalData {
 }
 
 export function ProposalsPage() {
+
+  const { language, setLanguage, t } = useLanguage();
   const [sortBy, setSortBy] = useState("popular");
   const [filterWard, setFilterWard] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -196,8 +199,8 @@ export function ProposalsPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Community Proposals</h1>
-            <p className="text-lg text-gray-600">Submit and explore project proposals for your community</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("proposals.title")}</h1>
+            <p className="text-lg text-gray-600">{t("proposals.subtitle")}</p>
           </div>
 
           {/* Submit Proposal Dialog */}
@@ -381,22 +384,22 @@ export function ProposalsPage() {
       <DialogTrigger asChild>
         <Button className="mt-4 sm:mt-0">
           <Plus className="w-4 h-4 mr-2" />
-          Submit Proposal
+          {t("proposals.submitNew")}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Submit New Proposal</DialogTitle>
+          <DialogTitle>{t("proposals.submitNew")}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           {/* Title */}
           <div>
-            <Label htmlFor="title">Project Title</Label>
+            <Label htmlFor="title">{t("proposals.projectTitle")}</Label>
             <Input
               id="title"
-              placeholder="Enter a clear, descriptive title"
+              placeholder={t("proposals.enterTitle")}
               value={newProposal.title}
               onChange={(e) =>
                 setNewProposal({ ...newProposal, title: e.target.value })
@@ -406,10 +409,10 @@ export function ProposalsPage() {
 
           {/* Description */}
           <div>
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t("proposals.description")}</Label>
             <Textarea
               id="description"
-              placeholder="Provide detailed information about the project"
+              placeholder={t("proposals.enterDescription")}
               rows={4}
               value={newProposal.description}
               onChange={(e) =>
@@ -421,7 +424,7 @@ export function ProposalsPage() {
           {/* Cost + Ward */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="cost">Estimated Cost (₹)</Label>
+              <Label htmlFor="cost">{t("proposals.estimatedCost")} (₹)</Label>
               <Input
                 id="cost"
                 type="number"
@@ -437,7 +440,7 @@ export function ProposalsPage() {
             </div>
 
             <div>
-              <Label htmlFor="ward">Ward</Label>
+              <Label htmlFor="ward">{t("proposals.ward")}</Label>
               <Select
                 value={newProposal.ward}
                 onValueChange={(value: any) =>
@@ -445,12 +448,12 @@ export function ProposalsPage() {
                 }
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select ward" />
+                  <SelectValue placeholder={t("proposals.selectWard")} />
                 </SelectTrigger>
                 <SelectContent>
                   {[...Array(70)].map((_, i) => (
                     <SelectItem key={i} value={`Ward ${i + 1}`}>
-                      Ward {i + 1}
+                      {t("proposals.ward")} {i + 1}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -460,10 +463,10 @@ export function ProposalsPage() {
 
           {/* Location */}
           <div>
-            <Label htmlFor="location">Specific Location</Label>
+            <Label htmlFor="location">{t("proposals.location")}</Label>
             <Input
               id="location"
-              placeholder="Street name, landmark, or specific area"
+              placeholder={t("proposals.enterLocation")}
               value={newProposal.location}
               onChange={(e) =>
                 setNewProposal({ ...newProposal, location: e.target.value })
@@ -473,7 +476,7 @@ export function ProposalsPage() {
 
           {/* Category */}
           <div>
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category">{t("proposals.category")}</Label>
             <Select
               value={newProposal.category}
               onValueChange={(value: any) =>
@@ -481,7 +484,7 @@ export function ProposalsPage() {
               }
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select category" />
+                <SelectValue placeholder={t("proposals.selectCategory")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Infrastructure">Infrastructure</SelectItem>
@@ -493,11 +496,11 @@ export function ProposalsPage() {
 
           {/* Upload */}
           <div>
-            <Label>Supporting Documents/Images</Label>
+            <Label>{t("proposals.supportingDocuments")}</Label>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer">
               <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
-              <p className="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
+              <p className="text-sm text-gray-600">{t("proposals.uploadHint")}</p>
+              <p className="text-xs text-gray-500">{t("proposals.uploadNote")}</p>
               <Input
                 type="file"
                 accept=".png,.jpg,.jpeg,.pdf"
@@ -519,10 +522,10 @@ export function ProposalsPage() {
               onClick={() => setIsNewProposalOpen(false)}
               disabled={loading}
             >
-              Cancel
+             {t("proposals.cancel")}
             </Button>
             <Button onClick={handleSubmitProposal} disabled={loading}>
-              {loading ? "Submitting..." : "Submit Proposal"}
+              {loading ? t("proposals.submitting") : t("proposals.submit")}
             </Button>
           </div>
         </div>
@@ -535,7 +538,7 @@ export function ProposalsPage() {
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input
-              placeholder="Search proposals..."
+              placeholder={t("common.searchPlaceholder")}
               className="pl-10"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -778,3 +781,331 @@ function ProposalCard({ proposal, getStatusBadge }) {
 
 
 export default ProposalCard
+
+
+
+// import { useEffect, useState } from "react";
+// import { useTranslation } from "react-";
+// import { Button } from "./ui/button";
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+// import { Input } from "./ui/input";
+// import { Label } from "./ui/label";
+// import { Textarea } from "./ui/textarea";
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+// import { Badge } from "./ui/badge";
+// import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+// import {
+//   Plus,
+//   MapPin,
+//   IndianRupee,
+//   ThumbsUp,
+//   MessageCircle,
+//   Calendar,
+//   Upload,
+//   Filter,
+//   Search,
+//   Eye,
+// } from "lucide-react";
+// import { ImageWithFallback } from "./figma/ImageWithFallback";
+// import { proposals } from "./data/proposalData.ts";
+// import { addProposal, getProposals } from "../api/proposal.api.ts";
+
+// interface ProposalData {
+//   title: string;
+//   description: string;
+//   estimatedCost: string;
+//   ward: string;
+//   location: string;
+//   category: string;
+//   image?: File | string;
+// }
+
+// export function ProposalsPage() {
+//   const { t } = useTranslation();
+//   const [sortBy, setSortBy] = useState("popular");
+//   const [filterWard, setFilterWard] = useState("all");
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const [isNewProposalOpen, setIsNewProposalOpen] = useState(false);
+//   const [fetchedProposals, setFetchedProposals] = useState([]);
+//   const [loading, setLoading] = useState(false);
+//   const [newProposal, setNewProposal] = useState<ProposalData>({
+//     title: "",
+//     description: "",
+//     estimatedCost: "",
+//     ward: "",
+//     location: "",
+//     category: "",
+//     image:
+//       "https://images.unsplash.com/photo-1563455433861-a0e8ed61d7d1?w=400&h=300&fit=crop",
+//   });
+
+//   useEffect(() => {
+//     const fetchProposals = async () => {
+//       try {
+//         const res = await getProposals();
+//         setFetchedProposals(res.proposals);
+//       } catch (err) {
+//         console.error(t("proposals.fetchError"), err);
+//       }
+//     };
+//     fetchProposals();
+//   }, [t]);
+
+//   const handleSubmitProposal = async () => {
+//     if (
+//       !newProposal.title ||
+//       !newProposal.description ||
+//       !newProposal.estimatedCost ||
+//       !newProposal.ward ||
+//       !newProposal.location ||
+//       !newProposal.category
+//     ) {
+//       alert(t("proposals.requiredFieldsAlert"));
+//       return;
+//     }
+
+//     try {
+//       setLoading(true);
+//       const payload = {
+//         ...newProposal,
+//         estimatedCost: Number(newProposal.estimatedCost),
+//         submittedOn: new Date().toISOString(),
+//       };
+
+//       await addProposal(payload);
+//       alert(t("proposals.submitSuccess"));
+
+//       setNewProposal({
+//         title: "",
+//         description: "",
+//         estimatedCost: "",
+//         ward: "",
+//         location: "",
+//         category: "",
+//         image:
+//           "https://images.unsplash.com/photo-1563455433861-a0e8ed61d7d1?w=400&h=300&fit=crop",
+//       });
+//       setIsNewProposalOpen(false);
+//     } catch (err: any) {
+//       console.error(err);
+//       alert(t("proposals.submitError"));
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const getStatusBadge = (status: string) => {
+//     switch (status) {
+//       case "Approved":
+//         return <Badge className="bg-green-600 text-white">{t("proposal.status.approved")}</Badge>;
+//       case "Voting Open":
+//         return <Badge className="bg-blue-600 text-white">{t("proposal.status.votingOpen")}</Badge>;
+//       case "Under Review":
+//         return <Badge variant="outline">{t("proposal.status.underReview")}</Badge>;
+//       default:
+//         return <Badge variant="secondary">{t("proposal.status.default")}</Badge>;
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 py-8">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         {/* Header */}
+//         <div className="text-center mb-8">
+//           <h1 className="text-3xl font-bold text-gray-900 mb-2">
+//             {t("proposals.title")}
+//           </h1>
+//           <p className="text-lg text-gray-600">{t("proposals.subtitle")}</p>
+//         </div>
+
+//         {/* Submit Proposal Dialog */}
+//         <Dialog open={isNewProposalOpen} onOpenChange={setIsNewProposalOpen}>
+//           <DialogTrigger asChild>
+//             <Button className="mt-4 sm:mt-0">
+//               <Plus className="w-4 h-4 mr-2" />
+//               {t("proposals.submitProposal")}
+//             </Button>
+//           </DialogTrigger>
+
+//           <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+//             <DialogHeader>
+//               <DialogTitle>{t("proposals.submitNew")}</DialogTitle>
+//             </DialogHeader>
+
+//             <div className="space-y-4">
+//               <div>
+//                 <Label>{t("proposals.projectTitle")}</Label>
+//                 <Input
+//                   placeholder={t("proposals.enterTitle")}
+//                   value={newProposal.title}
+//                   onChange={(e) =>
+//                     setNewProposal({ ...newProposal, title: e.target.value })
+//                   }
+//                 />
+//               </div>
+
+//               <div>
+//                 <Label>{t("proposals.description")}</Label>
+//                 <Textarea
+//                   placeholder={t("proposals.enterDescription")}
+//                   value={newProposal.description}
+//                   onChange={(e) =>
+//                     setNewProposal({ ...newProposal, description: e.target.value })
+//                   }
+//                 />
+//               </div>
+
+//               <div className="grid grid-cols-2 gap-4">
+//                 <div>
+//                   <Label>{t("proposals.estimatedCost")}</Label>
+//                   <Input
+//                     type="number"
+//                     placeholder="0"
+//                     value={newProposal.estimatedCost}
+//                     onChange={(e) =>
+//                       setNewProposal({ ...newProposal, estimatedCost: e.target.value })
+//                     }
+//                   />
+//                 </div>
+//                 <div>
+//                   <Label>{t("proposals.ward")}</Label>
+//                   <Select
+//                     value={newProposal.ward}
+//                     onValueChange={(value) => setNewProposal({ ...newProposal, ward: value })}
+//                   >
+//                     <SelectTrigger>
+//                       <SelectValue placeholder={t("proposals.selectWard")} />
+//                     </SelectTrigger>
+//                     <SelectContent>
+//                       {[...Array(70)].map((_, i) => (
+//                         <SelectItem key={i} value={`Ward ${i + 1}`}>
+//                           {t("proposals.ward")} {i + 1}
+//                         </SelectItem>
+//                       ))}
+//                     </SelectContent>
+//                   </Select>
+//                 </div>
+//               </div>
+
+//               <div>
+//                 <Label>{t("proposals.location")}</Label>
+//                 <Input
+//                   placeholder={t("proposals.enterLocation")}
+//                   value={newProposal.location}
+//                   onChange={(e) =>
+//                     setNewProposal({ ...newProposal, location: e.target.value })
+//                   }
+//                 />
+//               </div>
+
+//               <div>
+//                 <Label>{t("proposals.category")}</Label>
+//                 <Select
+//                   value={newProposal.category}
+//                   onValueChange={(value) => setNewProposal({ ...newProposal, category: value })}
+//                 >
+//                   <SelectTrigger>
+//                     <SelectValue placeholder={t("proposals.selectCategory")} />
+//                   </SelectTrigger>
+//                   <SelectContent>
+//                     <SelectItem value="Infrastructure">{t("proposal.categoryLabel")}</SelectItem>
+//                     <SelectItem value="Recreation">{t("proposal.categoryLabel")}</SelectItem>
+//                     <SelectItem value="Education">{t("proposal.categoryLabel")}</SelectItem>
+//                   </SelectContent>
+//                 </Select>
+//               </div>
+
+//               <div>
+//                 <Label>{t("proposals.supportingDocuments")}</Label>
+//                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+//                   <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+//                   <p className="text-sm text-gray-600">{t("proposals.uploadHint")}</p>
+//                   <p className="text-xs text-gray-500">{t("proposals.uploadNote")}</p>
+//                   <Input
+//                     type="file"
+//                     accept=".png,.jpg,.jpeg,.pdf"
+//                     className="mt-2"
+//                     onChange={(e) =>
+//                       setNewProposal({
+//                         ...newProposal,
+//                         image: e.target.files?.[0] || null,
+//                       })
+//                     }
+//                   />
+//                 </div>
+//               </div>
+
+//               <div className="flex justify-end space-x-2 pt-4">
+//                 <Button variant="outline" onClick={() => setIsNewProposalOpen(false)}>
+//                   {t("proposals.cancel")}
+//                 </Button>
+//                 <Button onClick={handleSubmitProposal} disabled={loading}>
+//                   {loading ? t("proposals.submitting") : t("proposals.submit")}
+//                 </Button>
+//               </div>
+//             </div>
+//           </DialogContent>
+//         </Dialog>
+
+//         {/* Search + Filters */}
+//         <div className="bg-white rounded-lg shadow-sm p-6 mb-8 flex flex-col sm:flex-row gap-4">
+//           <div className="flex-1 relative">
+//             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+//             <Input
+//               placeholder={t("common.searchPlaceholder")}
+//               className="pl-10"
+//               value={searchQuery}
+//               onChange={(e) => setSearchQuery(e.target.value)}
+//             />
+//           </div>
+//         </div>
+
+//         {/* Proposals Grid */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//           {fetchedProposals.map((p) => (
+//             <ProposalCard key={p._id} proposal={p} getStatusBadge={getStatusBadge} />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// function ProposalCard({ proposal, getStatusBadge }) {
+//   const { t } = useTranslation();
+//   const [likes, setLikes] = useState(proposal.likes || 0);
+//   const [comments, setComments] = useState(proposal.comments || 0);
+//   const [liked, setLiked] = useState(false);
+//   const [newComment, setNewComment] = useState("");
+
+//   return (
+//     <Card className="hover:shadow-lg transition-shadow">
+//       <div className="relative">
+//         <ImageWithFallback src={proposal.image} alt={proposal.title} className="w-full h-48 object-cover rounded-t-lg" />
+//         <div className="absolute top-4 left-4">{getStatusBadge(proposal.status)}</div>
+//       </div>
+
+//       <CardHeader>
+//         <CardTitle className="text-lg leading-tight">{proposal.title}</CardTitle>
+//         <CardDescription className="text-sm line-clamp-2">
+//           {proposal.description}
+//         </CardDescription>
+//       </CardHeader>
+
+//       <CardContent className="space-y-4">
+//         <div className="flex items-center justify-between text-sm text-gray-600">
+//           <div className="flex items-center">
+//             <IndianRupee className="w-4 h-4 mr-1" />
+//             <span>₹{(proposal.estimatedCost / 100000).toFixed(1)}L</span>
+//           </div>
+//           <div className="flex items-center">
+//             <MapPin className="w-4 h-4 mr-1" />
+//             <span>{proposal.ward}</span>
+//           </div>
+//         </div>
+//       </CardContent>
+//     </Card>
+//   );
+// }
+
+// export default ProposalCard;
