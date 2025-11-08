@@ -21,6 +21,7 @@ import {
   Settings,
   Users,
   ClipboardList,
+  X,
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import {
@@ -45,25 +46,27 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userName, setUserName] = useState('');
   const { language, setLanguage, t } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+const [isSheetOpen, setIsSheetOpen] = useState(false); 
+
 
   // Check auth status and user type
   useEffect(() => {
     const checkAuthStatus = () => {
       const token = localStorage.getItem('token');
-      const userType = localStorage.getItem('userType');
-      const userData = localStorage.getItem('userData');
+      const adminToken = localStorage.getItem("admin-token");
       
-      setIsLoggedIn(!!token);
-      setIsAdmin(userType === 'admin');
-      
-      if (userData) {
-        try {
-          const user = JSON.parse(userData);
-          setUserName(user.name || 'User');
-        } catch (e) {
-          setUserName('User');
-        }
-      }
+      if (adminToken) {
+    setIsLoggedIn(true);
+    setIsAdmin(true);
+  } else if (token) {
+    setIsLoggedIn(true);
+    setIsAdmin(false);
+  } else {
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+  }
     };
 
     checkAuthStatus();
@@ -82,10 +85,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('userData');
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin-token");
     window.dispatchEvent(new Event('authChange'));
     setIsLoggedIn(false);
     setIsAdmin(false);
@@ -103,13 +104,17 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     { id: 'info', label: t('header.info'), icon: Info },
   ];
 
-  // Admin-only navigation items
-  const adminNavigation = isAdmin
-    ? [
-        { id: 'add-voting-project', label: 'Add Voting Project', icon: Plus },
-        { id: 'track-projects', label: 'Track Projects', icon: Activity },
-      ]
-    : [];
+
+   const handleDropdownToggle = () => {
+  setIsOpen((prev) => !prev);
+  setIsMenuOpen(false); // close mobile menu if open
+};
+  const handleMobileMenuToggle = () => {
+  setIsMenuOpen((prev) => !prev);
+  setIsOpen(false); // close admin dropdown if open
+};
+
+
 
   // Auth navigation
   const authNavigation = isLoggedIn
@@ -119,13 +124,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         { id: 'signup', label: t('header.signup'), icon: UserPlus },
       ];
 
-  const navigationItems = [...baseNavigation, ...adminNavigation, ...authNavigation];
+  const navigationItems = [...baseNavigation, ...authNavigation];
 
   const handleNavigate = (id: string) => {
     if (id === 'logout') {
       handleLogout();
     } else {
       onNavigate(id);
+      setIsMenuOpen(false);
       setIsOpen(false);
     }
   };
@@ -167,7 +173,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-4">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -176,7 +182,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   onClick={() => handleNavigate(item.id)}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md transition-colors ${
                     currentPage === item.id
-                      ? 'bg-primary text-white'
+                      ? 'bg-primary text-base'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                   }`}
                 >
@@ -188,54 +194,66 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
             {/* Admin Panel Dropdown */}
             {isAdmin && (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="flex items-center space-x-2 border-2 border-purple-200 hover:bg-purple-50"
-                  >
-                    <Shield className="w-4 h-4 text-purple-600" />
-                    <span className="font-medium text-purple-600">Admin Panel</span>
-                    <ChevronDown className="w-4 h-4 text-purple-600" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel className="flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-purple-600" />
-                    <span>Administration</span>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onClick={() => handleNavigate('manage-proposals')}
-                    className="cursor-pointer"
-                  >
-                    <ClipboardList className="w-4 h-4 mr-2" />
-                    Manage Proposals
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => handleNavigate('manage-complaints')}
-                    className="cursor-pointer"
-                  >
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Manage Complaints
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => handleNavigate('manage-users')}
-                    className="cursor-pointer"
-                  >
-                    <Users className="w-4 h-4 mr-2" />
-                    Manage Users
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => handleNavigate('settings')}
-                    className="cursor-pointer"
-                  >
-                    <Settings className="w-4 h-4 mr-2" />
-                    Settings
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
+  <div className="relative group">
+    <Button
+  onClick={handleDropdownToggle}
+  className="flex items-center gap-2 border border-purple-300 bg-white text-purple-700 hover:bg-purple-50"
+>
+  <Shield className="w-4 h-4" />
+  <span className="text-sm font-medium">Admin Panel</span>
+  <ChevronDown
+    className={`w-4 h-4 text-purple-600 transition-transform duration-200 ${
+      isOpen ? "rotate-180" : ""
+    }`}
+  />
+</Button>
+
+
+    {/* Dropdown Menu */}
+    {isOpen && (
+      <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+        <div className="px-4 py-2 border-b border-gray-100 font-semibold text-gray-700 flex items-center gap-2">
+          <Shield className="w-4 h-4 text-purple-600" />
+          Administration
+        </div>
+
+        <button
+          onClick={() => handleNavigate("add-voting-project")}
+          className="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2"
+        >
+          <Plus className="w-4 h-4 text-gray-600" />
+          <span>Add Voting Project</span>
+        </button>
+
+        <button
+          onClick={() => handleNavigate("track-projects")}
+          className="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2"
+        >
+          <Activity className="w-4 h-4 text-gray-600" />
+          <span>Track Projects</span>
+        </button>
+
+        <button
+          onClick={() => handleNavigate("manage-proposals")}
+          className="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2"
+        >
+          <ClipboardList className="w-4 h-4 text-gray-600" />
+          <span>Manage Proposals</span>
+        </button>
+
+        <button
+          onClick={() => handleNavigate("manage-complaints")}
+          className="w-full text-left px-4 py-2 hover:bg-gray-50 flex items-center gap-2"
+        >
+          <MessageSquare className="w-4 h-4 text-gray-600" />
+          <span>Manage Complaints</span>
+        </button>
+
+      </div>
+    )}
+  </div>
+)}
+
 
             {/* Logout Button for Logged-in Users */}
             {isLoggedIn && (
@@ -252,15 +270,6 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
           {/* Language Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Admin Badge */}
-            {isAdmin && (
-              <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-purple-100 border border-purple-300 rounded-full">
-                <Shield className="w-4 h-4 text-purple-600" />
-                <span className="text-xs font-bold text-purple-700">Admin</span>
-              </div>
-            )}
-
-            {/* Language Toggle */}
             <Button
               variant="outline"
               size="sm"
@@ -272,11 +281,13 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             </Button>
 
             {/* Mobile Menu */}
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+
               <SheetTrigger asChild>
-                <Button variant="outline" size="sm" className="md:hidden">
-                  <Menu className="w-4 h-4" />
-                </Button>
+                <button onClick={handleMobileMenuToggle} className="md:hidden">
+  {isMenuOpen ? <X /> : <Menu />}
+</button>
+
               </SheetTrigger>
               <SheetContent side="right" className="w-80 overflow-y-auto">
                 <div className="flex items-center justify-between mb-6">
@@ -371,13 +382,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                         <Users className="w-5 h-5" />
                         <span className="font-medium">Manage Users</span>
                       </button>
-                      <button
-                        onClick={() => handleNavigate('settings')}
-                        className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all"
-                      >
-                        <Settings className="w-4 h-4" />
-                        <span className="font-medium">Settings</span>
-                      </button>
+                      
                     </>
                   )}
 
