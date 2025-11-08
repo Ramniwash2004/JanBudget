@@ -24,10 +24,12 @@ import {
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { CameraCapture } from './ui/CameraCapture';
 import { addComplaint, getComplaints } from '../api/complaint.api';
+import { useLanguage } from './LanguageContext.tsx';
 
 const DemoImageLink = "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png";
 
 export function ComplaintsPage() {
+  const { language, setLanguage, t } = useLanguage();
   // UI states
   const [sortBy, setSortBy] = useState('recent');
   const [filterCategory, setFilterCategory] = useState('all');
@@ -89,58 +91,6 @@ export function ComplaintsPage() {
       setLoading(false);
     }
   };
-
-  // Demo complaints list (unchanged)
-  // const complaints = [
-  //   {
-  //     id: 1,
-  //     title: "Broken streetlight on Market Road",
-  //     description: "The streetlight near the main market has been non-functional for over a week, causing safety concerns for pedestrians at night.",
-  //     category: "Electricity",
-  //     ward: "Ward 1",
-  //     location: "Market Road, near vegetable market",
-  //     status: "Under Investigation",
-  //     priority: "High",
-  //     submittedBy: "Anonymous",
-  //     submittedDate: "2024-02-20",
-  //     upvotes: 23,
-  //     downvotes: 2,
-  //     comments: 8,
-  //     image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-  //     responses: [
-  //       {
-  //         id: 1,
-  //         author: "Municipal Electricity Dept",
-  //         message: "We have received your complaint and our team will inspect the issue within 24 hours.",
-  //         date: "2024-02-21",
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Pothole causing vehicle damage",
-  //     description: "Large pothole on Industrial Road is causing damage to vehicles. Multiple citizens have reported tire punctures.",
-  //     category: "Road",
-  //     ward: "Ward 3",
-  //     location: "Industrial Road, near factory gate",
-  //     status: "Resolved",
-  //     priority: "High",
-  //     submittedBy: "Raj Patel",
-  //     submittedDate: "2024-02-15",
-  //     upvotes: 45,
-  //     downvotes: 1,
-  //     comments: 12,
-  //     image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
-  //     responses: [
-  //       {
-  //         id: 1,
-  //         author: "Road Maintenance Dept",
-  //         message: "The pothole has been filled and the road surface repaired.",
-  //         date: "2024-02-18",
-  //       }
-  //     ]
-  //   }
-  // ];
 
   const [complaints, setComplaints] = useState<any[]>([
     {
@@ -283,33 +233,33 @@ useEffect(() => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Citizens' Complaints</h1>
-            <p className="text-lg text-gray-600">Report issues and track their resolution</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("complaints.title")}</h1>
+            <p className="text-lg text-gray-600">{t("complaints.subtitle")}</p>
           </div>
 
           <Dialog open={isNewComplaintOpen} onOpenChange={setIsNewComplaintOpen}>
             <DialogTrigger asChild>
               <Button className="mt-4 sm:mt-0">
                 <Plus className="w-4 h-4 mr-2" />
-                Lodge Complaint
+                {t("complaints.lodgeComplaint")}
               </Button>
             </DialogTrigger>
 
             <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle>Lodge New Complaint</DialogTitle>
+                <DialogTitle>{t("complaints.newComplaint")}</DialogTitle>
               </DialogHeader>
 
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="heading">Complaint Heading</Label>
+                  <Label htmlFor="heading">{t("complaints.heading")}</Label>
                   <Input id="heading" value={heading} onChange={(e) => setHeading(e.target.value)} />
                 </div>
 
                 <div>
-                  <Label>Category</Label>
-                  <Select value={title} onValueChange={(v) => setTitle(v as any)}>
-                    <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
+                  <Label>{t("complaints.category")}</Label>
+                  <Select value={title} onValueChange={(v:any) => setTitle(v as any)}>
+                    <SelectTrigger><SelectValue placeholder={t("complaints.selectCategory")} /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="waste">Waste Management</SelectItem>
                       <SelectItem value="electricity">Electricity</SelectItem>
@@ -320,17 +270,17 @@ useEffect(() => {
                 </div>
 
                 <div>
-                  <Label>Description</Label>
+                  <Label>{t("complaints.description")}</Label>
                   <Textarea rows={4} value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
 
                 <div>
-                  <Label>Location</Label>
+                  <Label>{t("complaints.location")}</Label>
                   <Input value={location} onChange={(e) => setLocation(e.target.value)} />
                 </div>
 
                 <div>
-                  <Label>Ward Number</Label>
+                  <Label>{t("complaints.wardNumber")}</Label>
                   <Input
                     type="number"
                     value={wardNumber}
@@ -339,9 +289,9 @@ useEffect(() => {
                 </div>
 
                 <div>
-                  <Label>Priority</Label>
-                  <Select value={priority} onValueChange={(v) => setPriority(v as any)}>
-                    <SelectTrigger><SelectValue placeholder="Select priority" /></SelectTrigger>
+                  <Label>{t("complaints.priority")}</Label>
+                  <Select value={priority} onValueChange={(v:any) => setPriority(v as any)}>
+                    <SelectTrigger><SelectValue placeholder={t("complaints.selectPriority")} /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="High">High</SelectItem>
                       <SelectItem value="Medium">Medium</SelectItem>
@@ -352,7 +302,7 @@ useEffect(() => {
 
                 {/* Photo Evidence */}
                 <div>
-                  <Label>Photo Evidence</Label>
+                  <Label>{t("complaints.photoEvidence")}</Label>
                   {showCamera ? (
                     <CameraCapture onCapture={handlePhotoCapture} onCancel={() => setShowCamera(false)} />
                   ) : capturedPhoto ? (
@@ -375,8 +325,8 @@ useEffect(() => {
                       className="w-full border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-gray-400 transition"
                     >
                       <Camera className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-                      <p className="text-sm font-medium text-gray-700">Take Photo from Camera</p>
-                      <p className="text-xs text-gray-500 mt-1">Click to open camera</p>
+                      <p className="text-sm font-medium text-gray-700">{t("complaints.takePhoto")}</p>
+                      <p className="text-xs text-gray-500 mt-1">{t("complaints.clickToOpenCamera")}</p>
                     </button>
                   )}
                 </div>
@@ -385,10 +335,10 @@ useEffect(() => {
 
                 <div className="flex justify-end space-x-2 pt-4">
                   <Button variant="outline" onClick={() => setIsNewComplaintOpen(false)}>
-                    Cancel
+                    {t("complaints.cancel")}
                   </Button>
                   <Button onClick={handleLodgeComplaint} disabled={loading}>
-                    {loading ? 'Submitting...' : 'Submit Complaint'}
+                    {loading ? t("complaints.submitting") : t("complaints.submitComplaint")}
                   </Button>
                 </div>
               </div>
@@ -402,7 +352,7 @@ useEffect(() => {
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input
-                placeholder="Search complaints..."
+                placeholder={t("complaints.searchPlaceholder")}
                 className="pl-10"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -412,10 +362,10 @@ useEffect(() => {
             <Select value={filterCategory} onValueChange={setFilterCategory}>
               <SelectTrigger className="w-48">
                 <Filter className="w-4 h-4 mr-2" />
-                <SelectValue placeholder="Filter by category" />
+                <SelectValue placeholder={t("complaints.filterCategory")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
+                <SelectItem value="all">{t("complaints.fillAllFields")}</SelectItem>
                 <SelectItem value="Road">Road</SelectItem>
                 <SelectItem value="Water">Water</SelectItem>
                 <SelectItem value="Electricity">Electricity</SelectItem>
@@ -463,7 +413,7 @@ useEffect(() => {
                       </div>
                       <div className="flex items-center text-gray-600">
                         <Calendar className="w-4 h-4 mr-2" />
-                        <span>Submitted by {complaint.submittedBy}</span>
+                        <span>{t("complaints.submittedBy")} {complaint.submittedBy}</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between pt-4 border-t">
@@ -485,7 +435,7 @@ useEffect(() => {
                         <DialogTrigger asChild>
                           <Button size="sm" variant="outline">
                             <Eye className="w-4 h-4 mr-1" />
-                            View Details
+                            {t("complaints.viewDetails")}
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
@@ -518,8 +468,8 @@ useEffect(() => {
         {filteredComplaints.length === 0 && (
           <div className="text-center py-12">
             <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900">No complaints found</h3>
-            <p className="text-gray-600">Try adjusting your search or filters</p>
+            <h3 className="text-lg font-medium text-gray-900">{t("complaints.noComplaintsTitle")}</h3>
+            <p className="text-gray-600">{t("complaints.noComplaintsDesc")}</p>
           </div>
         )}
       </div>

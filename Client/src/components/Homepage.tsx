@@ -231,10 +231,10 @@ export function Homepage({ onNavigate }: HomepageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              News & Updates
+              {t("homepage.news.title")}
             </h2>
             <p className="text-lg text-gray-600">
-              Stay informed about the latest developments
+              {t("homepage.news.subtitle")}
             </p>
           </div>
 
@@ -299,10 +299,10 @@ export function Homepage({ onNavigate }: HomepageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Quick Actions
+              {t("homepage.quickActions.title")}
             </h2>
             <p className="text-lg text-gray-600">
-              Get started with these common actions
+              {t("homepage.quickActions.subtitle")}
             </p>
           </div>
 
@@ -313,11 +313,11 @@ export function Homepage({ onNavigate }: HomepageProps) {
             >
               <CardContent className="pt-8 pb-6">
                 <FileText className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Submit New Proposal</h3>
+                <h3 className="text-xl font-bold mb-2">{t('homepage.quickActions.submitNew')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Share your ideas for community development
+                  {t('homepage.quickActions.submitDesc')}
                 </p>
-                <Button className="w-full cursor-pointer">Get Started</Button>
+                <Button className="w-full cursor-pointer">{t('homepage.quickActions.getStarted')}</Button>
               </CardContent>
             </Card>
 
@@ -327,12 +327,12 @@ export function Homepage({ onNavigate }: HomepageProps) {
             >
               <CardContent className="pt-8 pb-6">
                 <Vote className="w-12 h-12 text-secondary mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Vote on Proposals</h3>
+                <h3 className="text-xl font-bold mb-2">{t('homepage.quickActions.vote')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Help decide which projects get funded
+                  {t('homepage.quickActions.voteDesc')}
                 </p>
                 <Button variant="outline" className="w-full cursor-pointer">
-                  Start Voting
+                  {t('homepage.quickActions.startVoting')}
                 </Button>
               </CardContent>
             </Card>
@@ -343,12 +343,12 @@ export function Homepage({ onNavigate }: HomepageProps) {
             >
               <CardContent className="pt-8 pb-6">
                 <FolderOpen className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-bold mb-2">Track Projects</h3>
+                <h3 className="text-xl font-bold mb-2">{t('homepage.quickActions.track')}</h3>
                 <p className="text-gray-600 mb-4">
-                  Monitor the progress of approved projects
+                  {t('homepage.quickActions.trackDesc')}
                 </p>
                 <Button variant="secondary" className="w-full cursor-pointer">
-                  View Projects
+                  {t('homepage.quickActions.viewProjects')}
                 </Button>
               </CardContent>
             </Card>
